@@ -33,5 +33,5 @@ watchfiles
 holoviews
 bokeh
 ipywidgets
-jupyter-book
+jupyter-book<2
 jupytext
