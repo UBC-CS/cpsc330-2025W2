@@ -1,0 +1,1355 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lecture 1: Course Introduction &#8212; CPSC 330 Applied Machine Learning 2025W1</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/extra.css?v=6df0ab2b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/101-103-Giulia-lectures/01_intro';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/UBC-CS-logo.png" class="logo__image only-light" alt="CPSC 330 Applied Machine Learning 2025W1 - Home"/>
+    <script>document.write(`<img src="../../_static/UBC-CS-logo.png" class="logo__image only-dark" alt="CPSC 330 Applied Machine Learning 2025W1 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    UBC CPSC 330: Applied Machine Learning (2025W1)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Things you should know</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../learning-objectives.html">Course Learning Objectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../notes/01_intro.html">Lecture 1: Course Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/02_terminology-decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/07_linear-models.html">Lecture 7: Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/11_ensembles.html">Lecture 11: Ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/final-exam-review-guiding-question.html">Final exam preparation: guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/AppendixA.html">Appendix A: Handling class imbalance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/AppendixB.html">Appendix B: Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/AppendixC.html">Appendix C: Basic text preprocessing [video]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/AppendixD.html">Appendix D: Multi-class, meta-strategies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section slides</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../102-Varada-lectures/README.html">Section 102</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-01.html">Lecture 1</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-02.html">Lecture 2</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-03.html">Lecture 3</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-04.html">Lecture 4</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-05.html">Lecture 5</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-06.html">Lecture 6</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-07.html">Lecture 7</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-08.html">Lecture 8</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-09.html">Lecture 9</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-10.html">Lecture 10</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-11.html">Lecture 11</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-12.html">Lecture 12</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-13.html">Lecture 13</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-14.html">Lecture 14</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-15.html">Lecture 15</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-16.html">Lecture 16</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-17.html">Lecture 17</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-18.html">Lecture 18</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-19.html">Lecture 19</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-20.html">Lecture 20</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-21.html">Lecture 21</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-23.html">Lecture 23</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">LICENSE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/UBC-CS/cpsc330-2025W1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/lectures/101-103-Giulia-lectures/01_intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lecture 1: Course Introduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characters-in-this-course">Characters in this course?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meet-eva-a-fictitious-persona">Meet Eva (a fictitious persona)!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-machine-learning-ml-video">Why machine learning (ML)? [video]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prevalence-of-ml">Prevalence of ML</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-time-and-scaling-products">Saving time and scaling products</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-ai-ml-and-dl">What are AI, ML, and DL?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-machine-learning">Supervised machine learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of machine learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-supervised-machine-learning-ml">What is supervised machine learning (ML)?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-predict-whether-a-message-is-spam-or-not">Example: Predict whether a message is spam or not</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-features-x-and-target-y">Input: features <span class="math notranslate nohighlight">\(X\)</span> and target <span class="math notranslate nohighlight">\(y\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training-a-supervised-machine-learning-model-with-x-and-y">Training a supervised machine learning model with <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(y\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-on-unseen-data-using-the-trained-model">Predicting on unseen data using the trained model</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-machine-learning-popular-definition">(Supervised) machine learning: popular definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-predicting-whether-a-patient-has-a-liver-disease-or-not">Example 1: Predicting whether a patient has a liver disease or not</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data">Input data</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-supervise-machine-learning-model">Building a supervise machine learning model</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#model-predictions-on-unseen-data">Model predictions on unseen data</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-predicting-the-label-of-a-given-image">Example 2: Predicting the label of a given image</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-predicting-sentiment-expressed-in-a-movie-review">Example 3: Predicting sentiment expressed in a movie review</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-predicting-housing-prices">Example 4: Predicting housing prices</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eva-s-questions">🤔 Eva’s questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-workflow">Machine learning workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-all-of-the-following-statements-which-are-true-iclicker">Select all of the following statements which are <strong>True</strong> (iClicker)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#break-5-min">Break (5 min)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-this-course">About this course</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#course-website">Course website</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpsc-330-vs-340">CPSC 330 vs. 340</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registration-waitlist-and-prerequisites">Registration, waitlist and prerequisites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#course-format">Course format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#communications">Communications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grades">Grades</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-deliverables">First deliverables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-talk-about-genai">Let’s talk about GenAI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-and-homework-format-jupyter-notebooks">Lecture and homework format: Jupyter notebooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-style">Lecture style</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-computer-for-the-course">Setting up your computer for the course</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-browser">Recommended browser</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-requirements-resources">Python requirements/resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activity">Activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-for-you-before-next-class">Checklist for you before next class</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><img alt="" src="../../_images/330-banner.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="lecture-1-course-introduction">
+<h1>Lecture 1: Course Introduction<a class="headerlink" href="#lecture-1-course-introduction" title="Link to this heading">#</a></h1>
+<p>UBC 2025-26</p>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">),</span> <span class="s2">&quot;code&quot;</span><span class="p">))</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_extraction.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_colwidth&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OMP_NUM_THREADS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s1">&#39;../data/&#39;</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="learning-outcomes">
+<h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Link to this heading">#</a></h2>
+<p>From this lecture, you will be able to</p>
+<ul class="simple">
+<li><p>Explain the motivation behind study machine learning.</p></li>
+<li><p>Briefly describe supervised learning.</p></li>
+<li><p>Differentiate between traditional programming and machine learning.</p></li>
+<li><p>Assess whether a given problem is suitable for a machine learning solution.</p></li>
+</ul>
+<p><br><br></p>
+</section>
+<section id="characters-in-this-course">
+<h2>Characters in this course?<a class="headerlink" href="#characters-in-this-course" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>CPSC 330 teaching team (instructors and the TAs)</p></li>
+<li><p>Eva (a fictitious enthusiastic student)</p></li>
+<li><p>And you all, of course 🙂!</p></li>
+</ul>
+<section id="meet-eva-a-fictitious-persona">
+<h3>Meet Eva (a fictitious persona)!<a class="headerlink" href="#meet-eva-a-fictitious-persona" title="Link to this heading">#</a></h3>
+<p><img alt="" src="../../_images/eva-hi.png" /></p>
+<p>Eva is among one of you. She has some experience in Python programming. She knows machine learning as a buzz word. During her recent internship, she has developed some interest and curiosity in the field. She wants to learn what is it and how to use it. She is a curious person and usually has a lot of questions!</p>
+</section>
+</section>
+<section id="why-machine-learning-ml-video">
+<h2>Why machine learning (ML)? [<a class="reference external" href="https://www.youtube.com/watch?v=-1hTcS5ZE4w&amp;amp;t=1s">video</a>]<a class="headerlink" href="#why-machine-learning-ml-video" title="Link to this heading">#</a></h2>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out <a class="reference external" href="https://www.youtube.com/watch?v=-1hTcS5ZE4w&amp;amp;t=1s">the accompanying video</a> on this material.</p>
+</div>
+<section id="prevalence-of-ml">
+<h3>Prevalence of ML<a class="headerlink" href="#prevalence-of-ml" title="Link to this heading">#</a></h3>
+<p>Let’s look at some examples.</p>
+<!-- <img src="img/ml-examples.png" height="1000" width="1000">  -->
+<p><img alt="" src="../../_images/ml-examples.png" /></p>
+<ul class="simple">
+<li><p>Image sources</p>
+<ul>
+<li><p><a class="reference external" href="https://geeksfl.com/blog/best-voice-assistant/">Voice assistants</a></p></li>
+<li><p><a class="reference external" href="https://news.google.com">Google News</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Recommender_system">Recommendation systems</a></p></li>
+<li><p><a class="reference external" href="https://startupleague.online/blog/3dss-tech-facial-recognition-technology/">Face Recognition source</a></p></li>
+<li><p><a class="reference external" href="https://9to5google.com/2020/08/10/android-11-autofill-keyboard/">Auto-completion</a></p></li>
+<li><p><a class="reference external" href="https://hbr.org/2019/12/what-machine-learning-will-mean-for-asset-managers">Stock market prediction</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Handwriting_recognition">Character recognition</a></p></li>
+<li><p><a class="reference external" href="https://deepmind.com/alphago-china">AlphaGo</a></p></li>
+<li><p><a class="reference external" href="https://mc.ai/artificial-intelligence-in-self-driving-cars%E2%80%8A-%E2%80%8Ahow-far-have-we-gotten/">Self-driving cars</a></p></li>
+<li><p><a class="reference external" href="https://www.nature.com/articles/d41586-018-05267-x">Drug discovery</a></p></li>
+<li><p><a class="reference external" href="https://venturebeat.com/2018/10/12/google-ai-claims-99-accuracy-in-metastatic-breast-cancer-detection/">Cancer detection</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="saving-time-and-scaling-products">
+<h3>Saving time and scaling products<a class="headerlink" href="#saving-time-and-scaling-products" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Imagine writing a program for spam identification, i.e., whether an email is spam or non-spam.</p></li>
+<li><p>Traditional programming</p>
+<ul>
+<li><p>Come up with rules using human understanding of spam messages.</p></li>
+<li><p>Time consuming and hard to come up with robust set of rules.</p></li>
+</ul>
+</li>
+<li><p>Machine learning</p>
+<ul>
+<li><p>Collect large amount of data of spam and non-spam emails and let the machine learning algorithm figure out rules.</p></li>
+</ul>
+</li>
+<li><p>With machine learning, you’re likely to</p>
+<ul>
+<li><p>Save time</p></li>
+<li><p>Customize and scale products</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="what-are-ai-ml-and-dl">
+<h2>What are AI, ML, and DL?<a class="headerlink" href="#what-are-ai-ml-and-dl" title="Link to this heading">#</a></h2>
+<p>Before we dive in, let’s clear up the difference between these buzzwords you’ve probably heard: AI, ML, and DL.</p>
+<ul class="simple">
+<li><p><strong>Artificial Intelligence (AI)</strong>: Broad goal of making computers perform tasks that typically require human intelligence (e.g., chess-playing programs, virtual assistants)</p></li>
+<li><p><strong>Machine Learning (ML)</strong>: A subset of AI where systems learn patterns from data instead of being explicitly programmed (e.g., spam filtering, predicting housing prices)</p></li>
+<li><p><strong>Deep Learning (DL)</strong>: A subset of ML that uses multi-layered neural networks to learn complex patterns (e.g., image classification, speech-to-text)</p></li>
+</ul>
+<p><img alt="" src="../../_images/ai-ml-dl.png" /></p>
+<p>In this course, we’ll focus on machine learning, the practical, everyday workhorse of AI. Toward the end, you’ll also get a high-level overview of deep learning, the driver behind recent breakthroughs in generative AI.</p>
+<p><br><br></p>
+</section>
+<section id="supervised-machine-learning">
+<h2>Supervised machine learning<a class="headerlink" href="#supervised-machine-learning" title="Link to this heading">#</a></h2>
+<section id="types-of-machine-learning">
+<h3>Types of machine learning<a class="headerlink" href="#types-of-machine-learning" title="Link to this heading">#</a></h3>
+<p>Here are some typical learning problems.</p>
+<ul class="simple">
+<li><p><strong>Supervised learning</strong> (<a class="reference external" href="https://support.google.com/a/answer/2368132?hl=en">Gmail spam filtering</a>)</p>
+<ul>
+<li><p>Training a model from input data and its corresponding targets to predict targets for new examples.</p></li>
+</ul>
+</li>
+<li><p>Unsupervised learning (<a class="reference external" href="https://news.google.com/">Google News</a>)</p>
+<ul>
+<li><p>Training a model to find patterns in a dataset, typically an unlabeled dataset.</p></li>
+</ul>
+</li>
+<li><p>Reinforcement learning (<a class="reference external" href="https://deepmind.com/research/case-studies/alphago-the-story-so-far">AlphaGo</a>)</p>
+<ul>
+<li><p>A family of algorithms for finding suitable actions to take in a given situation in order to maximize a reward.</p></li>
+</ul>
+</li>
+<li><p>Recommendation systems (<a class="reference external" href="https://www.cs.umd.edu/~samir/498/Amazon-Recommendations.pdf">Amazon item recommendation system</a>)</p>
+<ul>
+<li><p>Predict the “rating” or “preference” a user would give to an item.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="what-is-supervised-machine-learning-ml">
+<h3>What is supervised machine learning (ML)?<a class="headerlink" href="#what-is-supervised-machine-learning-ml" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Training data comprises a set of observations (<span class="math notranslate nohighlight">\(X\)</span>) and their corresponding targets (<span class="math notranslate nohighlight">\(y\)</span>).</p></li>
+<li><p>We wish to find a model function <span class="math notranslate nohighlight">\(f\)</span> that relates <span class="math notranslate nohighlight">\(X\)</span> to <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p>We use the model function to predict targets of new examples.</p></li>
+</ul>
+<p><img alt="" src="../../_images/sup-learning.png" /></p>
+<!-- <img src="../img/sup-learning.png" height="600" width="600">  -->
+</section>
+<section id="example-predict-whether-a-message-is-spam-or-not">
+<h3>Example: Predict whether a message is spam or not<a class="headerlink" href="#example-predict-whether-a-message-is-spam-or-not" title="Link to this heading">#</a></h3>
+<section id="input-features-x-and-target-y">
+<h4>Input: features <span class="math notranslate nohighlight">\(X\)</span> and target <span class="math notranslate nohighlight">\(y\)</span><a class="headerlink" href="#input-features-x-and-target-y" title="Link to this heading">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do not worry about the code and syntax for now.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Download SMS Spam Collection Dataset from <a class="reference external" href="https://www.kaggle.com/uciml/sms-spam-collection-dataset">here</a>.</p>
+</div>
+</section>
+<section id="training-a-supervised-machine-learning-model-with-x-and-y">
+<h4>Training a supervised machine learning model with <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(y\)</span><a class="headerlink" href="#training-a-supervised-machine-learning-model-with-x-and-y" title="Link to this heading">#</a></h4>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sms_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">+</span> <span class="s2">&quot;spam.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;latin-1&quot;</span><span class="p">)</span>
+<span class="n">sms_df</span> <span class="o">=</span> <span class="n">sms_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Unnamed: 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Unnamed: 3&quot;</span><span class="p">,</span> <span class="s2">&quot;Unnamed: 4&quot;</span><span class="p">])</span>
+<span class="n">sms_df</span> <span class="o">=</span> <span class="n">sms_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;v1&quot;</span><span class="p">:</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;v2&quot;</span><span class="p">:</span> <span class="s2">&quot;sms&quot;</span><span class="p">})</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">sms_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">],</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">],</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">))</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="predicting-on-unseen-data-using-the-trained-model">
+<h4>Predicting on unseen data using the trained model<a class="headerlink" href="#predicting-on-unseen-data-using-the-trained-model" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;sms&quot;</span><span class="p">:</span> <span class="n">X_test</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span>
+    <span class="s2">&quot;spam_predictions&quot;</span><span class="p">:</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]),</span>
+<span class="p">}</span>
+<span class="n">pred_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pred_dict</span><span class="p">)</span>
+<span class="n">pred_df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;left&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>We have accurately predicted labels for the unseen text messages above!</strong></p>
+<p>Question: how many examples do you think were needed to get this result? In other words, how many samples are in <code class="docutils literal notranslate"><span class="pre">train_df</span></code>?</p>
+<p><strong>First iClicker! (just a test)</strong></p>
+<p>Connect to iClicker Cloud through Canvas. You will need to create an iClicker account if you don’t already have one, in which case you may not be able to participate today - but that’s ok, this is just a test.</p>
+<ul class="simple">
+<li><p>(A) &lt; 10</p></li>
+<li><p>(B) 10 - 100</p></li>
+<li><p>(C) 100 - 1000</p></li>
+<li><p>(D) 1000 - 10000</p></li>
+<li><p>(E) 10000 - 100000</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ready to find out?</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">train_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+</section>
+<section id="supervised-machine-learning-popular-definition">
+<h3>(Supervised) machine learning: popular definition<a class="headerlink" href="#supervised-machine-learning-popular-definition" title="Link to this heading">#</a></h3>
+<blockquote>
+A field of study that gives computers the ability to learn without being explicitly programmed. <br> -- Arthur Samuel (1959)
+</blockquote>
+<p>ML is a different way to think about problem solving.</p>
+<p><img alt="" src="../../_images/traditional-programming-vs-ML.png" /></p>
+<!-- <img src="img/traditional-programming-vs-ML.png" height="700" width="700">  --></section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p>Let’s look at some concrete examples of supervised machine learning.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do not worry about the code at this point. Just focus on the input and output in each example.</p>
+</div>
+<section id="example-1-predicting-whether-a-patient-has-a-liver-disease-or-not">
+<h4>Example 1: Predicting whether a patient has a liver disease or not<a class="headerlink" href="#example-1-predicting-whether-a-patient-has-a-liver-disease-or-not" title="Link to this heading">#</a></h4>
+<section id="input-data">
+<h5>Input data<a class="headerlink" href="#input-data" title="Link to this heading">#</a></h5>
+<p>Suppose we are interested in predicting whether a patient has the disease or not. We are given some tabular data with inputs and outputs of liver patients, as shown below. The data contains a number of input features and a special column called “Target” which is the output we are interested in predicting.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Download the data from <a class="reference external" href="https://www.kaggle.com/uciml/indian-liver-patient-records">here</a>.</p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">+</span> <span class="s2">&quot;indian_liver_patient.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Gender&quot;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Dataset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Dataset&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Disease&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Dataset&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Dataset&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;No Disease&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Dataset&quot;</span><span class="p">:</span> <span class="s2">&quot;Target&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="building-a-supervise-machine-learning-model">
+<h5>Building a supervise machine learning model<a class="headerlink" href="#building-a-supervise-machine-learning-model" title="Link to this heading">#</a></h5>
+<p>Let’s train a supervised machine learning model with the input and output above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lightgbm.sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">LGBMClassifier</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Target&quot;</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;Target&quot;</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Target&quot;</span><span class="p">])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;Target&quot;</span><span class="p">]</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LGBMClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="model-predictions-on-unseen-data">
+<h5>Model predictions on unseen data<a class="headerlink" href="#model-predictions-on-unseen-data" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>Given features of new patients below we’ll use this model to predict whether these patients have the liver disease or not.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HTML</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;Predicted_target&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()})</span>
+
+<span class="n">df_concat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pred_df</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">df_concat</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+</section>
+<section id="example-2-predicting-the-label-of-a-given-image">
+<h4>Example 2: Predicting the label of a given image<a class="headerlink" href="#example-2-predicting-the-label-of-a-given-image" title="Link to this heading">#</a></h4>
+<p>Suppose you want to predict the label of a given image using supervised machine learning. We are using a pre-trained model here to predict labels of new unseen images.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Assuming that you have successfully created cpsc330 <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment on your computer, you’ll have to install <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> in cpsc330 <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment to run the following code. If you are unable to install <code class="docutils literal notranslate"><span class="pre">torchvision</span></code> on your laptop, please don’t worry,not crucial at this point.</p>
+<blockquote>
+<div><p>conda activate cpsc330
+conda install -c pytorch torchvision</p>
+</div></blockquote>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">img_classify</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="c1"># Predict topn labels and their associated probabilities for unseen images</span>
+<span class="n">images</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">+</span> <span class="s2">&quot;test_images/*.*&quot;</span><span class="p">)</span>
+<span class="n">class_labels_file</span> <span class="o">=</span> <span class="n">DATA_DIR</span> <span class="o">+</span> <span class="s1">&#39;imagenet_classes.txt&#39;</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline 
+<span class="k">for</span> <span class="n">img_path</span> <span class="ow">in</span> <span class="n">images</span><span class="p">:</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+    <span class="n">img</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>    
+    <span class="n">df</span> <span class="o">=</span> <span class="n">img_classify</span><span class="o">.</span><span class="n">classify_image</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="n">class_labels_file</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------------------------------------------------&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="example-3-predicting-sentiment-expressed-in-a-movie-review">
+<h4>Example 3: Predicting sentiment expressed in a movie review<a class="headerlink" href="#example-3-predicting-sentiment-expressed-in-a-movie-review" title="Link to this heading">#</a></h4>
+<p>Suppose you are interested in predicting whether a given movie review is positive or negative. You can do it using supervised machine learning.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Download the data from <a class="reference external" href="https://www.kaggle.com/utathya/imdb-review-dataset">here</a>.</p>
+<p>Note: the textbook uses a very similar dataset for this example (https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews), but be aware that the columns have different names.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imdb_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/imdb_master.csv&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;ISO-8859-1&quot;</span><span class="p">)</span>
+<span class="n">imdb_df</span> <span class="o">=</span> <span class="n">imdb_df</span><span class="p">[</span><span class="n">imdb_df</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s2">&quot;pos&quot;</span><span class="p">,</span> <span class="s2">&quot;neg&quot;</span><span class="p">))]</span>
+<span class="c1"># imdb_df.drop([&quot;Unnamed: 0&quot;, &quot;type&quot;, &quot;file&quot;], axis=1, inplace=True)</span>
+<span class="n">imdb_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;sentiment&quot;</span><span class="p">:</span> <span class="s2">&quot;target&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">imdb_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build an ML model</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">],</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;review&quot;</span><span class="p">],</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">))</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict on unseen data using the built model</span>
+<span class="n">pred_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;reviews&quot;</span><span class="p">:</span> <span class="n">X_test</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span>
+    <span class="s2">&quot;sentiment_predictions&quot;</span><span class="p">:</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]),</span>
+<span class="p">}</span>
+<span class="n">pred_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pred_dict</span><span class="p">)</span>
+<span class="n">pred_df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;left&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="example-4-predicting-housing-prices">
+<h4>Example 4: Predicting housing prices<a class="headerlink" href="#example-4-predicting-housing-prices" title="Link to this heading">#</a></h4>
+<p>Suppose we want to predict housing prices given a number of attributes associated with houses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Download the data from <a class="reference external" href="https://www.kaggle.com/harlfoxem/housesalesprediction">here</a>.</p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="n">DATA_DIR</span> <span class="o">+</span> <span class="s2">&quot;kc_house_data.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="s2">&quot;target&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build a regression model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lightgbm.sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">LGBMRegressor</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]),</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]),</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LGBMRegressor</span><span class="p">()</span>
+<span class="c1">#model = XGBRegressor()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict on unseen examples using the built model</span>
+<span class="n">pred_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="c1"># {&quot;Predicted target&quot;: model.predict(X_test[0:4]).tolist(), &quot;Actual price&quot;: y_test[0:4].tolist()}</span>
+    <span class="p">{</span><span class="s2">&quot;Predicted_target&quot;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span><span class="o">.</span><span class="n">tolist</span><span class="p">()}</span>
+<span class="p">)</span>
+<span class="n">df_concat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pred_df</span><span class="p">,</span> <span class="n">X_test</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">df_concat</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To summarize, supervised machine learning can be applied to many problems and types of data, but remember that it’s not always the right tool.</p>
+<ul class="simple">
+<li><p>Use machine learning when you have a large, complex dataset and the decision rules are unknown, fuzzy, or too complicated to define explicitly.</p></li>
+<li><p>Pause before jumping in: ML is exciting, but always ask whether you really need it for your problem.</p></li>
+<li><p>Use rule-based systems when the logic is clear, deterministic, and based on stable rules or thresholds.</p></li>
+<li><p>Rely on human expertise when problems involve ethics, creativity, emotion, or ambiguity that cannot be formalized easily.</p></li>
+</ul>
+<p><br><br></p>
+</section>
+</section>
+<section id="eva-s-questions">
+<h3>🤔 Eva’s questions<a class="headerlink" href="#eva-s-questions" title="Link to this heading">#</a></h3>
+<p>At this point, Eva is wondering about many questions.</p>
+<ul class="simple">
+<li><p>How are we exactly “learning” whether a message is spam and ham?</p></li>
+<li><p>What do you mean by “learn without being explicitly programmed”? The code has to be somewhere …</p></li>
+<li><p>Are we expected to get correct predictions for all possible messages? How does it predict the label for a message it has not seen before?</p></li>
+<li><p>What if the model mis-labels an unseen example? For instance, what if the model incorrectly predicts a non-spam as a spam? What would be the consequences?</p></li>
+<li><p>How do we measure the success or failure of spam identification?</p></li>
+<li><p>If you want to use this model in the wild, how do you know how reliable it is?</p></li>
+<li><p>Would it be useful to know how confident the model is about the predictions rather than just a yes or a no?</p></li>
+</ul>
+<p>It’s great to think about these questions right now. But Eva has to be patient. By the end of this course you’ll know answers to many of these questions!</p>
+<p><img alt="" src="../../_images/eva-qm.png" /></p>
+</section>
+<section id="machine-learning-workflow">
+<h3>Machine learning workflow<a class="headerlink" href="#machine-learning-workflow" title="Link to this heading">#</a></h3>
+<p>Supervised machine learning is quite flexible; it can be used on a variety of problems and different kinds of data. Here is a typical workflow of a supervised machine learning systems.</p>
+<p><img alt="" src="../../_images/ml-workflow.png" /></p>
+<!-- <img src="img/ml-workflow.png" height="800" width="800">  -->
+<p>We will build machine learning pipelines in this course, focusing on some of the steps above.</p>
+<p><br><br></p>
+</section>
+<section id="questions-for-you">
+<h3>❓❓ Questions for you<a class="headerlink" href="#questions-for-you" title="Link to this heading">#</a></h3>
+</section>
+<section id="select-all-of-the-following-statements-which-are-true-iclicker">
+<h3>Select all of the following statements which are <strong>True</strong> (iClicker)<a class="headerlink" href="#select-all-of-the-following-statements-which-are-true-iclicker" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>(A) Checking if a UBC email address ends with &#64;student.ubc.ca before allowing login</p></li>
+<li><p>(B) Deciding which students should be awarded a scholarship based on their personal essays</p></li>
+<li><p>(C) Predicting which songs you’ll like based on your Spotify listening history</p></li>
+<li><p>(D) Detecting plagiarism by checking if two essays are exactly identical</p></li>
+<li><p>(E) Automatically tagging photos of your friends on Instagram
+<br><br><br><br></p></li>
+</ul>
+</section>
+</section>
+<section id="break-5-min">
+<h2>Break (5 min)<a class="headerlink" href="#break-5-min" title="Link to this heading">#</a></h2>
+<p><img alt="" src="../../_images/eva-coffee.png" /></p>
+<ul class="simple">
+<li><p>We will try to take a 5-minute break half way through every class.</p></li>
+</ul>
+<p><br><br></p>
+</section>
+<section id="about-this-course">
+<h2>About this course<a class="headerlink" href="#about-this-course" title="Link to this heading">#</a></h2>
+<section id="course-website">
+<h3>Course website<a class="headerlink" href="#course-website" title="Link to this heading">#</a></h3>
+<p><a class="github reference external" href="https://github.com/UBC-CS/cpsc330-2025W1">UBC-CS/cpsc330-2025W1</a> is the most important link. Please read everything on there!</p>
+</section>
+<section id="cpsc-330-vs-340">
+<h3>CPSC 330 vs. 340<a class="headerlink" href="#cpsc-330-vs-340" title="Link to this heading">#</a></h3>
+<p>Read <a class="github reference external" href="https://github.com/UBC-CS/cpsc330-2024W1/blob/main/docs/330_vs_340.md">UBC-CS/cpsc330-2024W1</a>
+which explains the difference between the two courses.</p>
+<p><strong>TLDR:</strong></p>
+<ul class="simple">
+<li><p>340: how do ML models work?</p></li>
+<li><p>330: how do I use ML models?</p></li>
+<li><p>CPSC 340 has many prerequisites.</p></li>
+<li><p>CPSC 340 goes deeper but has a more narrow scope.</p></li>
+<li><p>I think CPSC 330 will be more useful if you just plan to apply basic ML.</p></li>
+</ul>
+</section>
+<section id="registration-waitlist-and-prerequisites">
+<h3>Registration, waitlist and prerequisites<a class="headerlink" href="#registration-waitlist-and-prerequisites" title="Link to this heading">#</a></h3>
+<p>Please go through <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2025W1/blob/main/syllabus.md">the syllabus</a> carefully before contacting me about these issues. Even then, I am very unlikely to be able to help with registration, waitlist or prerequisite issues.</p>
+</section>
+<section id="course-format">
+<h3>Course format<a class="headerlink" href="#course-format" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Lectures are T/Th at 3:30pm (section 101) or 5:00pm (section 103).</p></li>
+<li><p>Often, there will be videos to watch before or during the lecture time. (Check the main course page to see if you are expected to watch videos before the class.)</p></li>
+<li><p>Tutorials for this course will be conducted by TAs, who will guide you through additional exercises and demos on the content covered each week. <strong>A bonus of up to 2% will be added to your final grade for attending tutorials.</strong></p></li>
+<li><p>We’ll have two midterms and one final (<a class="reference external" href="https://github.com/UBC-CS/cpsc330-2025W1/blob/main/syllabus.md">dates</a>).</p></li>
+</ul>
+</section>
+<section id="communications">
+<h3>Communications<a class="headerlink" href="#communications" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Our main forum for getting help will be Piazza –&gt; access through Canvas.</p></li>
+<li><p>Other forms of communications (Canvas, email…) will likely go unresponded.</p></li>
+<li><p>Let’s all take 2 minutes to register (through tab on Canvas)</p></li>
+<li><p>You must have a &#64;ubc.ca email associated with your account. Unrecognizable accounts (other emails) will be dropped without warning.</p></li>
+</ul>
+</section>
+<section id="grades">
+<h3>Grades<a class="headerlink" href="#grades" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The grading breakdown is in the <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2025W1/blob/main/syllabus.md">syllabus</a>, as well as instructions on how to use <strong>late tokens</strong>. <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2025W1/blob/main/docs/grades.md">This page</a> explains the policy on challenging grades.</p></li>
+<li><p>You have one week to raise a concern from the time that your assignment grades were posted (through Gradescope).</p></li>
+<li><p>Unreasonable regrade requests subtract time to more important activities for this course. The first unreasonable request will receive a warning. The second will result in the future inability to challenge grades. Examples include:</p>
+<ul>
+<li><p>Debating 1 point differences for similar answers</p></li>
+<li><p>Arguing the weight of the rubric items</p></li>
+<li><p>Resubmitting a request that was already answered</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="first-deliverables">
+<h3>First deliverables<a class="headerlink" href="#first-deliverables" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>First homework assignment is due <strong>this coming Tuesday</strong>, September 9th, at 11:59pm. The assignment is available on GitHub.</p></li>
+<li><p>You must do the first homework assignment on your own.</p></li>
+<li><p>Assignments are submitted on Gradescope (see <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2025W1/blob/main/docs/homework_instructions.md">instructions</a>). Let’s all do the first access together through Canvas.</p></li>
+<li><p>The <a class="reference external" href="https://us.prairielearn.com/pl/course_instance/163899/assessment/2451488">Syllabus quiz</a> is available on PrairieLearn and is due by Sept 19th, 11:59 pm.</p></li>
+</ul>
+<p>Please read <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2025W1/blob/main/docs/asking_for_help.md">this entire document about asking for help</a>.
+<strong>TLDR:</strong> Be nice.</p>
+</section>
+<section id="let-s-talk-about-genai">
+<h3>Let’s talk about <a class="reference external" href="https://docs.google.com/presentation/d/1Efkhe0irFb_PnLVEgQoA-jWy4c2GI0mM3foZ1T5EhT8/edit?usp=sharing">GenAI</a><a class="headerlink" href="#let-s-talk-about-genai" title="Link to this heading">#</a></h3>
+</section>
+<section id="lecture-and-homework-format-jupyter-notebooks">
+<h3>Lecture and homework format: Jupyter notebooks<a class="headerlink" href="#lecture-and-homework-format-jupyter-notebooks" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>This document is a <a class="reference external" href="https://jupyter.org/">Jupyter notebook</a>, with file extension <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>.</p></li>
+<li><p>Confusingly, “Jupyter notebook” is also the original application that opens <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> files - but has since been replaced by <strong>Jupyter lab</strong>.</p>
+<ul>
+<li><p>Some things might not work with the Jupyter notebook application.</p></li>
+<li><p>The course setup/install instructions include Jupyter lab.</p></li>
+</ul>
+</li>
+<li><p>Jupyter notebooks contain a mix of code, code output, markdown-formatted text (including LaTeX equations), and more.</p>
+<ul>
+<li><p>When you open a Jupyter notebook in one of these apps, the document is “live”, meaning you can run the code.</p></li>
+<li><p>For example:</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9999</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>By default, Jupyter prints out the result of the last line of code, so you don’t need as many <code class="docutils literal notranslate"><span class="pre">print</span></code> statements.</p></li>
+<li><p>In addition to the “live” notebooks, Jupyter notebooks can be statically rendered in the web browser, e.g. <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2025W1/blob/main/lectures/101-Giulia-lectures/01_intro.ipynb">this</a>.</p>
+<ul>
+<li><p>This can be convenient for quick read-only access, without needing to launch the Jupyter notebook/lab application.</p></li>
+<li><p>But you need to launch the app properly to interact with the notebooks.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="lecture-style">
+<h3>Lecture style<a class="headerlink" href="#lecture-style" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Lots of code snippets in Jupyter.</p></li>
+<li><p>There will be some <a class="reference external" href="https://www.youtube.com/channel/UC40oUwJPrUmhsYdURk8OjqA">YouTube videos</a> to watch before or during the lecture.</p></li>
+<li><p>We will also try to work on some questions and exercises together during the class.</p></li>
+<li><p>All materials will be posted on the course website. Lecture notes will be posted right before each class.</p></li>
+<li><p>Lectures from the previous semester are available on previous course repositories (change 2025W1 with 2024W2, for example).</p></li>
+<li><p>I cannot promise anything will stay the same from last year to this year, so watch out for differences.</p></li>
+</ul>
+<p><br><br></p>
+</section>
+</section>
+<section id="setting-up-your-computer-for-the-course">
+<h2>Setting up your computer for the course<a class="headerlink" href="#setting-up-your-computer-for-the-course" title="Link to this heading">#</a></h2>
+<section id="recommended-browser">
+<h3>Recommended browser<a class="headerlink" href="#recommended-browser" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>I’ll test the course notebooks and exams, which we’ll be doing via <a class="reference external" href="https://canvas.ubc.ca/courses/106375">Canvas</a>, on the following two browsers: Chrome and Firefox. So I recommend that you use one of these browsers for the course.</p></li>
+<li><p>You can install Chrome <a class="reference external" href="https://www.google.com/chrome/">here</a>.</p></li>
+<li><p>You can install Firefox <a class="reference external" href="https://www.mozilla.org/en-US/firefox/new/">here</a>.</p></li>
+</ul>
+</section>
+<section id="python-requirements-resources">
+<h3>Python requirements/resources<a class="headerlink" href="#python-requirements-resources" title="Link to this heading">#</a></h3>
+<p>We will primarily use Python in this course.</p>
+<p>Here is the basic Python knowledge you’ll need for the course:</p>
+<ul class="simple">
+<li><p>Basic Python programming</p></li>
+<li><p>Numpy</p></li>
+<li><p>Pandas</p></li>
+<li><p>Basic matplotlib</p></li>
+<li><p>Sparse matrices</p></li>
+</ul>
+<p>Some of you will already know Python, others won’t. Homework 1 is all about Python.</p>
+<p>We do not have time to teach all the Python we need
+but you can find some useful Python resources <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2024W1/blob/main/docs/python_notes.ipynb">here</a>.</p>
+</section>
+<section id="activity">
+<h3>Activity<a class="headerlink" href="#activity" title="Link to this heading">#</a></h3>
+<p>In this course, we will primarily be using Python, git, GitHub, Canvas, Gradescope, and Piazza. Let’s set up your computers for the course.</p>
+<ul class="simple">
+<li><p>Follow the setup instructions <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2025W1/blob/main/docs/setup.md">here</a> to create a course conda environment on your computer.</p></li>
+</ul>
+</section>
+<section id="checklist-for-you-before-next-class">
+<h3>Checklist for you before next class<a class="headerlink" href="#checklist-for-you-before-next-class" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>[ ] Are you able to access course <a class="reference external" href="https://canvas.ubc.ca/courses/170662">Canvas</a> shell?</p></li>
+<li><p>[ ] Are you able to access Gradescope (through Canvas)? If not, refer to the <a class="reference external" href="https://lthub.ubc.ca/guides/gradescope-student-guide/">Gradescope Student Guide</a>.</p></li>
+<li><p>[ ] Are you able to access iClicker (through Canvas)?</p></li>
+<li><p>[ ] Are you able to access course Piazza (through Canvas)?</p></li>
+<li><p>[ ] Did you follow the setup instructions <a class="reference external" href="https://github.com/UBC-CS/cpsc330-2025W1/blob/main/docs/setup.md">here</a> to create a course conda environment on your computer?</p></li>
+<li><p>[ ] Did you complete the Syllabus quiz on PrairieLearn (through Canvas)? (Due date: Thursday, Sep 19th at 11:59pm)</p></li>
+<li><p>[ ] Are you done with homework 1? (Due: Tuesday, Sep 9th at 11:59pm)</p></li>
+</ul>
+<p><br><br></p>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Machine learning is increasingly being applied across various fields.</p></li>
+<li><p>In supervised learning, we are given a set of observations (<span class="math notranslate nohighlight">\(X\)</span>) and their corresponding targets (<span class="math notranslate nohighlight">\(y\)</span>) and we wish to find a model function <span class="math notranslate nohighlight">\(f\)</span> that relates <span class="math notranslate nohighlight">\(X\)</span> to <span class="math notranslate nohighlight">\(y\)</span>.</p></li>
+<li><p>Machine learning is a different paradigm for problem solving. Very often it reduces the time you spend programming and helps customizing and scaling your products.</p></li>
+<li><p>Before applying machine learning to a problem, it’s always advisable to assess whether a given problem is suitable for a machine learning solution or not.</p></li>
+</ul>
+<p><img alt="" src="../../_images/eva-seeyou.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "cpsc330"
+        },
+        kernelOptions: {
+            name: "cpsc330",
+            path: "./lectures/101-103-Giulia-lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'cpsc330'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#characters-in-this-course">Characters in this course?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#meet-eva-a-fictitious-persona">Meet Eva (a fictitious persona)!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-machine-learning-ml-video">Why machine learning (ML)? [video]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prevalence-of-ml">Prevalence of ML</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-time-and-scaling-products">Saving time and scaling products</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-ai-ml-and-dl">What are AI, ML, and DL?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-machine-learning">Supervised machine learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-machine-learning">Types of machine learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-supervised-machine-learning-ml">What is supervised machine learning (ML)?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-predict-whether-a-message-is-spam-or-not">Example: Predict whether a message is spam or not</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#input-features-x-and-target-y">Input: features <span class="math notranslate nohighlight">\(X\)</span> and target <span class="math notranslate nohighlight">\(y\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#training-a-supervised-machine-learning-model-with-x-and-y">Training a supervised machine learning model with <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(y\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-on-unseen-data-using-the-trained-model">Predicting on unseen data using the trained model</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-machine-learning-popular-definition">(Supervised) machine learning: popular definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-predicting-whether-a-patient-has-a-liver-disease-or-not">Example 1: Predicting whether a patient has a liver disease or not</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data">Input data</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-supervise-machine-learning-model">Building a supervise machine learning model</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#model-predictions-on-unseen-data">Model predictions on unseen data</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-predicting-the-label-of-a-given-image">Example 2: Predicting the label of a given image</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-predicting-sentiment-expressed-in-a-movie-review">Example 3: Predicting sentiment expressed in a movie review</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-predicting-housing-prices">Example 4: Predicting housing prices</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eva-s-questions">🤔 Eva’s questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-learning-workflow">Machine learning workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-for-you">❓❓ Questions for you</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-all-of-the-following-statements-which-are-true-iclicker">Select all of the following statements which are <strong>True</strong> (iClicker)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#break-5-min">Break (5 min)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#about-this-course">About this course</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#course-website">Course website</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpsc-330-vs-340">CPSC 330 vs. 340</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#registration-waitlist-and-prerequisites">Registration, waitlist and prerequisites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#course-format">Course format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#communications">Communications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grades">Grades</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#first-deliverables">First deliverables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-talk-about-genai">Let’s talk about GenAI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-and-homework-format-jupyter-notebooks">Lecture and homework format: Jupyter notebooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-style">Lecture style</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-your-computer-for-the-course">Setting up your computer for the course</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-browser">Recommended browser</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-requirements-resources">Python requirements/resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activity">Activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checklist-for-you-before-next-class">Checklist for you before next class</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Varada Kolhatkar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

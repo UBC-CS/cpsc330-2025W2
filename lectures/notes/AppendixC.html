@@ -1,0 +1,1077 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Appendix C: Basic text preprocessing [video] &#8212; CPSC 330 Applied Machine Learning 2025W1</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/extra.css?v=6df0ab2b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/notes/AppendixC';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Appendix D: Multi-class, meta-strategies" href="AppendixD.html" />
+    <link rel="prev" title="Appendix B: Feature Selection" href="AppendixB.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/UBC-CS-logo.png" class="logo__image only-light" alt="CPSC 330 Applied Machine Learning 2025W1 - Home"/>
+    <script>document.write(`<img src="../../_static/UBC-CS-logo.png" class="logo__image only-dark" alt="CPSC 330 Applied Machine Learning 2025W1 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    UBC CPSC 330: Applied Machine Learning (2025W1)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Things you should know</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../learning-objectives.html">Course Learning Objectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_intro.html">Lecture 1: Course Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_terminology-decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_linear-models.html">Lecture 7: Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_ensembles.html">Lecture 11: Ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="final-exam-review-guiding-question.html">Final exam preparation: guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixA.html">Appendix A: Handling class imbalance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixB.html">Appendix B: Feature Selection</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Appendix C: Basic text preprocessing [video]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AppendixD.html">Appendix D: Multi-class, meta-strategies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section slides</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../102-Varada-lectures/README.html">Section 102</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-01.html">Lecture 1</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-02.html">Lecture 2</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-03.html">Lecture 3</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-04.html">Lecture 4</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-05.html">Lecture 5</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-06.html">Lecture 6</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-07.html">Lecture 7</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-08.html">Lecture 8</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-09.html">Lecture 9</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-10.html">Lecture 10</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-11.html">Lecture 11</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-12.html">Lecture 12</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-13.html">Lecture 13</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-14.html">Lecture 14</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-15.html">Lecture 15</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-16.html">Lecture 16</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-17.html">Lecture 17</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-18.html">Lecture 18</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-19.html">Lecture 19</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-20.html">Lecture 20</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-21.html">Lecture 21</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-23.html">Lecture 23</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">LICENSE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/UBC-CS/cpsc330-2025W1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/lectures/notes/AppendixC.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Appendix C: Basic text preprocessing [video]</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenization">Tokenization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-commonly-used-preprocessing-steps">Other commonly used preprocessing steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-tools-for-preprocessing">Other tools for preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-typical-nlp-tasks">Other typical NLP tasks</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="appendix-c-basic-text-preprocessing-video">
+<h1>Appendix C: Basic text preprocessing [<a class="reference external" href="https://youtu.be/7W5Q8gzNPBc">video</a>]<a class="headerlink" href="#appendix-c-basic-text-preprocessing-video" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">sent_tokenize</span><span class="p">,</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nltk.corpus</span><span class="w"> </span><span class="kn">import</span> <span class="n">stopwords</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">spacy</span>
+
+<span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_md&quot;</span><span class="p">)</span>
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="s2">&quot;pineapple&quot;</span><span class="p">)</span> <span class="c1"># extract all interesting information about the document</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">vector</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.65486 , -2.2584  ,  0.062793,  1.8801  ,  0.207   , -3.3299  ,
+       -0.96833 ,  1.5131  , -3.7041  , -0.077749], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Why do we need preprocessing?</p>
+<ul>
+<li><p>Text data is unstructured and messy.</p></li>
+<li><p>We need to “normalize” it before we do anything interesting with it.</p></li>
+</ul>
+</li>
+<li><p>Example:</p>
+<ul>
+<li><p><strong>Lemma</strong>: Same stem, same part-of-speech, roughly the same meaning</p>
+<ul>
+<li><p>Vancouver’s → Vancouver</p></li>
+<li><p>computers → computer</p></li>
+<li><p>rising → rise, rose, rises</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="tokenization">
+<h2>Tokenization<a class="headerlink" href="#tokenization" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Sentence segmentation</p>
+<ul>
+<li><p>Split text into sentences</p></li>
+</ul>
+</li>
+<li><p>Word tokenization</p>
+<ul>
+<li><p>Split sentences into words</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Sentence segmentation</strong></p>
+<blockquote>
+MDS is a Master's program at UBC in British Columbia. MDS teaching team is truly multicultural!! Dr. George did his Ph.D. in Scotland. Dr. Timbers, Dr. Ostblom, Dr. Rodríguez-Arelis, and Dr. Kolhatkar did theirs in Canada. Dr. Gelbart did his PhD in the U.S.
+</blockquote>
+<ul class="simple">
+<li><p>How many sentences are there in this text?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Let&#39;s do sentence segmentation on &quot;.&quot;</span>
+<span class="n">text</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;UBC is one of the well known universities in British Columbia. &quot;</span>
+    <span class="s2">&quot;UBC CS teaching team is truly multicultural!! &quot;</span>
+    <span class="s2">&quot;Dr. Toti completed her Ph.D. in Italy.&quot;</span>
+    <span class="s2">&quot;Dr. Moosvi, Dr. Kolhatkar, and Dr. Ola completed theirs in Canada.&quot;</span>
+    <span class="s2">&quot;Dr. Heeren and Dr. Lécuyer completed theirs in the U.S.&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;UBC is one of the well known universities in British Columbia&#39;, &#39; UBC CS teaching team is truly multicultural!! Dr&#39;, &#39; Toti completed her Ph&#39;, &#39;D&#39;, &#39; in Italy&#39;, &#39;Dr&#39;, &#39; Moosvi, Dr&#39;, &#39; Kolhatkar, and Dr&#39;, &#39; Ola completed theirs in Canada&#39;, &#39;Dr&#39;, &#39; Heeren and Dr&#39;, &#39; Lécuyer completed theirs in the U&#39;, &#39;S&#39;, &#39;&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>In English, period (.) is quite ambiguous. (In Chinese, it is unambiguous.)</p>
+<ul>
+<li><p>Abbreviations like Dr., U.S., Inc.</p></li>
+<li><p>Numbers like 60.44%, 0.98</p></li>
+</ul>
+</li>
+<li><p>! and ? are relatively ambiguous.</p></li>
+<li><p>How about writing regular expressions?</p></li>
+<li><p>A common way is using off-the-shelf models for sentence segmentation.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Let&#39;s try to do sentence segmentation using nltk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">sent_tokenize</span>
+
+<span class="n">sent_tokenized</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sent_tokenized</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;UBC is one of the well known universities in British Columbia.&#39;, &#39;UBC CS teaching team is truly multicultural!!&#39;, &#39;Dr. Toti completed her Ph.D. in Italy.Dr.&#39;, &#39;Moosvi, Dr. Kolhatkar, and Dr. Ola completed theirs in Canada.Dr.&#39;, &#39;Heeren and Dr. Lécuyer completed theirs in the U.S.&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Word tokenization</strong></p>
+<blockquote>
+MDS is a Master's program at UBC in British Columbia. 
+</blockquote>
+<ul class="simple">
+<li><p>How many words are there in this sentence?</p></li>
+<li><p>Is whitespace a sufficient condition for a word boundary?</p></li>
+</ul>
+<blockquote>
+MDS is a Master's program at UBC in British Columbia. 
+</blockquote>
+<ul class="simple">
+<li><p>What’s our definition of a word?</p>
+<ul>
+<li><p>Should British Columbia be one word or two words?</p></li>
+<li><p>Should punctuation be considered a separate word?</p></li>
+<li><p>What about the punctuations in <code class="docutils literal notranslate"><span class="pre">U.S.</span></code>?</p></li>
+<li><p>What do we do with words like <code class="docutils literal notranslate"><span class="pre">Master's</span></code>?</p></li>
+</ul>
+</li>
+<li><p>This process of identifying word boundaries is referred to as <strong>tokenization</strong>.</p></li>
+<li><p>You can use regex but better to do it with off-the-shelf ML models.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Let&#39;s do word segmentation on white spaces</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Splitting on whitespace: &quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">sent</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sent_tokenized</span><span class="p">])</span>
+
+<span class="c1">### Let&#39;s try to do word segmentation using nltk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">word_tokenize</span>
+
+<span class="n">word_tokenized</span> <span class="o">=</span> <span class="p">[</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sent_tokenized</span><span class="p">]</span>
+<span class="c1"># This is similar to the input format of word2vec algorithm</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">Tokenized: &quot;</span><span class="p">,</span> <span class="n">word_tokenized</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Splitting on whitespace:  [[&#39;UBC&#39;, &#39;is&#39;, &#39;one&#39;, &#39;of&#39;, &#39;the&#39;, &#39;well&#39;, &#39;known&#39;, &#39;universities&#39;, &#39;in&#39;, &#39;British&#39;, &#39;Columbia.&#39;], [&#39;UBC&#39;, &#39;CS&#39;, &#39;teaching&#39;, &#39;team&#39;, &#39;is&#39;, &#39;truly&#39;, &#39;multicultural!!&#39;], [&#39;Dr.&#39;, &#39;Toti&#39;, &#39;completed&#39;, &#39;her&#39;, &#39;Ph.D.&#39;, &#39;in&#39;, &#39;Italy.Dr.&#39;], [&#39;Moosvi,&#39;, &#39;Dr.&#39;, &#39;Kolhatkar,&#39;, &#39;and&#39;, &#39;Dr.&#39;, &#39;Ola&#39;, &#39;completed&#39;, &#39;theirs&#39;, &#39;in&#39;, &#39;Canada.Dr.&#39;], [&#39;Heeren&#39;, &#39;and&#39;, &#39;Dr.&#39;, &#39;Lécuyer&#39;, &#39;completed&#39;, &#39;theirs&#39;, &#39;in&#39;, &#39;the&#39;, &#39;U.S.&#39;]]
+
+
+
+Tokenized:  [[&#39;UBC&#39;, &#39;is&#39;, &#39;one&#39;, &#39;of&#39;, &#39;the&#39;, &#39;well&#39;, &#39;known&#39;, &#39;universities&#39;, &#39;in&#39;, &#39;British&#39;, &#39;Columbia&#39;, &#39;.&#39;], [&#39;UBC&#39;, &#39;CS&#39;, &#39;teaching&#39;, &#39;team&#39;, &#39;is&#39;, &#39;truly&#39;, &#39;multicultural&#39;, &#39;!&#39;, &#39;!&#39;], [&#39;Dr.&#39;, &#39;Toti&#39;, &#39;completed&#39;, &#39;her&#39;, &#39;Ph.D.&#39;, &#39;in&#39;, &#39;Italy.Dr&#39;, &#39;.&#39;], [&#39;Moosvi&#39;, &#39;,&#39;, &#39;Dr.&#39;, &#39;Kolhatkar&#39;, &#39;,&#39;, &#39;and&#39;, &#39;Dr.&#39;, &#39;Ola&#39;, &#39;completed&#39;, &#39;theirs&#39;, &#39;in&#39;, &#39;Canada.Dr&#39;, &#39;.&#39;], [&#39;Heeren&#39;, &#39;and&#39;, &#39;Dr.&#39;, &#39;Lécuyer&#39;, &#39;completed&#39;, &#39;theirs&#39;, &#39;in&#39;, &#39;the&#39;, &#39;U.S&#39;, &#39;.&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Word segmentation</strong></p>
+<p>For some languages you need much more sophisticated tokenizers.</p>
+<ul class="simple">
+<li><p>For languages such as Chinese, there are no spaces between words.</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/fxsjy/jieba">jieba</a> is a popular tokenizer for Chinese.</p></li>
+</ul>
+</li>
+<li><p>German doesn’t separate compound words.</p>
+<ul>
+<li><p>Example: <em>rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz</em></p></li>
+<li><p>(the law for the delegation of monitoring beef labeling)</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Types and tokens</strong></p>
+<ul class="simple">
+<li><p>Usually in NLP, we talk about</p>
+<ul>
+<li><p><strong>Type</strong> an element in the vocabulary</p></li>
+<li><p><strong>Token</strong> an instance of that type in running text</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Exercise for you</strong></p>
+<blockquote>    
+UBC is located in the beautiful province of British Columbia. It's very close 
+to the U.S. border. You'll get to the USA border in about 45 mins by car.     
+</blockquote>  
+<ul class="simple">
+<li><p>Consider the example above.</p>
+<ul>
+<li><p>How many types? (task dependent)</p></li>
+<li><p>How many tokens?</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="other-commonly-used-preprocessing-steps">
+<h2>Other commonly used preprocessing steps<a class="headerlink" href="#other-commonly-used-preprocessing-steps" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Punctuation and stopword removal</p></li>
+<li><p>Stemming and lemmatization</p></li>
+</ul>
+<p><strong>Punctuation and stopword removal</strong></p>
+<ul class="simple">
+<li><p>The most frequently occurring words in English are not very useful in many NLP tasks.</p>
+<ul>
+<li><p>Example: <em>the</em> , <em>is</em> , <em>a</em> , and punctuation</p></li>
+</ul>
+</li>
+<li><p>Probably not very informative in many tasks</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s use `nltk.stopwords`.</span>
+<span class="c1"># Add punctuations to the list.</span>
+<span class="n">stop_words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">)))</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">string</span>
+
+<span class="n">punctuation</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span>
+<span class="n">stop_words</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">punctuation</span><span class="p">)</span>
+<span class="c1"># stop_words.extend([&#39;``&#39;,&#39;`&#39;,&#39;br&#39;,&#39;&quot;&#39;,&quot;”&quot;, &quot;&#39;&#39;&quot;, &quot;&#39;s&quot;])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stop_words</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;above&#39;, &#39;myself&#39;, &#39;ain&#39;, &#39;will&#39;, &#39;have&#39;, &#39;won&#39;, &#39;hasn&#39;, &#39;then&#39;, &quot;he&#39;ll&quot;, &#39;by&#39;, &#39;why&#39;, &quot;that&#39;ll&quot;, &quot;you&#39;d&quot;, &#39;or&#39;, &#39;any&#39;, &#39;do&#39;, &#39;haven&#39;, &#39;against&#39;, &#39;ll&#39;, &quot;i&#39;d&quot;, &quot;you&#39;ve&quot;, &#39;had&#39;, &#39;itself&#39;, &#39;mightn&#39;, &quot;won&#39;t&quot;, &#39;before&#39;, &quot;it&#39;s&quot;, &#39;on&#39;, &#39;aren&#39;, &#39;ourselves&#39;, &#39;ours&#39;, &quot;i&#39;ve&quot;, &quot;we&#39;d&quot;, &#39;once&#39;, &#39;too&#39;, &quot;she&#39;s&quot;, &#39;is&#39;, &#39;here&#39;, &quot;doesn&#39;t&quot;, &#39;as&#39;, &quot;he&#39;d&quot;, &quot;we&#39;ve&quot;, &#39;yourself&#39;, &#39;shouldn&#39;, &#39;doesn&#39;, &#39;this&#39;, &#39;wouldn&#39;, &#39;her&#39;, &quot;hadn&#39;t&quot;, &#39;did&#39;, &#39;are&#39;, &#39;no&#39;, &quot;couldn&#39;t&quot;, &#39;themselves&#39;, &#39;but&#39;, &#39;having&#39;, &#39;needn&#39;, &quot;she&#39;ll&quot;, &#39;with&#39;, &#39;wasn&#39;, &#39;below&#39;, &#39;off&#39;, &#39;theirs&#39;, &quot;needn&#39;t&quot;, &#39;out&#39;, &#39;each&#39;, &#39;their&#39;, &quot;weren&#39;t&quot;, &#39;what&#39;, &#39;again&#39;, &#39;now&#39;, &quot;hasn&#39;t&quot;, &quot;it&#39;d&quot;, &#39;after&#39;, &#39;all&#39;, &#39;its&#39;, &#39;more&#39;, &#39;should&#39;, &#39;s&#39;, &quot;isn&#39;t&quot;, &#39;am&#39;, &#39;couldn&#39;, &#39;until&#39;, &quot;mightn&#39;t&quot;, &#39;we&#39;, &#39;me&#39;, &#39;under&#39;, &#39;the&#39;, &#39;some&#39;, &#39;how&#39;, &#39;nor&#39;, &#39;my&#39;, &quot;aren&#39;t&quot;, &#39;because&#39;, &#39;him&#39;, &quot;they&#39;d&quot;, &#39;m&#39;, &#39;doing&#39;, &#39;if&#39;, &#39;at&#39;, &#39;over&#39;, &quot;they&#39;re&quot;, &#39;other&#39;, &#39;and&#39;, &quot;we&#39;ll&quot;, &#39;they&#39;, &quot;i&#39;m&quot;, &#39;ve&#39;, &#39;for&#39;, &#39;than&#39;, &#39;been&#39;, &#39;just&#39;, &#39;own&#39;, &#39;being&#39;, &#39;our&#39;, &#39;from&#39;, &#39;himself&#39;, &#39;your&#39;, &quot;wasn&#39;t&quot;, &#39;does&#39;, &#39;ma&#39;, &#39;only&#39;, &#39;he&#39;, &#39;so&#39;, &#39;these&#39;, &#39;his&#39;, &#39;who&#39;, &#39;whom&#39;, &#39;herself&#39;, &quot;mustn&#39;t&quot;, &#39;of&#39;, &quot;you&#39;re&quot;, &#39;was&#39;, &#39;in&#39;, &#39;about&#39;, &#39;while&#39;, &#39;during&#39;, &quot;shan&#39;t&quot;, &#39;didn&#39;, &#39;where&#39;, &quot;they&#39;ve&quot;, &#39;t&#39;, &#39;between&#39;, &quot;you&#39;ll&quot;, &#39;can&#39;, &#39;a&#39;, &quot;shouldn&#39;t&quot;, &#39;there&#39;, &#39;both&#39;, &#39;further&#39;, &#39;o&#39;, &#39;isn&#39;, &#39;to&#39;, &#39;down&#39;, &#39;not&#39;, &quot;it&#39;ll&quot;, &#39;it&#39;, &#39;mustn&#39;, &quot;haven&#39;t&quot;, &#39;up&#39;, &#39;weren&#39;, &quot;he&#39;s&quot;, &#39;you&#39;, &#39;don&#39;, &#39;same&#39;, &#39;yourselves&#39;, &#39;few&#39;, &#39;most&#39;, &quot;didn&#39;t&quot;, &#39;shan&#39;, &quot;they&#39;ll&quot;, &#39;those&#39;, &#39;y&#39;, &quot;i&#39;ll&quot;, &#39;be&#39;, &#39;were&#39;, &#39;hadn&#39;, &#39;such&#39;, &#39;them&#39;, &quot;don&#39;t&quot;, &quot;wouldn&#39;t&quot;, &#39;when&#39;, &#39;an&#39;, &#39;very&#39;, &#39;that&#39;, &#39;which&#39;, &#39;through&#39;, &#39;has&#39;, &#39;she&#39;, &#39;i&#39;, &quot;should&#39;ve&quot;, &quot;we&#39;re&quot;, &#39;into&#39;, &#39;re&#39;, &#39;yours&#39;, &#39;hers&#39;, &quot;she&#39;d&quot;, &#39;d&#39;, &#39;!&#39;, &#39;&quot;&#39;, &#39;#&#39;, &#39;$&#39;, &#39;%&#39;, &#39;&amp;&#39;, &quot;&#39;&quot;, &#39;(&#39;, &#39;)&#39;, &#39;*&#39;, &#39;+&#39;, &#39;,&#39;, &#39;-&#39;, &#39;.&#39;, &#39;/&#39;, &#39;:&#39;, &#39;;&#39;, &#39;&lt;&#39;, &#39;=&#39;, &#39;&gt;&#39;, &#39;?&#39;, &#39;@&#39;, &#39;[&#39;, &#39;\\&#39;, &#39;]&#39;, &#39;^&#39;, &#39;_&#39;, &#39;`&#39;, &#39;{&#39;, &#39;|&#39;, &#39;}&#39;, &#39;~&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Get rid of stop words</span>
+<span class="n">preprocessed</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">word_tokenized</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">sent</span><span class="p">:</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">token</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">:</span>
+            <span class="n">preprocessed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">preprocessed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ubc&#39;, &#39;one&#39;, &#39;well&#39;, &#39;known&#39;, &#39;universities&#39;, &#39;british&#39;, &#39;columbia&#39;, &#39;ubc&#39;, &#39;cs&#39;, &#39;teaching&#39;, &#39;team&#39;, &#39;truly&#39;, &#39;multicultural&#39;, &#39;dr.&#39;, &#39;toti&#39;, &#39;completed&#39;, &#39;ph.d.&#39;, &#39;italy.dr&#39;, &#39;moosvi&#39;, &#39;dr.&#39;, &#39;kolhatkar&#39;, &#39;dr.&#39;, &#39;ola&#39;, &#39;completed&#39;, &#39;canada.dr&#39;, &#39;heeren&#39;, &#39;dr.&#39;, &#39;lécuyer&#39;, &#39;completed&#39;, &#39;u.s&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Lemmatization</strong></p>
+<ul class="simple">
+<li><p>For many NLP tasks (e.g., web search) we want to ignore morphological differences between words</p>
+<ul>
+<li><p>Example: If your search term is “studying for ML quiz” you might want to include pages containing “tips to study for an ML quiz” or “here is how I studied for my ML quiz”</p></li>
+</ul>
+</li>
+<li><p>Lemmatization converts inflected forms into the base form.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nltk</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;wordnet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package wordnet to /Users/kvarada/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;omw-1.4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package omw-1.4 to /Users/kvarada/nltk_data...
+[nltk_data]   Package omw-1.4 is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># nltk has a lemmatizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nltk.stem</span><span class="w"> </span><span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+
+<span class="n">lemmatizer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lemma of studying: &quot;</span><span class="p">,</span> <span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;studying&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lemma of studied: &quot;</span><span class="p">,</span> <span class="n">lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s2">&quot;studied&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lemma of studying:  study
+Lemma of studied:  study
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Stemming</strong></p>
+<ul class="simple">
+<li><p>Has a similar purpose but it is a crude chopping of affixes</p>
+<ul>
+<li><p><em>automates, automatic, automation</em> all reduced to <em>automat</em>.</p></li>
+</ul>
+</li>
+<li><p>Usually these reduced forms (stems) are not actual words themselves.</p></li>
+<li><p>A popular stemming algorithm for English is PorterStemmer.</p></li>
+<li><p>Beware that it can be aggressive sometimes.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.stem.porter</span><span class="w"> </span><span class="kn">import</span> <span class="n">PorterStemmer</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;UBC is located in the beautiful province of British Columbia... &quot;</span>
+    <span class="s2">&quot;It&#39;s very close to the U.S. border.&quot;</span>
+<span class="p">)</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+<span class="n">tokenized</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">stemmed</span> <span class="o">=</span> <span class="p">[</span><span class="n">ps</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokenized</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before stemming: &quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">After stemming: &quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stemmed</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before stemming:  UBC is located in the beautiful province of British Columbia... It&#39;s very close to the U.S. border.
+
+
+After stemming:  ubc is locat in the beauti provinc of british columbia ... it &#39;s veri close to the u.s. border .
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-tools-for-preprocessing">
+<h2>Other tools for preprocessing<a class="headerlink" href="#other-tools-for-preprocessing" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>We used <a class="reference external" href="https://www.nltk.org/">Natural Language Processing Toolkit (nltk)</a> above</p></li>
+<li><p>Many available tools</p></li>
+<li><p><a class="reference external" href="https://spacy.io/">spaCy</a></p></li>
+</ul>
+<p><strong><a class="reference external" href="https://spacy.io/">spaCy</a></strong></p>
+<ul class="simple">
+<li><p>Industrial strength NLP library.</p></li>
+<li><p>Lightweight, fast, and convenient to use.</p></li>
+<li><p>spaCy does many things that we did above in one line of code!</p></li>
+<li><p>Also has <a class="reference external" href="https://spacy.io/models/xx">multi-lingual</a> support.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">spacy</span>
+
+<span class="c1"># Load the model</span>
+<span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_md&quot;</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;MDS is a Master&#39;s program at UBC in British Columbia. &quot;</span>
+    <span class="s2">&quot;MDS teaching team is truly multicultural!! &quot;</span>
+    <span class="s2">&quot;Dr. George did his Ph.D. in Scotland. &quot;</span>
+    <span class="s2">&quot;Dr. Timbers, Dr. Ostblom, Dr. Rodríguez-Arelis, and Dr. Kolhatkar did theirs in Canada. &quot;</span>
+    <span class="s2">&quot;Dr. Gelbart did his PhD in the U.S.&quot;</span>
+<span class="p">)</span>
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Accessing tokens</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Tokens: &quot;</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
+
+<span class="c1"># Accessing lemma</span>
+<span class="n">lemmas</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">lemma_</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Lemmas: &quot;</span><span class="p">,</span> <span class="n">lemmas</span><span class="p">)</span>
+
+<span class="c1"># Accessing pos</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">pos_</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">POS: &quot;</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tokens:  [MDS, is, a, Master, &#39;s, program, at, UBC, in, British, Columbia, ., MDS, teaching, team, is, truly, multicultural, !, !, Dr., George, did, his, Ph.D., in, Scotland, ., Dr., Timbers, ,, Dr., Ostblom, ,, Dr., Rodríguez, -, Arelis, ,, and, Dr., Kolhatkar, did, theirs, in, Canada, ., Dr., Gelbart, did, his, PhD, in, the, U.S.]
+
+Lemmas:  [&#39;mds&#39;, &#39;be&#39;, &#39;a&#39;, &#39;Master&#39;, &quot;&#39;s&quot;, &#39;program&#39;, &#39;at&#39;, &#39;UBC&#39;, &#39;in&#39;, &#39;British&#39;, &#39;Columbia&#39;, &#39;.&#39;, &#39;mds&#39;, &#39;teaching&#39;, &#39;team&#39;, &#39;be&#39;, &#39;truly&#39;, &#39;multicultural&#39;, &#39;!&#39;, &#39;!&#39;, &#39;Dr.&#39;, &#39;George&#39;, &#39;do&#39;, &#39;his&#39;, &#39;ph.d.&#39;, &#39;in&#39;, &#39;Scotland&#39;, &#39;.&#39;, &#39;Dr.&#39;, &#39;Timbers&#39;, &#39;,&#39;, &#39;Dr.&#39;, &#39;Ostblom&#39;, &#39;,&#39;, &#39;Dr.&#39;, &#39;Rodríguez&#39;, &#39;-&#39;, &#39;Arelis&#39;, &#39;,&#39;, &#39;and&#39;, &#39;Dr.&#39;, &#39;Kolhatkar&#39;, &#39;do&#39;, &#39;theirs&#39;, &#39;in&#39;, &#39;Canada&#39;, &#39;.&#39;, &#39;Dr.&#39;, &#39;Gelbart&#39;, &#39;do&#39;, &#39;his&#39;, &#39;phd&#39;, &#39;in&#39;, &#39;the&#39;, &#39;U.S.&#39;]
+
+POS:  [&#39;NOUN&#39;, &#39;AUX&#39;, &#39;DET&#39;, &#39;PROPN&#39;, &#39;PART&#39;, &#39;NOUN&#39;, &#39;ADP&#39;, &#39;PROPN&#39;, &#39;ADP&#39;, &#39;PROPN&#39;, &#39;PROPN&#39;, &#39;PUNCT&#39;, &#39;NOUN&#39;, &#39;NOUN&#39;, &#39;NOUN&#39;, &#39;AUX&#39;, &#39;ADV&#39;, &#39;ADJ&#39;, &#39;PUNCT&#39;, &#39;PUNCT&#39;, &#39;PROPN&#39;, &#39;PROPN&#39;, &#39;VERB&#39;, &#39;PRON&#39;, &#39;NOUN&#39;, &#39;ADP&#39;, &#39;PROPN&#39;, &#39;PUNCT&#39;, &#39;PROPN&#39;, &#39;PROPN&#39;, &#39;PUNCT&#39;, &#39;PROPN&#39;, &#39;PROPN&#39;, &#39;PUNCT&#39;, &#39;PROPN&#39;, &#39;PROPN&#39;, &#39;PUNCT&#39;, &#39;PROPN&#39;, &#39;PUNCT&#39;, &#39;CCONJ&#39;, &#39;PROPN&#39;, &#39;PROPN&#39;, &#39;VERB&#39;, &#39;PRON&#39;, &#39;ADP&#39;, &#39;PROPN&#39;, &#39;PUNCT&#39;, &#39;PROPN&#39;, &#39;PROPN&#39;, &#39;VERB&#39;, &#39;PRON&#39;, &#39;NOUN&#39;, &#39;ADP&#39;, &#39;DET&#39;, &#39;PROPN&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="other-typical-nlp-tasks">
+<h2>Other typical NLP tasks<a class="headerlink" href="#other-typical-nlp-tasks" title="Link to this heading">#</a></h2>
+<p>In order to understand text, we usually are interested in extracting information from text. Some common tasks in NLP pipeline are:</p>
+<ul class="simple">
+<li><p>Part of speech tagging</p>
+<ul>
+<li><p>Assigning part-of-speech tags to all words in a sentence.</p></li>
+</ul>
+</li>
+<li><p>Named entity recognition</p>
+<ul>
+<li><p>Labelling named “real-world” objects, like persons, companies or locations.</p></li>
+</ul>
+</li>
+<li><p>Coreference resolution</p>
+<ul>
+<li><p>Deciding whether two strings (e.g., UBC vs University of British Columbia) refer to the same entity</p></li>
+</ul>
+</li>
+<li><p>Dependency parsing</p>
+<ul>
+<li><p>Representing grammatical structure of a sentence</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Extracting named-entities using spaCy</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">spacy</span><span class="w"> </span><span class="kn">import</span> <span class="n">displacy</span>
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span>
+    <span class="s2">&quot;University of British Columbia &quot;</span>
+    <span class="s2">&quot;is located in the beautiful &quot;</span>
+    <span class="s2">&quot;province of British Columbia.&quot;</span>
+<span class="p">)</span>
+<span class="n">displacy</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;ent&quot;</span><span class="p">)</span>
+<span class="c1"># Text and label of named entity span</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Named entities:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="n">ent</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">ent</span><span class="o">.</span><span class="n">label_</span><span class="p">)</span> <span class="k">for</span> <span class="n">ent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">ORG means: &quot;</span><span class="p">,</span> <span class="n">spacy</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="s2">&quot;ORG&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GPE means: &quot;</span><span class="p">,</span> <span class="n">spacy</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="s2">&quot;GPE&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span class="tex2jax_ignore"><div class="entities" style="line-height: 2.5; direction: ltr">
+<mark class="entity" style="background: #7aecec; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    University of British Columbia
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">ORG</span>
+</mark>
+ is located in the beautiful province of 
+<mark class="entity" style="background: #feca74; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
+    British Columbia
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">GPE</span>
+</mark>
+.</div></span></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Named entities:
+ [(&#39;University of British Columbia&#39;, &#39;ORG&#39;), (&#39;British Columbia&#39;, &#39;GPE&#39;)]
+
+ORG means:  Companies, agencies, institutions, etc.
+GPE means:  Countries, cities, states
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Dependency parsing using spaCy</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="s2">&quot;I like cats&quot;</span><span class="p">)</span>
+<span class="n">displacy</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;dep&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span class="tex2jax_ignore"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en" id="09ec8eeb85fa48619aa67cdb9f07575d-0" class="displacy" width="575" height="224.5" direction="ltr" style="max-width: none; height: 224.5px; color: #000000; background: #ffffff; font-family: Arial; direction: ltr">
+<text class="displacy-token" fill="currentColor" text-anchor="middle" y="134.5">
+    <tspan class="displacy-word" fill="currentColor" x="50">I</tspan>
+    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="50">PRON</tspan>
+</text>
+
+<text class="displacy-token" fill="currentColor" text-anchor="middle" y="134.5">
+    <tspan class="displacy-word" fill="currentColor" x="225">like</tspan>
+    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="225">VERB</tspan>
+</text>
+
+<text class="displacy-token" fill="currentColor" text-anchor="middle" y="134.5">
+    <tspan class="displacy-word" fill="currentColor" x="400">cats</tspan>
+    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="400">NOUN</tspan>
+</text>
+
+<g class="displacy-arrow">
+    <path class="displacy-arc" id="arrow-09ec8eeb85fa48619aa67cdb9f07575d-0-0" stroke-width="2px" d="M70,89.5 C70,2.0 225.0,2.0 225.0,89.5" fill="none" stroke="currentColor"/>
+    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
+        <textPath xlink:href="#arrow-09ec8eeb85fa48619aa67cdb9f07575d-0-0" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj</textPath>
+    </text>
+    <path class="displacy-arrowhead" d="M70,91.5 L62,79.5 78,79.5" fill="currentColor"/>
+</g>
+
+<g class="displacy-arrow">
+    <path class="displacy-arc" id="arrow-09ec8eeb85fa48619aa67cdb9f07575d-0-1" stroke-width="2px" d="M245,89.5 C245,2.0 400.0,2.0 400.0,89.5" fill="none" stroke="currentColor"/>
+    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
+        <textPath xlink:href="#arrow-09ec8eeb85fa48619aa67cdb9f07575d-0-1" class="displacy-label" startOffset="50%" side="left" fill="currentColor" text-anchor="middle">dobj</textPath>
+    </text>
+    <path class="displacy-arrowhead" d="M400.0,91.5 L408.0,79.5 392.0,79.5" fill="currentColor"/>
+</g>
+</svg></span></div></div>
+</div>
+<p><strong>Many other things possible</strong></p>
+<ul class="simple">
+<li><p>spaCy is a powerful tool</p></li>
+<li><p>You can build your own rule-based searches.</p></li>
+<li><p>You can also access word vectors using spaCy with bigger models. (Currently we are using <code class="docutils literal notranslate"><span class="pre">en_core_web_md</span></code> model.)</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            name: "conda-env-cpsc330-py",
+            path: "./lectures/notes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="AppendixB.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Appendix B: Feature Selection</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="AppendixD.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Appendix D: Multi-class, meta-strategies</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenization">Tokenization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-commonly-used-preprocessing-steps">Other commonly used preprocessing steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-tools-for-preprocessing">Other tools for preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-typical-nlp-tasks">Other typical NLP tasks</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Varada Kolhatkar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

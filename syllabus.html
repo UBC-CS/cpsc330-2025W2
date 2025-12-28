@@ -1,0 +1,892 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Syllabus &#8212; CPSC 330 Applied Machine Learning 2025W1</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/extra.css?v=6df0ab2b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'syllabus';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CPSC 330 Documents" href="docs/README.html" />
+    <link rel="prev" title="UBC CPSC 330: Applied Machine Learning (2025W1)" href="README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/UBC-CS-logo.png" class="logo__image only-light" alt="CPSC 330 Applied Machine Learning 2025W1 - Home"/>
+    <script>document.write(`<img src="_static/UBC-CS-logo.png" class="logo__image only-dark" alt="CPSC 330 Applied Machine Learning 2025W1 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    UBC CPSC 330: Applied Machine Learning (2025W1)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Things you should know</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning-objectives.html">Course Learning Objectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/01_intro.html">Lecture 1: Course Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/02_terminology-decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/07_linear-models.html">Lecture 7: Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/11_ensembles.html">Lecture 11: Ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/final-exam-review-guiding-question.html">Final exam preparation: guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/AppendixA.html">Appendix A: Handling class imbalance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/AppendixB.html">Appendix B: Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/AppendixC.html">Appendix C: Basic text preprocessing [video]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lectures/notes/AppendixD.html">Appendix D: Multi-class, meta-strategies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section slides</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="lectures/102-Varada-lectures/README.html">Section 102</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-01.html">Lecture 1</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-02.html">Lecture 2</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-03.html">Lecture 3</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-04.html">Lecture 4</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-05.html">Lecture 5</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-06.html">Lecture 6</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-07.html">Lecture 7</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-08.html">Lecture 8</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-09.html">Lecture 9</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-10.html">Lecture 10</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-11.html">Lecture 11</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-12.html">Lecture 12</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-13.html">Lecture 13</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-14.html">Lecture 14</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-15.html">Lecture 15</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-16.html">Lecture 16</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-17.html">Lecture 17</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-18.html">Lecture 18</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-19.html">Lecture 19</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-20.html">Lecture 20</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-21.html">Lecture 21</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-23.html">Lecture 23</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">LICENSE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/UBC-CS/cpsc330-2025W1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/syllabus.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Syllabus</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-description">Course description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-meetings">Class meetings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-team">Teaching Team</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#course-co-ordinator">Course co-ordinator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tas">TAs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registration">Registration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading-scheme">Grading scheme</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker">iClicker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assignments">Assignments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-recordings">Lecture recordings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-of-generative-ai-in-the-course">Use of Generative AI in the course</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#midterm">Midterm</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centre-for-accessibility-cfa-exam-accommodations">Centre for Accessibility (CfA) Exam Accommodations</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-exam">Final exam</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-concessions">Academic concessions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-of-conduct">Code of conduct</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#land-acknowledgement">Land acknowledgement</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="syllabus">
+<h1>Syllabus<a class="headerlink" href="#syllabus" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.cs.ubc.ca/course-section/cpsc-v-330-101-2025w">CPSC 330 101 2025W UBC course URL</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.ubc.ca/course-section/cpsc-v-330-102-2025w">CPSC 330 102 2025W UBC course URL</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.ubc.ca/course-section/cpsc-v-330-103-2025w">CPSC 330 103 2025W UBC course URL</a></p></li>
+</ul>
+<section id="course-description">
+<h2>Course description<a class="headerlink" href="#course-description" title="Link to this heading">#</a></h2>
+<p>Application of machine learning tools, with an emphasis on solving practical problems. Data cleaning, feature extraction, supervised and unsupervised machine learning, reproducible workflows, and communicating results.</p>
+</section>
+<section id="class-meetings">
+<h2>Class meetings<a class="headerlink" href="#class-meetings" title="Link to this heading">#</a></h2>
+<p><strong>Lectures</strong>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Section</p></th>
+<th class="head"><p>Day</p></th>
+<th class="head"><p>Time</p></th>
+<th class="head"><p>Zoom</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CPSC 330 101</p></td>
+<td><p>Tue/Thu</p></td>
+<td><p>15:30 - 16:50</p></td>
+<td><p>DMP 310</p></td>
+</tr>
+<tr class="row-odd"><td><p>CPSC 330 102</p></td>
+<td><p>Tue/Thu</p></td>
+<td><p>11:00 - 12:20</p></td>
+<td><p>DMP 310</p></td>
+</tr>
+<tr class="row-even"><td><p>CPSC 330 103</p></td>
+<td><p>Tue/Thu</p></td>
+<td><p>17:00 - 18:20</p></td>
+<td><p>DMP 310</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Tutorials</strong>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Section</p></th>
+<th class="head"><p>Day</p></th>
+<th class="head"><p>Time</p></th>
+<th class="head"><p>Location</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CPSC 330 T1A</p></td>
+<td><p>Fri</p></td>
+<td><p>09:00 - 10:00</p></td>
+<td><p>MCLD 3008</p></td>
+</tr>
+<tr class="row-odd"><td><p>CPSC 330 T1B</p></td>
+<td><p>Fri</p></td>
+<td><p>11:00 - 12:00</p></td>
+<td><p>MCML158</p></td>
+</tr>
+<tr class="row-even"><td><p>CPSC 330 T1C</p></td>
+<td><p>Fri</p></td>
+<td><p>14:00 - 15:00</p></td>
+<td><p>FSC 1003</p></td>
+</tr>
+<tr class="row-odd"><td><p>CPSC 330 T1D</p></td>
+<td><p>Fri</p></td>
+<td><p>15:00 - 16:00</p></td>
+<td><p>FSC 1003</p></td>
+</tr>
+<tr class="row-even"><td><p>CPSC 330 T1E</p></td>
+<td><p>Thu</p></td>
+<td><p>17:00 - 18:00</p></td>
+<td><p>FSC 1611</p></td>
+</tr>
+<tr class="row-odd"><td><p>CPSC 330 T1F</p></td>
+<td><p>Thu</p></td>
+<td><p>13:00 - 14:00</p></td>
+<td><p>CEME 1215</p></td>
+</tr>
+<tr class="row-even"><td><p>CPSC 330 T1G</p></td>
+<td><p>Thu</p></td>
+<td><p>14:00 - 15:00</p></td>
+<td><p>FORW 317</p></td>
+</tr>
+<tr class="row-odd"><td><p>CPSC 330 T1H</p></td>
+<td><p>Thu</p></td>
+<td><p>10:00 - 11:00</p></td>
+<td><p>CEME 1215</p></td>
+</tr>
+<tr class="row-even"><td><p>CPSC 330 T1J</p></td>
+<td><p>Fri</p></td>
+<td><p>10:00 - 11:00</p></td>
+<td><p>MCLD 3008</p></td>
+</tr>
+<tr class="row-odd"><td><p>CPSC 330 T1K</p></td>
+<td><p>Fri</p></td>
+<td><p>11:00 - 12:00</p></td>
+<td><p>MCLD 3008</p></td>
+</tr>
+<tr class="row-even"><td><p>CPSC 330 T1L</p></td>
+<td><p>Thu</p></td>
+<td><p>09:00 - 10:00</p></td>
+<td><p>CEME 1215</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Office Hours</strong></p>
+<p>Tutorials for this course will be conducted by TAs and follow an office hours format. Attendance at tutorials is optional. However, participating will allow you to engage in more personalized discussions with TAs, providing you with valuable one-on-one time and an opportunity to deepen your understanding of machine learning concepts.
+For office hours schedule, please refer to the <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html">Calendar</a>.</p>
+</section>
+<section id="teaching-team">
+<h2>Teaching Team<a class="headerlink" href="#teaching-team" title="Link to this heading">#</a></h2>
+<p><strong>Instructors</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.gtoti.com/">Giulia Toti</a>, OH: Wednesdays, 4:00 - 5:00 pm &#64; ICCS 231</p></li>
+<li><p><a class="reference external" href="https://kvarada.github.io/">Varada Kolhatkar</a>, OH: Wednesdays, 11:30 am &#64; ICCS 237</p></li>
+</ul>
+<section id="course-co-ordinator">
+<h3>Course co-ordinator<a class="headerlink" href="#course-co-ordinator" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Anca Barbu (cpsc330-admin&#64;cs.ubc.ca), please reach out to Anca for: admin questions, extensions, academic concessions etc.</p></li>
+</ul>
+</section>
+<section id="tas">
+<h3>TAs<a class="headerlink" href="#tas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Ayanfe Adekanye</p></li>
+<li><p>Gaurav Bhatt</p></li>
+<li><p>Jun He Cui</p></li>
+<li><p>Felix	Fu</p></li>
+<li><p>Neo	Ghassemi</p></li>
+<li><p>Zoe	Harris</p></li>
+<li><p>Zheng He</p></li>
+<li><p>Mishaal	Kazmi</p></li>
+<li><p>Kanwal Mehreen</p></li>
+<li><p>Himanshu Mishra</p></li>
+<li><p>Rubia	Reis Guerra</p></li>
+<li><p>Kimia	Rostin</p></li>
+<li><p>Sohbat Sandhu</p></li>
+<li><p>Joseph Soo</p></li>
+<li><p>Allya	Wellyanto</p></li>
+</ul>
+</section>
+</section>
+<section id="registration">
+<h2>Registration<a class="headerlink" href="#registration" title="Link to this heading">#</a></h2>
+<p><strong>Waitlists</strong>:</p>
+<p>The general seats available in this class usually fill up very quickly. Once the general seats are taken, the only way to register for the course is to sign up for the waiting list. For questions about the waiting list policies, see <a class="reference external" href="https://www.cs.ubc.ca/students/undergrad/courses/waitlists">here</a>. You should sign up for the waiting list even if it is long; a lot of students tend to drop courses. Signing up for the waiting list also makes it more likely that we will open up extra sessions, expand class sizes, or offer additional courses on these topics. <strong>The instructors have no control over the situation and cannot help you bypass the waiting list</strong>.</p>
+<p><strong>Prerequisites</strong>: The official prerequisites can be found <a class="reference external" href="https://courses.students.ubc.ca/cs/courseschedule?tname=subj-course&amp;amp;course=330&amp;amp;campuscd=UBC&amp;amp;dept=CPSC&amp;amp;pname=subjarea">here</a>. If you do not meet the prerequisites, see <a class="reference external" href="https://www.cs.ubc.ca/students/undergrad/courses-deadlines/prerequisites">here</a> and <a class="reference external" href="https://www.cs.ubc.ca/students/undergrad/courses-deadlines/rules-about-cpsc-appeals-undergraduate-students">here</a>. We were told that students should not visit the front desk in the CS main office about prerequisite issues, because the folks at the front desk do not have the authority to resolve prerequisite issues.</p>
+<p>In practice, the prerequisite is familiarity with Python programming.</p>
+<p><strong>Auditing</strong>: If the course is full, we cannot accommodate official auditors. If there is space and you would like to audit the course, please contact the instructor. All UBC students are welcome to audit the course unofficially.</p>
+</section>
+<section id="grading-scheme">
+<h2>Grading scheme<a class="headerlink" href="#grading-scheme" title="Link to this heading">#</a></h2>
+<p>The grading scheme for the course is as follows:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Weight</p></th>
+<th class="head"><p>Location</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Syllabus quiz</p></td>
+<td><p>1%</p></td>
+<td><p>PrairieLearn (through Canvas)</p></td>
+</tr>
+<tr class="row-odd"><td><p>iClicker participation</p></td>
+<td><p>5%</p></td>
+<td><p>iClicker Cloud (through Canvas)</p></td>
+</tr>
+<tr class="row-even"><td><p>Assignments</p></td>
+<td><p>22%</p></td>
+<td><p><a class="reference external" href="https://www.gradescope.ca/courses/29785">Gradescope</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Midterm 1</p></td>
+<td><p>21%</p></td>
+<td><p><a class="reference external" href="https://cbtf.ubc.ca/">CBTF</a>, on PrairieLearn</p></td>
+</tr>
+<tr class="row-even"><td><p>Midterm 2</p></td>
+<td><p>21%</p></td>
+<td><p><a class="reference external" href="https://cbtf.ubc.ca/">CBTF</a>, on PrairieLearn</p></td>
+</tr>
+<tr class="row-odd"><td><p>Final</p></td>
+<td><p>30%</p></td>
+<td><p><a class="reference external" href="https://cbtf.ubc.ca/">CBTF</a>, on PrairieLearn</p></td>
+</tr>
+<tr class="row-even"><td><p>Tutorial participation</p></td>
+<td><p>up to 2% bonus</p></td>
+<td><p>in person attendance to 10 tutorials</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="iclicker">
+<h3>iClicker<a class="headerlink" href="#iclicker" title="Link to this heading">#</a></h3>
+<p>The iClicker participation grade will mainly consider your engagement rather than the accuracy of your responses. Nevertheless, these questions are intended to facilitate your learning, so please make an earnest effort when providing your answers. Participation in 80% of the classes is enough to receive the full participation grade - this gives you some wiggle room if you happen to miss a class or two.</p>
+</section>
+<section id="assignments">
+<h3>Assignments<a class="headerlink" href="#assignments" title="Link to this heading">#</a></h3>
+<p>The plan is that most of the assignments will contribute equally towards the overall Assignments grade.</p>
+<!-- However, this is not finalized yet.
+For example, the last assignment ends up particularly short or long due to timing. -->
+<p>We will drop your lowest homework grade.</p>
+<!--**By default late submissions will not be accepted.** The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. I do not like this, but I believe the overall policy is best for the class as a whole.--> 
+<p>See <a class="reference internal" href="docs/homework_instructions.html"><span class="std std-doc">this document</span></a> for more detailed instructions on submitting homework assignments.</p>
+<p>For the full policy on grades, see <a class="reference internal" href="docs/grades.html"><span class="std std-doc">this document</span></a>. We understand that grades are important for you for several reasons. But try not to focus too much on them. You will have a better learning experience and in general, you’ll be happier in life if you focus more on learning the material well.
+For the grading scheme we wish we could use <a class="reference external" href="https://youtu.be/HdHlfiOAJyE?t=3771">this</a>.</p>
+<p><strong>Late policy</strong></p>
+<p>Assignments will be due at 11:59 PM on the due date.
+If you cannot make this due date, you may use a “late token”.
+Each student will have 4 late tokens for the entire semester, which we will track on Canvas. No action is required on your part to use the tokes, just make sure that you have a sufficient number if you are planning on using them.</p>
+<p>For example, if assignment is due on a Monday at 11:59 pm:</p>
+<ul class="simple">
+<li><p>Handing it anytime on Tuesday will cost you 1 late token (irrespective of whether it’s a holiday).</p></li>
+<li><p>Handing it anytime on Wednesday will cost you 2 late tokens (irrespective of whether it’s a holiday).</p></li>
+</ul>
+<p>There is no penalty for using “late tokens”, but you will get a mark of 0 on an assignment if you:</p>
+<ul class="simple">
+<li><p>Use more than 2 late tokens on the assignment.</p></li>
+<li><p>Use more than 4 late tokens across all assignments.</p></li>
+</ul>
+<!-- If you are working in a pair, you both must have late tokens remaining. -->
+<p>We will post solutions 48-hours after the due date.</p>
+</section>
+<section id="lecture-recordings">
+<h3>Lecture recordings<a class="headerlink" href="#lecture-recordings" title="Link to this heading">#</a></h3>
+<p>This is an in-person class, and we do not livestream or make recordings available by default. If you miss a class, you can catch up by reviewing the lecture notes and talking to your peers. Section 102 lectures (11 am to 12:20 am) are being recorded, but the recordings are not shared widely. Typically, the backs of students sitting in the first three to four rows may appear in the recording. If you prefer not to be recorded, please avoid sitting in those rows. When lecture recordings are available, access will be granted only to students who were absent for approved reasons (e.g., illness, jury duty).</p>
+<p><strong>Process to request access:</strong> If you miss a class for a legitimate reason, please contact our course coordinator at cpsc330-admin&#64;cs.ubc.ca and provide appropriate documentation (e.g., a doctor’s note if you are seriously ill). Your request will be reviewed, and approval may take time. Please remember that relying on recordings is not an effective way to stay on top of the course material. Regular attendance is essential for success.</p>
+</section>
+<section id="use-of-generative-ai-in-the-course">
+<h3>Use of Generative AI in the course<a class="headerlink" href="#use-of-generative-ai-in-the-course" title="Link to this heading">#</a></h3>
+<p>You may use generative AI tools (e.g., ChatGPT, Claude, Gemini) in this course, but you must use them <strong>responsibly</strong>. Remember, you are here to learn. These tools can speed up tasks (e.g., brainstorming, debugging, clarifying concepts), but they can also short-circuit your learning if misused (e.g., copy-pasting solutions without understanding them).</p>
+<p><strong>Key policies</strong></p>
+<ul class="simple">
+<li><p><strong>Work must be your own:</strong> All assessments must reflect your own thinking unless otherwise specified. Submitting AI-generated work without understanding it is academic dishonesty.</p></li>
+<li><p>If you use GenAI on an assessment:</p>
+<ul>
+<li><p><strong>Cite it:</strong> Name the tool (e.g., “ChatGPT”).</p></li>
+<li><p><strong>Annotate it:</strong> Briefly explain how you used it (e.g., “I asked ChatGPT for a simple explanation of cross-validation. I compared its response with my notes, clarified one detail about data splitting, and wrote my own explanation.”).</p></li>
+<li><p><strong>If your instructor suspects overuse</strong>, you may be asked to explain your work orally. If you cannot, penalties will apply.</p></li>
+<li><p><strong>Do not share sensitive content:</strong> Never paste into AI tools student information (names, IDs, personal data). In addition, do not paste course assessments (assignments, iClicker questions, exam questions) directly to generative AI tools for completion. These materials are copyrighted, and feeding them into such tools may result in redistributing them in ways we don’t intend.</p></li>
+<li><p><strong>For group work</strong>, all team members must know about and agree to any generative AI use. The group is collectively responsible for ensuring the final work complies with this policy.</p></li>
+</ul>
+</li>
+</ul>
+<p>Failure to follow these rules will be treated as a violation of <a class="reference external" href="https://academicintegrity.ubc.ca/">UBC’s academic integrity policy</a>.</p>
+<p>Finally, always ask yourself: Is this tool helping me learn, or harming my learning? Use it to support, not substitute, your effort.</p>
+</section>
+<section id="midterm">
+<h3>Midterm<a class="headerlink" href="#midterm" title="Link to this heading">#</a></h3>
+<p>Check the <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html">Calendar</a> for midterm dates.</p>
+<p>There will be two midterms in CPSC 330 and both of them will be conducted in the CBTF via self-reservation over a three-day period.
+The CBTF (computer based testing facility) is designed to enhance the student’s writing experience by providing them with a familiar, secure testing environment with quick access to technical support, as well as support from their instructor for common access issues.</p>
+<section id="centre-for-accessibility-cfa-exam-accommodations">
+<h4>Centre for Accessibility (CfA) Exam Accommodations<a class="headerlink" href="#centre-for-accessibility-cfa-exam-accommodations" title="Link to this heading">#</a></h4>
+<p>Students who are registered with the Centre for Accessibility (CfA) with exam accommodations listed below will need to write all of their assessments in the Computer-Based Testing Facility (CBTF). The CBTF will provide the following accommodations:</p>
+<ul class="simple">
+<li><p>Extended-time (up to 4x)</p></li>
+<li><p>Distraction-reduced environment</p></li>
+<li><p>Close proximity to washroom</p></li>
+<li><p>Phone permitted for medical purposes</p></li>
+<li><p>Medical equipment/supplies/food</p></li>
+</ul>
+<p>If you have an accommodation that is not listed above, you will write your assessments with the CfA and will need to book a time by their deadline. Please do not book any assessments with the CfA if you are expected to write in the CBTF, as the CfA will cancel the exam booking and ask you to book it yourself with the CBTF. If you have any concerns about your accommodations being met in the CBTF, please reach out to your Accessibility Advisor.</p>
+<p>For more information, <a class="reference external" href="https://cbtf.ubc.ca/students/accommodations">please see the CBTF page</a>.</p>
+<!-- TODO: Write about midterm exam policy.  -->
+</section>
+</section>
+<section id="final-exam">
+<h3>Final exam<a class="headerlink" href="#final-exam" title="Link to this heading">#</a></h3>
+<p>The final exam is scheduled for the exam period and is likely to be comprehensive, covering the material taught over the course of the semester. <strong>A score of 40% or more in the final exam is required to pass the course.</strong></p>
+</section>
+</section>
+<section id="academic-concessions">
+<h2>Academic concessions<a class="headerlink" href="#academic-concessions" title="Link to this heading">#</a></h2>
+<p>UBC has a <a class="reference external" href="https://students.ubc.ca/enrolment/academic-learning-resources/academic-concessions">policy on academic concession</a> for cases in which a student may be unable to complete coursework. According to this policy, grounds for academic concession can be illness, conflicting responsibilities, or compassionate grounds. Examples of compassionate grounds, from the above policy, include “a traumatic event experienced by the student, a family member, or a close friend; an act of sexual assault or other sexual misconduct experienced by the student, a family member, or a close friend; a death in the family or of a close friend.” To request an academic concession, please write to the course coordinator (cpsc330-admin&#64;cs.ubc.ca), with your section instructor copied in the email. Additional documentation might be requested. We will review your situation and determine whether to approve the concession, and if approved, the appropriate steps to follow. Please note that when possible (short term occurrences) tokens should be used as the default concession mechanism for assignments.</p>
+</section>
+<section id="code-of-conduct">
+<h2>Code of conduct<a class="headerlink" href="#code-of-conduct" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>If you plan to engage in non-course-related activity in lecture (Facebook, YouTube, chatting with friends, etc), please sit in the last two rows of the room to avoid distracting your classmates.</p></li>
+<li><p>Do not distribute any course materials (slides, homework assignments, solutions, notes, etc.) without permission. <strong>This includes copy/pasting material into AI prompts</strong>.</p></li>
+<li><p>Do not photograph or record lectures (audio or video) without permission.</p></li>
+<li><p>If you commit to working with a partner on an assignment, do your fair share of the work.</p></li>
+<li><p>If you have a problem or complaint, let the instructor(s) know immediately. Maybe we can fix it!</p></li>
+<li><p>During the exam period, do not disclose, discuss, or share any part of the exam with any other individual, except as directly permitted or required by the course instructors. This includes discussion in person, online, or through any electronic means. Violation of this will result in academic penalties, which may include failure of the exam or failure of the course.</p></li>
+</ul>
+</section>
+<section id="land-acknowledgement">
+<h2>Land acknowledgement<a class="headerlink" href="#land-acknowledgement" title="Link to this heading">#</a></h2>
+<p>UBC’s Point Grey Campus is located on the traditional, ancestral, and unceded territory of the xwməθkwəy̓əm (Musqueam) people. The land it is situated on has always been a place of learning for the Musqueam people, who for millennia have passed on their culture, history, and traditions from one generation to the next on this site.</p>
+<p>It’s important that this recognition of Musqueam territory and our relationship with the Musqueam people does not appear as just a formality. Take a moment to appreciate the meaning behind the words we use:</p>
+<p><strong>TRADITIONAL</strong> recognizes lands traditionally used and/or occupied by the Musqueam people or other First Nations in other parts of the country.</p>
+<p><strong>ANCESTRAL</strong> recognizes land that is handed down from generation to generation.</p>
+<p><strong>UNCEDED</strong> refers to land that was not turned over to the Crown (government) by a treaty or other agreement.</p>
+<p><strong>As you proceed through your journey at UBC, take some time to learn about the history of this land and to honour its original inhabitants.</strong></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">UBC CPSC 330: Applied Machine Learning (2025W1)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="docs/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">CPSC 330 Documents</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-description">Course description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-meetings">Class meetings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-team">Teaching Team</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#course-co-ordinator">Course co-ordinator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tas">TAs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registration">Registration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading-scheme">Grading scheme</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iclicker">iClicker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assignments">Assignments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lecture-recordings">Lecture recordings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-of-generative-ai-in-the-course">Use of Generative AI in the course</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#midterm">Midterm</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centre-for-accessibility-cfa-exam-accommodations">Centre for Accessibility (CfA) Exam Accommodations</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-exam">Final exam</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-concessions">Academic concessions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-of-conduct">Code of conduct</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#land-acknowledgement">Land acknowledgement</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Varada Kolhatkar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

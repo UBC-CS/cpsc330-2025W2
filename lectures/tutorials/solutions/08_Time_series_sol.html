@@ -1,0 +1,4632 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tutorial 8 &#8212; CPSC 330 Applied Machine Learning 2025W1</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/extra.css?v=6df0ab2b" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/tutorials/solutions/08_Time_series_sol';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/UBC-CS-logo.png" class="logo__image only-light" alt="CPSC 330 Applied Machine Learning 2025W1 - Home"/>
+    <script>document.write(`<img src="../../../_static/UBC-CS-logo.png" class="logo__image only-dark" alt="CPSC 330 Applied Machine Learning 2025W1 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../README.html">
+                    UBC CPSC 330: Applied Machine Learning (2025W1)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Things you should know</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../syllabus.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs/README.html">CPSC 330 Documents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../learning-objectives.html">Course Learning Objectives</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../notes/01_intro.html">Lecture 1: Course Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/02_terminology-decision-trees.html">Lecture 2: Terminology, Baselines, Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/03_ml-fundamentals.html">Lecture 3: Machine Learning Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/04_kNNs-SVM-RBF.html">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/05_preprocessing-pipelines.html">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/06_column-transformer-text-feats.html">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/07_linear-models.html">Lecture 7: Linear Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/08_hyperparameter-optimization.html">Lecture 8: Hyperparameter Optimization and Optimization Bias</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/09_classification-metrics.html">Lecture 9: Classification metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/10_regression-metrics.html">Lecture 10: Regression metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/11_ensembles.html">Lecture 11: Ensembles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/12_feat-importances.html">Lecture 12: Feature importances and model transparency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/13_feature-engineering-selection.html">Lecture 13: Feature engineering and feature selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/14_K-Means.html">Lecture 14: K-Means Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/15_DBSCAN-hierarchical.html">Lecture 15: More Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/16_recommender-systems.html">Lecture 16: Recommender Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/17_natural-language-processing.html">Lecture 17: Introduction to natural language processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/18_intro_to_computer-vision.html">Lecture 18: Multi-class classification and introduction to computer vision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/19_time-series.html">Lecture 19: Time series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/20_survival-analysis.html">Lecture 20: Survival analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/21_communication.html">Lecture 21: Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/23_deployment-conclusion.html">Lecture 23: Deployment and conclusion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/final-exam-review-guiding-question.html">Final exam preparation: guiding questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/AppendixA.html">Appendix A: Handling class imbalance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/AppendixB.html">Appendix B: Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/AppendixC.html">Appendix C: Basic text preprocessing [video]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/AppendixD.html">Appendix D: Multi-class, meta-strategies</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Section slides</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../102-Varada-lectures/README.html">Section 102</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-01.html">Lecture 1</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-02.html">Lecture 2</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-03.html">Lecture 3</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-04.html">Lecture 4</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-05.html">Lecture 5</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-06.html">Lecture 6</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-07.html">Lecture 7</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-08.html">Lecture 8</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-09.html">Lecture 9</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-10.html">Lecture 10</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-11.html">Lecture 11</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-12.html">Lecture 12</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-13.html">Lecture 13</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-14.html">Lecture 14</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-15.html">Lecture 15</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-16.html">Lecture 16</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-17.html">Lecture 17</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-18.html">Lecture 18</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-19.html">Lecture 19</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-20.html">Lecture 20</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-21.html">Lecture 21</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://kvarada.github.io/cpsc330-slides/lecture-23.html">Lecture 23</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Attribution</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../LICENSE.html">LICENSE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/UBC-CS/cpsc330-2025W1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/lectures/tutorials/solutions/08_Time_series_sol.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tutorial 8</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">Outline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-analysis-on-a-more-complicated-dataset">Time series analysis on a more complicated dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis">Exploratory data analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parsing-datetimes">Parsing datetimes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1"><font color="red">Question 1</font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2"><font color="red">Question 2</font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3"><font color="red">Question 3</font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-4"><font color="red">Question 4</font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-5"><font color="red">Question 5</font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lag-based-features">Lag-based features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-6"><font color="red">Question 6</font></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p><img alt="" src="lectures/tutorials/img/330-banner.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="tutorial-8">
+<h1>Tutorial 8<a class="headerlink" href="#tutorial-8" title="Link to this heading">#</a></h1>
+<p>UBC 2024-26</p>
+<section id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Link to this heading">#</a></h2>
+<p>During this tutorial, you will</p>
+<p>All questions can be discussed with your classmates and the TAs - this is not a graded exercise!</p>
+<section id="imports">
+<h3>Imports<a class="headerlink" href="#imports" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span><span class="p">,</span> <span class="n">make_column_transformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.dummy</span><span class="w"> </span><span class="kn">import</span> <span class="n">DummyClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">TimeSeriesSplit</span><span class="p">,</span>
+    <span class="n">cross_val_score</span><span class="p">,</span>
+    <span class="n">cross_validate</span><span class="p">,</span>
+    <span class="n">train_test_split</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">OrdinalEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">),</span> <span class="s2">&quot;data/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="time-series-analysis-on-a-more-complicated-dataset">
+<h2>Time series analysis on a more complicated dataset<a class="headerlink" href="#time-series-analysis-on-a-more-complicated-dataset" title="Link to this heading">#</a></h2>
+<p>For this exercise, we will use the <a class="reference external" href="https://www.kaggle.com/jsphyg/weather-dataset-rattle-package">rain in Australia</a> dataset. Our goal is to predict whether or not it will rain tomorrow based on today’s measurements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rain_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">+</span> <span class="s2">&quot;weatherAUS.csv&quot;</span><span class="p">)</span>
+<span class="n">rain_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>MinTemp</th>
+      <th>MaxTemp</th>
+      <th>Rainfall</th>
+      <th>Evaporation</th>
+      <th>Sunshine</th>
+      <th>WindGustDir</th>
+      <th>WindGustSpeed</th>
+      <th>WindDir9am</th>
+      <th>...</th>
+      <th>Humidity9am</th>
+      <th>Humidity3pm</th>
+      <th>Pressure9am</th>
+      <th>Pressure3pm</th>
+      <th>Cloud9am</th>
+      <th>Cloud3pm</th>
+      <th>Temp9am</th>
+      <th>Temp3pm</th>
+      <th>RainToday</th>
+      <th>RainTomorrow</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2008-12-01</td>
+      <td>Albury</td>
+      <td>13.4</td>
+      <td>22.9</td>
+      <td>0.6</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>W</td>
+      <td>44.0</td>
+      <td>W</td>
+      <td>...</td>
+      <td>71.0</td>
+      <td>22.0</td>
+      <td>1007.7</td>
+      <td>1007.1</td>
+      <td>8.0</td>
+      <td>NaN</td>
+      <td>16.9</td>
+      <td>21.8</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2008-12-02</td>
+      <td>Albury</td>
+      <td>7.4</td>
+      <td>25.1</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>WNW</td>
+      <td>44.0</td>
+      <td>NNW</td>
+      <td>...</td>
+      <td>44.0</td>
+      <td>25.0</td>
+      <td>1010.6</td>
+      <td>1007.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>17.2</td>
+      <td>24.3</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2008-12-03</td>
+      <td>Albury</td>
+      <td>12.9</td>
+      <td>25.7</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>WSW</td>
+      <td>46.0</td>
+      <td>W</td>
+      <td>...</td>
+      <td>38.0</td>
+      <td>30.0</td>
+      <td>1007.6</td>
+      <td>1008.7</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>21.0</td>
+      <td>23.2</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2008-12-04</td>
+      <td>Albury</td>
+      <td>9.2</td>
+      <td>28.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NE</td>
+      <td>24.0</td>
+      <td>SE</td>
+      <td>...</td>
+      <td>45.0</td>
+      <td>16.0</td>
+      <td>1017.6</td>
+      <td>1012.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>18.1</td>
+      <td>26.5</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2008-12-05</td>
+      <td>Albury</td>
+      <td>17.5</td>
+      <td>32.3</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>W</td>
+      <td>41.0</td>
+      <td>ENE</td>
+      <td>...</td>
+      <td>82.0</td>
+      <td>33.0</td>
+      <td>1010.8</td>
+      <td>1006.0</td>
+      <td>7.0</td>
+      <td>8.0</td>
+      <td>17.8</td>
+      <td>29.7</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rain_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(145460, 23)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Questions of interest</strong></p>
+<ul class="simple">
+<li><p>Can we <strong>forecast</strong> into the future? Can we predict whether it’s going to rain tomorrow?</p>
+<ul>
+<li><p>The target variable is <code class="docutils literal notranslate"><span class="pre">RainTomorrow</span></code>. The target is categorical and not continuous in this case.</p></li>
+</ul>
+</li>
+<li><p>Can the date/time features help us predict the target value?</p></li>
+</ul>
+<section id="exploratory-data-analysis">
+<h3>Exploratory data analysis<a class="headerlink" href="#exploratory-data-analysis" title="Link to this heading">#</a></h3>
+<p>We are doing some basic EDA to help you familiarize with the dataset - check our results below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rain_df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 145460 entries, 0 to 145459
+Data columns (total 23 columns):
+ #   Column         Non-Null Count   Dtype  
+---  ------         --------------   -----  
+ 0   Date           145460 non-null  object 
+ 1   Location       145460 non-null  object 
+ 2   MinTemp        143975 non-null  float64
+ 3   MaxTemp        144199 non-null  float64
+ 4   Rainfall       142199 non-null  float64
+ 5   Evaporation    82670 non-null   float64
+ 6   Sunshine       75625 non-null   float64
+ 7   WindGustDir    135134 non-null  object 
+ 8   WindGustSpeed  135197 non-null  float64
+ 9   WindDir9am     134894 non-null  object 
+ 10  WindDir3pm     141232 non-null  object 
+ 11  WindSpeed9am   143693 non-null  float64
+ 12  WindSpeed3pm   142398 non-null  float64
+ 13  Humidity9am    142806 non-null  float64
+ 14  Humidity3pm    140953 non-null  float64
+ 15  Pressure9am    130395 non-null  float64
+ 16  Pressure3pm    130432 non-null  float64
+ 17  Cloud9am       89572 non-null   float64
+ 18  Cloud3pm       86102 non-null   float64
+ 19  Temp9am        143693 non-null  float64
+ 20  Temp3pm        141851 non-null  float64
+ 21  RainToday      142199 non-null  object 
+ 22  RainTomorrow   142193 non-null  object 
+dtypes: float64(16), object(7)
+memory usage: 25.5+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rain_df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>MinTemp</th>
+      <th>MaxTemp</th>
+      <th>Rainfall</th>
+      <th>Evaporation</th>
+      <th>Sunshine</th>
+      <th>WindGustDir</th>
+      <th>WindGustSpeed</th>
+      <th>WindDir9am</th>
+      <th>...</th>
+      <th>Humidity9am</th>
+      <th>Humidity3pm</th>
+      <th>Pressure9am</th>
+      <th>Pressure3pm</th>
+      <th>Cloud9am</th>
+      <th>Cloud3pm</th>
+      <th>Temp9am</th>
+      <th>Temp3pm</th>
+      <th>RainToday</th>
+      <th>RainTomorrow</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>145460</td>
+      <td>145460</td>
+      <td>143975.000000</td>
+      <td>144199.000000</td>
+      <td>142199.000000</td>
+      <td>82670.000000</td>
+      <td>75625.000000</td>
+      <td>135134</td>
+      <td>135197.000000</td>
+      <td>134894</td>
+      <td>...</td>
+      <td>142806.000000</td>
+      <td>140953.000000</td>
+      <td>130395.00000</td>
+      <td>130432.000000</td>
+      <td>89572.000000</td>
+      <td>86102.000000</td>
+      <td>143693.000000</td>
+      <td>141851.00000</td>
+      <td>142199</td>
+      <td>142193</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>3436</td>
+      <td>49</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>16</td>
+      <td>NaN</td>
+      <td>16</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>2013-11-12</td>
+      <td>Canberra</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>W</td>
+      <td>NaN</td>
+      <td>N</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>49</td>
+      <td>3436</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9915</td>
+      <td>NaN</td>
+      <td>11758</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>110319</td>
+      <td>110316</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12.194034</td>
+      <td>23.221348</td>
+      <td>2.360918</td>
+      <td>5.468232</td>
+      <td>7.611178</td>
+      <td>NaN</td>
+      <td>40.035230</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>68.880831</td>
+      <td>51.539116</td>
+      <td>1017.64994</td>
+      <td>1015.255889</td>
+      <td>4.447461</td>
+      <td>4.509930</td>
+      <td>16.990631</td>
+      <td>21.68339</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.398495</td>
+      <td>7.119049</td>
+      <td>8.478060</td>
+      <td>4.193704</td>
+      <td>3.785483</td>
+      <td>NaN</td>
+      <td>13.607062</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>19.029164</td>
+      <td>20.795902</td>
+      <td>7.10653</td>
+      <td>7.037414</td>
+      <td>2.887159</td>
+      <td>2.720357</td>
+      <td>6.488753</td>
+      <td>6.93665</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-8.500000</td>
+      <td>-4.800000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>NaN</td>
+      <td>6.000000</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>980.50000</td>
+      <td>977.100000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>-7.200000</td>
+      <td>-5.40000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.600000</td>
+      <td>17.900000</td>
+      <td>0.000000</td>
+      <td>2.600000</td>
+      <td>4.800000</td>
+      <td>NaN</td>
+      <td>31.000000</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>57.000000</td>
+      <td>37.000000</td>
+      <td>1012.90000</td>
+      <td>1010.400000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>12.300000</td>
+      <td>16.60000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12.000000</td>
+      <td>22.600000</td>
+      <td>0.000000</td>
+      <td>4.800000</td>
+      <td>8.400000</td>
+      <td>NaN</td>
+      <td>39.000000</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>70.000000</td>
+      <td>52.000000</td>
+      <td>1017.60000</td>
+      <td>1015.200000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>16.700000</td>
+      <td>21.10000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>16.900000</td>
+      <td>28.200000</td>
+      <td>0.800000</td>
+      <td>7.400000</td>
+      <td>10.600000</td>
+      <td>NaN</td>
+      <td>48.000000</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>83.000000</td>
+      <td>66.000000</td>
+      <td>1022.40000</td>
+      <td>1020.000000</td>
+      <td>7.000000</td>
+      <td>7.000000</td>
+      <td>21.600000</td>
+      <td>26.40000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>33.900000</td>
+      <td>48.100000</td>
+      <td>371.000000</td>
+      <td>145.000000</td>
+      <td>14.500000</td>
+      <td>NaN</td>
+      <td>135.000000</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>100.000000</td>
+      <td>100.000000</td>
+      <td>1041.00000</td>
+      <td>1039.600000</td>
+      <td>9.000000</td>
+      <td>9.000000</td>
+      <td>40.200000</td>
+      <td>46.70000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>11 rows × 23 columns</p>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>A number of missing values.</p></li>
+<li><p>Some target values are also missing. Let’s drop these rows.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rain_df</span> <span class="o">=</span> <span class="n">rain_df</span><span class="p">[</span><span class="n">rain_df</span><span class="p">[</span><span class="s2">&quot;RainTomorrow&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+<span class="n">rain_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(142193, 23)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="parsing-datetimes">
+<h3>Parsing datetimes<a class="headerlink" href="#parsing-datetimes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>In general, datetimes are a huge pain!</p>
+<ul>
+<li><p>Think of all the formats: MM-DD-YY, DD-MM-YY, YY-MM-DD, MM/DD/YY, DD/MM/YY, DD/MM/YYYY, 20:45, 8:45am, 8:45 PM, 8:45a, 08:00, 8:10:20, …….</p></li>
+<li><p>Time zones.</p></li>
+<li><p>Daylight savings…</p></li>
+</ul>
+</li>
+<li><p>Thankfully, pandas does a pretty good job here.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates_rain</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">rain_df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">])</span>
+<span class="n">dates_rain</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0        2008-12-01
+1        2008-12-02
+2        2008-12-03
+3        2008-12-04
+4        2008-12-05
+            ...    
+145454   2017-06-20
+145455   2017-06-21
+145456   2017-06-22
+145457   2017-06-23
+145458   2017-06-24
+Name: Date, Length: 142193, dtype: datetime64[ns]
+</pre></div>
+</div>
+</div>
+</div>
+<p>They are all the same format, so we can also compare dates:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates_rain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dates_rain</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timedelta(&#39;1 days 00:00:00&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates_rain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dates_rain</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">dates_rain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">dates_rain</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>86400.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also easily extract information from the date columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates_rain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timestamp(&#39;2008-12-02 00:00:00&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates_rain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">month_name</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;December&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates_rain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">day_name</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Tuesday&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates_rain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">is_year_end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dates_rain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">is_leap_year</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Above, pandas identified the date column automatically. You can also tell pandas to parse the dates when reading in the CSV:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rain_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">DATA_DIR</span> <span class="o">+</span> <span class="s2">&quot;weatherAUS.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">])</span>
+<span class="n">rain_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>MinTemp</th>
+      <th>MaxTemp</th>
+      <th>Rainfall</th>
+      <th>Evaporation</th>
+      <th>Sunshine</th>
+      <th>WindGustDir</th>
+      <th>WindGustSpeed</th>
+      <th>WindDir9am</th>
+      <th>...</th>
+      <th>Humidity9am</th>
+      <th>Humidity3pm</th>
+      <th>Pressure9am</th>
+      <th>Pressure3pm</th>
+      <th>Cloud9am</th>
+      <th>Cloud3pm</th>
+      <th>Temp9am</th>
+      <th>Temp3pm</th>
+      <th>RainToday</th>
+      <th>RainTomorrow</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2008-12-01</td>
+      <td>Albury</td>
+      <td>13.4</td>
+      <td>22.9</td>
+      <td>0.6</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>W</td>
+      <td>44.0</td>
+      <td>W</td>
+      <td>...</td>
+      <td>71.0</td>
+      <td>22.0</td>
+      <td>1007.7</td>
+      <td>1007.1</td>
+      <td>8.0</td>
+      <td>NaN</td>
+      <td>16.9</td>
+      <td>21.8</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2008-12-02</td>
+      <td>Albury</td>
+      <td>7.4</td>
+      <td>25.1</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>WNW</td>
+      <td>44.0</td>
+      <td>NNW</td>
+      <td>...</td>
+      <td>44.0</td>
+      <td>25.0</td>
+      <td>1010.6</td>
+      <td>1007.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>17.2</td>
+      <td>24.3</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2008-12-03</td>
+      <td>Albury</td>
+      <td>12.9</td>
+      <td>25.7</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>WSW</td>
+      <td>46.0</td>
+      <td>W</td>
+      <td>...</td>
+      <td>38.0</td>
+      <td>30.0</td>
+      <td>1007.6</td>
+      <td>1008.7</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>21.0</td>
+      <td>23.2</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2008-12-04</td>
+      <td>Albury</td>
+      <td>9.2</td>
+      <td>28.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NE</td>
+      <td>24.0</td>
+      <td>SE</td>
+      <td>...</td>
+      <td>45.0</td>
+      <td>16.0</td>
+      <td>1017.6</td>
+      <td>1012.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>18.1</td>
+      <td>26.5</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2008-12-05</td>
+      <td>Albury</td>
+      <td>17.5</td>
+      <td>32.3</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>W</td>
+      <td>41.0</td>
+      <td>ENE</td>
+      <td>...</td>
+      <td>82.0</td>
+      <td>33.0</td>
+      <td>1010.8</td>
+      <td>1006.0</td>
+      <td>7.0</td>
+      <td>8.0</td>
+      <td>17.8</td>
+      <td>29.7</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Since we re-read the csv file, let&#39;s remove the missing targets again</span>
+<span class="n">rain_df</span> <span class="o">=</span> <span class="n">rain_df</span><span class="p">[</span><span class="n">rain_df</span><span class="p">[</span><span class="s2">&quot;RainTomorrow&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+<span class="n">rain_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(142193, 23)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-1">
+<h3><font color='red'>Question 1</font><a class="headerlink" href="#question-1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How many time series are present in this dataset?</p></li>
+<li><p>Are the measurements equally spaced? Use the function provided below to help you answer this question.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_time_spacing_distribution</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="s2">&quot;Adelaide&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots the distribution of time spacing for a given region.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        df (pd.DataFrame): The input DataFrame with columns &#39;Location&#39; and &#39;Date&#39;.</span>
+<span class="sd">        region (str): The region (e.g., location) to analyze.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Ensure &#39;Date&#39; is in datetime format</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># Filter data for the given region</span>
+    <span class="n">region_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Location&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">region</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">region_data</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No data available for region: </span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    
+    <span class="c1"># Calculate time differences</span>
+    <span class="n">time_diffs</span> <span class="o">=</span> <span class="n">region_data</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    
+    <span class="c1"># Count the frequency of each time difference</span>
+    <span class="n">value_counts</span> <span class="o">=</span> <span class="n">time_diffs</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+    
+    <span class="c1"># Display value counts</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time spacing counts for </span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{</span><span class="n">value_counts</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Plot the bar chart</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">value_counts</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span> <span class="n">value_counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time Difference Distribution for </span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time Difference (days)&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">rain_df</span><span class="p">[</span><span class="s1">&#39;Location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="n">plot_time_spacing_distribution</span><span class="p">(</span><span class="n">rain_df</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">loc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Albury:
+Date
+1 days     2987
+2 days       16
+4 days        3
+5 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/3c9ebe63c970672d352b10c9d8f074253af9c269aaf72d3f1dfde21e24fee4b0.png" src="../../../_images/3c9ebe63c970672d352b10c9d8f074253af9c269aaf72d3f1dfde21e24fee4b0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for BadgerysCreek:
+Date
+1 days     2873
+2 days       40
+3 days        8
+4 days        1
+6 days        1
+18 days       1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/e1b5f619336b02bcf1b1eb6ce92eeddc9e8f69e49e00bd6d8300f88ac4b250f4.png" src="../../../_images/e1b5f619336b02bcf1b1eb6ce92eeddc9e8f69e49e00bd6d8300f88ac4b250f4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Cobar:
+Date
+1 days     2976
+2 days        2
+3 days        2
+4 days        3
+7 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/d7a228b54cce97ef133fdd8f8bfb11711754578b2857b5128ce15871b7916341.png" src="../../../_images/d7a228b54cce97ef133fdd8f8bfb11711754578b2857b5128ce15871b7916341.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for CoffsHarbour:
+Date
+1 days     2936
+2 days        8
+4 days        1
+5 days        1
+6 days        1
+8 days        1
+29 days       1
+30 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/0460ff1e0e8c13543ef91eb6e58275dbe1047b3a3dd60d2d2b5244ae83b471d0.png" src="../../../_images/0460ff1e0e8c13543ef91eb6e58275dbe1047b3a3dd60d2d2b5244ae83b471d0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Moree:
+Date
+1 days     2787
+2 days       11
+3 days       24
+4 days       24
+6 days        1
+7 days        2
+8 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/b5643712de638aacef25f61fb0f31133fe276f512d1f9327103db92a79de2a70.png" src="../../../_images/b5643712de638aacef25f61fb0f31133fe276f512d1f9327103db92a79de2a70.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Newcastle:
+Date
+1 days     2925
+2 days       13
+3 days        2
+5 days        1
+6 days        4
+7 days        2
+8 days        2
+9 days        1
+10 days       1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/58552e113eefdec1fdfe1a7bf6365026eb774b5d2ec2c9248a145d7b6493632b.png" src="../../../_images/58552e113eefdec1fdfe1a7bf6365026eb774b5d2ec2c9248a145d7b6493632b.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for NorahHead:
+Date
+1 days     2884
+2 days       29
+3 days        6
+4 days        1
+5 days        2
+6 days        1
+12 days       1
+13 days       1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/618896fec295ee1f7d5a4111707b6da79abfcfe0cc4d41096524f0544a460ac5.png" src="../../../_images/618896fec295ee1f7d5a4111707b6da79abfcfe0cc4d41096524f0544a460ac5.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for NorfolkIsland:
+Date
+1 days     2940
+2 days        4
+3 days       14
+4 days        1
+11 days       1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/cb45746129e0cac44b5e3727f1f7ab51ee152bdd2188875fb6047f3a4e9d7eb8.png" src="../../../_images/cb45746129e0cac44b5e3727f1f7ab51ee152bdd2188875fb6047f3a4e9d7eb8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Penrith:
+Date
+1 days     2907
+2 days       41
+3 days        7
+4 days        2
+5 days        1
+6 days        1
+7 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/fcbcd60e53645bc88534924f8d12dd5c495e832eb694b8b350bc431f39e02ac0.png" src="../../../_images/fcbcd60e53645bc88534924f8d12dd5c495e832eb694b8b350bc431f39e02ac0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Richmond:
+Date
+1 days     2902
+2 days       37
+3 days        6
+5 days        1
+6 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/d6a30e41b89e932c875711233f9c0ae95b8c0c2866a0f31c7f54f08ddcd6b22c.png" src="../../../_images/d6a30e41b89e932c875711233f9c0ae95b8c0c2866a0f31c7f54f08ddcd6b22c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Sydney:
+Date
+1 days     3327
+2 days        5
+3 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/de623499309cd920e437e8f4cd9ef39e07dbc5b7700cec0ec110361aceaa4144.png" src="../../../_images/de623499309cd920e437e8f4cd9ef39e07dbc5b7700cec0ec110361aceaa4144.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for SydneyAirport:
+Date
+1 days     2997
+2 days        4
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/198f71eb59e034471da3ab29c9fb904c5743ac5a4384f1b3229648dc8252b7d0.png" src="../../../_images/198f71eb59e034471da3ab29c9fb904c5743ac5a4384f1b3229648dc8252b7d0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for WaggaWagga:
+Date
+1 days     2954
+2 days        5
+3 days       12
+5 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/8a8403116a7eeba320425e5ad1a0b072fa2221aaa360cde460e1c542bbff70e6.png" src="../../../_images/8a8403116a7eeba320425e5ad1a0b072fa2221aaa360cde460e1c542bbff70e6.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Williamtown:
+Date
+1 days     2373
+2 days       25
+3 days       68
+4 days       71
+5 days        4
+6 days        4
+7 days        1
+8 days        1
+14 days       1
+19 days       1
+31 days       2
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/e239af9a26a88455957805f72b18f2f13d1ac41d3b489ea6ae85a64baef73ac3.png" src="../../../_images/e239af9a26a88455957805f72b18f2f13d1ac41d3b489ea6ae85a64baef73ac3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Wollongong:
+Date
+1 days     2940
+2 days       30
+3 days        8
+10 days       1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/c4ccb048d75fad0027601708b215841087f3a8992a3f6d3de7d52b6b4d0b1f48.png" src="../../../_images/c4ccb048d75fad0027601708b215841087f3a8992a3f6d3de7d52b6b4d0b1f48.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Canberra:
+Date
+1 days     3398
+2 days       14
+3 days        2
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/87f7c990b330bac4b1cdfe4a96cf7e8694a46f639f3acc9c308b97c7f59439be.png" src="../../../_images/87f7c990b330bac4b1cdfe4a96cf7e8694a46f639f3acc9c308b97c7f59439be.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Tuggeranong:
+Date
+1 days     2955
+2 days       36
+3 days        3
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/eef6bca1cb69b684bea231879f89897f18bb8149da9d574def9f8af809e196fd.png" src="../../../_images/eef6bca1cb69b684bea231879f89897f18bb8149da9d574def9f8af809e196fd.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for MountGinini:
+Date
+1 days     2812
+2 days       57
+3 days       28
+4 days        4
+5 days        2
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/a3721183995c2a32ed6b34c38a4ed6fc7c91f447f9049881c3be8aea9b087fb0.png" src="../../../_images/a3721183995c2a32ed6b34c38a4ed6fc7c91f447f9049881c3be8aea9b087fb0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Ballarat:
+Date
+1 days     3013
+2 days       10
+3 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/18842d21eeb8f5682c26da7cf07b8149b7dc19d4bbfbe1b84907878bee996d55.png" src="../../../_images/18842d21eeb8f5682c26da7cf07b8149b7dc19d4bbfbe1b84907878bee996d55.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Bendigo:
+Date
+1 days     3026
+2 days        2
+3 days        2
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/12edc475be0e06f3fa99fcd11933a83d45ca7bc82b92caf6946ccc14c77188ac.png" src="../../../_images/12edc475be0e06f3fa99fcd11933a83d45ca7bc82b92caf6946ccc14c77188ac.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Sale:
+Date
+1 days     2988
+2 days        7
+3 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/068deca3a304dcc95bed74c295660be7859fd6b86fc2a3de68135b8b269ae9f1.png" src="../../../_images/068deca3a304dcc95bed74c295660be7859fd6b86fc2a3de68135b8b269ae9f1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for MelbourneAirport:
+Date
+1 days     3005
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/3de9585ef21ae16ab583354e0b8aa7f7ee508aa561f335a9c756bffa6ac26506.png" src="../../../_images/3de9585ef21ae16ab583354e0b8aa7f7ee508aa561f335a9c756bffa6ac26506.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Melbourne:
+Date
+1 days      2294
+2 days        17
+3 days       102
+4 days        13
+5 days         3
+7 days         1
+29 days        1
+31 days        1
+32 days        1
+481 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/3f91092eb7e5b8b108125725431c7749e6d87652631fa3de126ef7c4f868bd18.png" src="../../../_images/3f91092eb7e5b8b108125725431c7749e6d87652631fa3de126ef7c4f868bd18.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Mildura:
+Date
+1 days     3001
+2 days        2
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/47b639f4e7bcfe26616e3811e74be1ed477a0df197c2563274aec04da92c3625.png" src="../../../_images/47b639f4e7bcfe26616e3811e74be1ed477a0df197c2563274aec04da92c3625.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Nhil:
+Date
+1 days    1564
+2 days       3
+7 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/c493c03958b40bdaa7d87c164fbc8a2cf25474fb9ef65352acecffc0bccc906d.png" src="../../../_images/c493c03958b40bdaa7d87c164fbc8a2cf25474fb9ef65352acecffc0bccc906d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Portland:
+Date
+1 days     2980
+2 days       11
+3 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/87048d764f59b433d16b72942169aa7f8aa8eeb504aaf522038e568a51f28147.png" src="../../../_images/87048d764f59b433d16b72942169aa7f8aa8eeb504aaf522038e568a51f28147.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Watsonia:
+Date
+1 days     2986
+2 days        8
+3 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/600e83677e34a49d8772df5ed5d794ba60bf5a50f4229907c0bb3f5ceaab53af.png" src="../../../_images/600e83677e34a49d8772df5ed5d794ba60bf5a50f4229907c0bb3f5ceaab53af.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Dartmoor:
+Date
+1 days     2936
+2 days        3
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/1741a563c0c6d2c54e397b36edd7d4dab6b1d3f9fc3d68ba679127fda71721f7.png" src="../../../_images/1741a563c0c6d2c54e397b36edd7d4dab6b1d3f9fc3d68ba679127fda71721f7.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Brisbane:
+Date
+1 days     3128
+2 days       26
+3 days        3
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/72df9d7adb029ece4f0a28fa6ce3aa6ced0eefb97594a9677749995beca87c1c.png" src="../../../_images/72df9d7adb029ece4f0a28fa6ce3aa6ced0eefb97594a9677749995beca87c1c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Cairns:
+Date
+1 days     2960
+2 days       10
+3 days        5
+4 days        6
+5 days        1
+6 days        2
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/ebda0c59667006c5310542f1aaea6861bceacc0d706979f35b2f3af6c8ba1061.png" src="../../../_images/ebda0c59667006c5310542f1aaea6861bceacc0d706979f35b2f3af6c8ba1061.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for GoldCoast:
+Date
+1 days     2920
+2 days       54
+3 days        1
+5 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/fedfbb3eda393027784eefb272e20e5d989ea611ac7c2ac458c560e63d8ab377.png" src="../../../_images/fedfbb3eda393027784eefb272e20e5d989ea611ac7c2ac458c560e63d8ab377.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Townsville:
+Date
+1 days     3023
+2 days        5
+3 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/9f8cc51d24c614c2f8364b4db16182522952d5851abf2e58d97aa1db06f2edcf.png" src="../../../_images/9f8cc51d24c614c2f8364b4db16182522952d5851abf2e58d97aa1db06f2edcf.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Adelaide:
+Date
+1 days     3016
+2 days       42
+3 days       24
+4 days        4
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/8a63ee2a2715f02a57d33b3bb8c41434bd0badb387032e4cbb8ebd0f9b978139.png" src="../../../_images/8a63ee2a2715f02a57d33b3bb8c41434bd0badb387032e4cbb8ebd0f9b978139.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for MountGambier:
+Date
+1 days     3018
+2 days        7
+3 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/4e239049b95d31c804ce33ba4bee548d011e0a4f7e47eeaea9fcc6b816b5842b.png" src="../../../_images/4e239049b95d31c804ce33ba4bee548d011e0a4f7e47eeaea9fcc6b816b5842b.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Nuriootpa:
+Date
+1 days     2992
+2 days        6
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/c2430bc0fa65110bfe6d0112034486ce14033712a303335a50ac87142fba0d42.png" src="../../../_images/c2430bc0fa65110bfe6d0112034486ce14033712a303335a50ac87142fba0d42.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Woomera:
+Date
+1 days     2980
+2 days        1
+3 days        2
+5 days        2
+6 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/0ec8e5f8f5ed201d3997a74ec2a1739c371a01bbdae5a4870acb8e8096ba3d47.png" src="../../../_images/0ec8e5f8f5ed201d3997a74ec2a1739c371a01bbdae5a4870acb8e8096ba3d47.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Albany:
+Date
+1 days     2993
+2 days       15
+3 days        4
+29 days       1
+31 days       1
+33 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/6b9b19a1ade6fcb8b996c80ffc051ce2811e9cc358c97f7d9dcb312fc6d5cee5.png" src="../../../_images/6b9b19a1ade6fcb8b996c80ffc051ce2811e9cc358c97f7d9dcb312fc6d5cee5.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Witchcliffe:
+Date
+1 days     2920
+2 days       17
+3 days        4
+4 days        2
+5 days        2
+6 days        1
+7 days        1
+8 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/c819450d8adcc02714bb4b80c068d20fb99eb9910125010e43d4392e838484ac.png" src="../../../_images/c819450d8adcc02714bb4b80c068d20fb99eb9910125010e43d4392e838484ac.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for PearceRAAF:
+Date
+1 days     2642
+2 days       16
+3 days       92
+4 days        5
+5 days        1
+9 days        1
+21 days       1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/c499b8ffc241eee05f529336253520205918856896eb4784087937e9312363db.png" src="../../../_images/c499b8ffc241eee05f529336253520205918856896eb4784087937e9312363db.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for PerthAirport:
+Date
+1 days     3005
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/cf72a5d5d8a2700649485b6570c725d5bc0dc564a0445f55a16eff148964a953.png" src="../../../_images/cf72a5d5d8a2700649485b6570c725d5bc0dc564a0445f55a16eff148964a953.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Perth:
+Date
+1 days     3189
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/26649a39ef7e46c13ff2bb3ade8a7c3924110c8880a2da540ab92f771fef5f8d.png" src="../../../_images/26649a39ef7e46c13ff2bb3ade8a7c3924110c8880a2da540ab92f771fef5f8d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for SalmonGums:
+Date
+1 days     2937
+2 days        9
+3 days        2
+7 days        1
+12 days       1
+25 days       1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/da3230ed53a7073d4d8a6a7aa7e0f1f4e46761482adc1ce7909e3693b5ec72f6.png" src="../../../_images/da3230ed53a7073d4d8a6a7aa7e0f1f4e46761482adc1ce7909e3693b5ec72f6.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Walpole:
+Date
+1 days     2767
+2 days       39
+3 days        2
+4 days        1
+5 days        1
+9 days        1
+14 days       1
+15 days       1
+17 days       1
+30 days       1
+31 days       1
+32 days       1
+89 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/7efb254e36de461a4036ab4221219aaf72ff9a6c5a878fda6273f7e654e9e9af.png" src="../../../_images/7efb254e36de461a4036ab4221219aaf72ff9a6c5a878fda6273f7e654e9e9af.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Hobart:
+Date
+1 days     3179
+2 days        5
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/66f280e81bd541abb2857ffa8031158e6b580207e6cfcb1bc0fb72cf787a3843.png" src="../../../_images/66f280e81bd541abb2857ffa8031158e6b580207e6cfcb1bc0fb72cf787a3843.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Launceston:
+Date
+1 days     3016
+2 days        6
+3 days        1
+5 days        1
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/174781f79218ea72f157af4e3fd56add6af5e6b076c30b2ad8f9a055c8553c89.png" src="../../../_images/174781f79218ea72f157af4e3fd56add6af5e6b076c30b2ad8f9a055c8553c89.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for AliceSprings:
+Date
+1 days     3021
+2 days        4
+3 days        2
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/5430642c732509b9dd599ce7731473f338c5457256b6183024f9fed6b4ec4600.png" src="../../../_images/5430642c732509b9dd599ce7731473f338c5457256b6183024f9fed6b4ec4600.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Darwin:
+Date
+1 days     3188
+29 days       1
+31 days       1
+32 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/62eeee043d82001198a46a20eaa339737f744c3b3ab864ac4f6a3c2c5a5c4d24.png" src="../../../_images/62eeee043d82001198a46a20eaa339737f744c3b3ab864ac4f6a3c2c5a5c4d24.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Katherine:
+Date
+1 days    1544
+2 days      12
+3 days       1
+4 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/b15af0611fbf4037728095596c8f4dca614d17b6d6d473ded803c23df0c03175.png" src="../../../_images/b15af0611fbf4037728095596c8f4dca614d17b6d6d473ded803c23df0c03175.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time spacing counts for Uluru:
+Date
+1 days     1501
+2 days       11
+3 days        3
+4 days        4
+28 days       1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="../../../_images/5899da5f1dbe6cee03efdfd63098d13e7743274735ca61f5b450fd956264d3e4.png" src="../../../_images/5899da5f1dbe6cee03efdfd63098d13e7743274735ca61f5b450fd956264d3e4.png" />
+</div>
+</div>
+<p><strong>Solution</strong></p>
+<ul class="simple">
+<li><p>There is one time series for each location.</p></li>
+<li><p>The measurements are usually one day apart for each region, but there are a few cases across different regions when measurements are 2-4 days apart, even up to 31 days apart at Melbourne Airport.</p></li>
+</ul>
+</section>
+<section id="question-2">
+<h3><font color='red'>Question 2</font><a class="headerlink" href="#question-2" title="Link to this heading">#</a></h3>
+<p>Create train/test splits, using at least 20% samples for the test set. Remember that we should not be calling the usual <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> with shuffling because if we want to forecast, we aren’t allowed to know what happened in the future!</p>
+<p>Make sure to call the resulting dataframes <code class="docutils literal notranslate"><span class="pre">train_df</span></code> and <code class="docutils literal notranslate"><span class="pre">test_df</span></code> for the rest of the notebook to work.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">rain_df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">rain_df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">rain_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Date &lt;= 20150630&quot;</span><span class="p">)</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">rain_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Date &gt;  20150630&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2007-11-01 00:00:00 2017-06-25 00:00:00
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="preprocessing">
+<h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h3>
+<p>We have different types of features requiring preprocessing. Let’s define a preprocessor with a column transformer.</p>
+<p>This portion of the exercise is given to you, as it is not focused on using temporal information.</p>
+<ul class="simple">
+<li><p>We have missing data.</p></li>
+<li><p>We have categorical features and numeric features.</p></li>
+<li><p>To build a baseline, let’s drop the date column and treat this as a usual supervised machine learning problem.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;MinTemp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MaxTemp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Rainfall&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Evaporation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Sunshine&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;WindGustSpeed&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;WindSpeed9am&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;WindSpeed3pm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Humidity9am&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Humidity3pm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pressure9am&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Pressure3pm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Cloud9am&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Cloud3pm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Temp9am&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Temp3pm&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Location&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;WindGustDir&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;WindDir9am&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;WindDir3pm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;RainToday&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">drop_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;RainTomorrow&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll be doing feature engineering and preprocessing features several times. So I’ve written a function for preprocessing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">preprocess_features</span><span class="p">(</span>
+    <span class="n">train_df</span><span class="p">,</span>
+    <span class="n">test_df</span><span class="p">,</span>
+    <span class="n">numeric_features</span><span class="p">,</span>
+    <span class="n">categorical_features</span><span class="p">,</span>
+    <span class="n">drop_features</span><span class="p">,</span>
+    <span class="n">target</span>
+<span class="p">):</span>
+
+    <span class="n">all_features</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">numeric_features</span> <span class="o">+</span> <span class="n">categorical_features</span> <span class="o">+</span> <span class="n">drop_features</span> <span class="o">+</span> <span class="n">target</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">!=</span> <span class="n">all_features</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Missing columns&quot;</span><span class="p">,</span> <span class="nb">set</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="n">all_features</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extra columns&quot;</span><span class="p">,</span> <span class="n">all_features</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Columns do not match&quot;</span><span class="p">)</span>
+
+    <span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+        <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">),</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+        <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span>
+        <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span> <span class="n">drop_features</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_df</span><span class="p">)</span>
+    <span class="n">ohe_feature_names</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;pipeline-2&quot;</span><span class="p">]</span>
+        <span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span>
+        <span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="n">new_columns</span> <span class="o">=</span> <span class="n">numeric_features</span> <span class="o">+</span> <span class="n">ohe_feature_names</span>
+
+    <span class="n">X_train_enc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_df</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">train_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">new_columns</span>
+    <span class="p">)</span>
+    <span class="n">X_test_enc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_df</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">test_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">new_columns</span>
+    <span class="p">)</span>
+
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;RainTomorrow&quot;</span><span class="p">]</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;RainTomorrow&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test_enc</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">preprocessor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test_enc</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">preprocess_features</span><span class="p">(</span>
+    <span class="n">train_df</span><span class="p">,</span>
+    <span class="n">test_df</span><span class="p">,</span>
+    <span class="n">numeric_features</span><span class="p">,</span>
+    <span class="n">categorical_features</span><span class="p">,</span>
+    <span class="n">drop_features</span><span class="p">,</span> <span class="n">target</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Peek at X_train_enc to see the results of preprocessing</span>
+<span class="n">X_train_enc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MinTemp</th>
+      <th>MaxTemp</th>
+      <th>Rainfall</th>
+      <th>Evaporation</th>
+      <th>Sunshine</th>
+      <th>WindGustSpeed</th>
+      <th>WindSpeed9am</th>
+      <th>WindSpeed3pm</th>
+      <th>Humidity9am</th>
+      <th>Humidity3pm</th>
+      <th>...</th>
+      <th>WindDir3pm_SSE</th>
+      <th>WindDir3pm_SSW</th>
+      <th>WindDir3pm_SW</th>
+      <th>WindDir3pm_W</th>
+      <th>WindDir3pm_WNW</th>
+      <th>WindDir3pm_WSW</th>
+      <th>WindDir3pm_missing</th>
+      <th>RainToday_No</th>
+      <th>RainToday_Yes</th>
+      <th>RainToday_missing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.204302</td>
+      <td>-0.027112</td>
+      <td>-0.205323</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>0.298612</td>
+      <td>0.666166</td>
+      <td>0.599894</td>
+      <td>0.115428</td>
+      <td>-1.433514</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.741037</td>
+      <td>0.287031</td>
+      <td>-0.275008</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>0.298612</td>
+      <td>-1.125617</td>
+      <td>0.373275</td>
+      <td>-1.314929</td>
+      <td>-1.288002</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.125523</td>
+      <td>0.372706</td>
+      <td>-0.275008</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>0.450132</td>
+      <td>0.554180</td>
+      <td>0.826513</td>
+      <td>-1.632786</td>
+      <td>-1.045481</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.457435</td>
+      <td>0.701128</td>
+      <td>-0.275008</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>-1.216596</td>
+      <td>-0.341712</td>
+      <td>-1.099749</td>
+      <td>-1.261953</td>
+      <td>-1.724539</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.850283</td>
+      <td>1.315134</td>
+      <td>-0.158867</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>0.071330</td>
+      <td>-0.789657</td>
+      <td>0.146656</td>
+      <td>0.698167</td>
+      <td>-0.899969</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 119 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="question-3">
+<h3><font color='red'>Question 3</font><a class="headerlink" href="#question-3" title="Link to this heading">#</a></h3>
+<p>Let’s treat this as a usual supervised machine learning problem and create a couple of baseline models, to get an idea of what the performance would be if we ignored the time feature.</p>
+<ul class="simple">
+<li><p>Fit and score a <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> (for this exercise, score also on the test set)</p></li>
+<li><p>Fit and score a <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> model.</p></li>
+<li><p>Comment on the performance of these baselines.</p></li>
+<li><p>Examine the coefficients of the logistic regression model. What features have the biggest impact on the output?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dc</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">)</span>
+<span class="n">dc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training score:&quot;</span><span class="p">,</span> <span class="n">dc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Testing score:&quot;</span><span class="p">,</span> <span class="n">dc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_enc</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training score: 0.7750553478074826
+Testing score: 0.7781845435415525
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">score_lr_print_coeff</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_train_enc</span><span class="p">):</span>
+    <span class="n">lr_pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+    <span class="n">lr_pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_df</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train score: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lr_pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">train_df</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test score: </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lr_pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_df</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+    <span class="n">lr_coef</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">lr_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;logisticregression&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+        <span class="n">index</span><span class="o">=</span><span class="n">X_train_enc</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Coef&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">lr_coef</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Coef&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">score_lr_print_coeff</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_train_enc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train score: 0.85
+Test score: 0.84
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coef</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Humidity3pm</th>
+      <td>1.247119</td>
+    </tr>
+    <tr>
+      <th>Pressure9am</th>
+      <td>0.871094</td>
+    </tr>
+    <tr>
+      <th>WindGustSpeed</th>
+      <td>0.718524</td>
+    </tr>
+    <tr>
+      <th>Location_Witchcliffe</th>
+      <td>0.709893</td>
+    </tr>
+    <tr>
+      <th>RainToday_missing</th>
+      <td>0.651446</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Location_Townsville</th>
+      <td>-0.738564</td>
+    </tr>
+    <tr>
+      <th>Location_Wollongong</th>
+      <td>-0.767819</td>
+    </tr>
+    <tr>
+      <th>Location_MountGinini</th>
+      <td>-0.975895</td>
+    </tr>
+    <tr>
+      <th>RainToday_No</th>
+      <td>-0.994764</td>
+    </tr>
+    <tr>
+      <th>Pressure3pm</th>
+      <td>-1.227304</td>
+    </tr>
+  </tbody>
+</table>
+<p>119 rows × 1 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="question-4">
+<h3><font color='red'>Question 4</font><a class="headerlink" href="#question-4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use <a class="reference external" href="https://scikit-learn.org/stable/modules/cross_validation.html#time-series-split"><code class="docutils literal notranslate"><span class="pre">TimeSeriesSplit</span></code></a> to carry out cross-validation for a <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> model.</p></li>
+</ul>
+<p>Some notes before proceeding:</p>
+<ul class="simple">
+<li><p>Things are a bit more complicated here because this dataset has <strong>multiple time series</strong>, one per location.</p></li>
+<li><p>Our approach today will be to ignore the fact that we have multiple time series and just OHE the location</p></li>
+<li><p>We’ll have multiple measurements for a given timestamp, and that’s OK.</p></li>
+<li><p>But, <code class="docutils literal notranslate"><span class="pre">TimeSeriesSplit</span></code> expects the dataframe to be sorted by date so let’s sort it by date before trying cross-validation.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df_ordered</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">])</span>
+<span class="n">y_train_ordered</span> <span class="o">=</span> <span class="n">train_df_ordered</span><span class="p">[</span><span class="s2">&quot;RainTomorrow&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df_ordered</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>MinTemp</th>
+      <th>MaxTemp</th>
+      <th>Rainfall</th>
+      <th>Evaporation</th>
+      <th>Sunshine</th>
+      <th>WindGustDir</th>
+      <th>WindGustSpeed</th>
+      <th>WindDir9am</th>
+      <th>...</th>
+      <th>Humidity9am</th>
+      <th>Humidity3pm</th>
+      <th>Pressure9am</th>
+      <th>Pressure3pm</th>
+      <th>Cloud9am</th>
+      <th>Cloud3pm</th>
+      <th>Temp9am</th>
+      <th>Temp3pm</th>
+      <th>RainToday</th>
+      <th>RainTomorrow</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>45587</th>
+      <td>2007-11-01</td>
+      <td>Canberra</td>
+      <td>8.0</td>
+      <td>24.3</td>
+      <td>0.0</td>
+      <td>3.4</td>
+      <td>6.3</td>
+      <td>NW</td>
+      <td>30.0</td>
+      <td>SW</td>
+      <td>...</td>
+      <td>68.0</td>
+      <td>29.0</td>
+      <td>1019.7</td>
+      <td>1015.0</td>
+      <td>7.0</td>
+      <td>7.0</td>
+      <td>14.4</td>
+      <td>23.6</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45588</th>
+      <td>2007-11-02</td>
+      <td>Canberra</td>
+      <td>14.0</td>
+      <td>26.9</td>
+      <td>3.6</td>
+      <td>4.4</td>
+      <td>9.7</td>
+      <td>ENE</td>
+      <td>39.0</td>
+      <td>E</td>
+      <td>...</td>
+      <td>80.0</td>
+      <td>36.0</td>
+      <td>1012.4</td>
+      <td>1008.4</td>
+      <td>5.0</td>
+      <td>3.0</td>
+      <td>17.5</td>
+      <td>25.7</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45589</th>
+      <td>2007-11-03</td>
+      <td>Canberra</td>
+      <td>13.7</td>
+      <td>23.4</td>
+      <td>3.6</td>
+      <td>5.8</td>
+      <td>3.3</td>
+      <td>NW</td>
+      <td>85.0</td>
+      <td>N</td>
+      <td>...</td>
+      <td>82.0</td>
+      <td>69.0</td>
+      <td>1009.5</td>
+      <td>1007.2</td>
+      <td>8.0</td>
+      <td>7.0</td>
+      <td>15.4</td>
+      <td>20.2</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45590</th>
+      <td>2007-11-04</td>
+      <td>Canberra</td>
+      <td>13.3</td>
+      <td>15.5</td>
+      <td>39.8</td>
+      <td>7.2</td>
+      <td>9.1</td>
+      <td>NW</td>
+      <td>54.0</td>
+      <td>WNW</td>
+      <td>...</td>
+      <td>62.0</td>
+      <td>56.0</td>
+      <td>1005.5</td>
+      <td>1007.0</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>13.5</td>
+      <td>14.1</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45591</th>
+      <td>2007-11-05</td>
+      <td>Canberra</td>
+      <td>7.6</td>
+      <td>16.1</td>
+      <td>2.8</td>
+      <td>5.6</td>
+      <td>10.6</td>
+      <td>SSE</td>
+      <td>50.0</td>
+      <td>SSE</td>
+      <td>...</td>
+      <td>68.0</td>
+      <td>49.0</td>
+      <td>1018.3</td>
+      <td>1018.5</td>
+      <td>7.0</td>
+      <td>7.0</td>
+      <td>11.1</td>
+      <td>15.4</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>57415</th>
+      <td>2015-06-30</td>
+      <td>Ballarat</td>
+      <td>-0.3</td>
+      <td>10.5</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>26.0</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>99.0</td>
+      <td>63.0</td>
+      <td>1029.5</td>
+      <td>1027.7</td>
+      <td>NaN</td>
+      <td>8.0</td>
+      <td>4.7</td>
+      <td>9.3</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>119911</th>
+      <td>2015-06-30</td>
+      <td>PerthAirport</td>
+      <td>10.1</td>
+      <td>23.5</td>
+      <td>0.0</td>
+      <td>3.2</td>
+      <td>5.8</td>
+      <td>NNE</td>
+      <td>31.0</td>
+      <td>NE</td>
+      <td>...</td>
+      <td>48.0</td>
+      <td>33.0</td>
+      <td>1023.6</td>
+      <td>1021.7</td>
+      <td>7.0</td>
+      <td>6.0</td>
+      <td>13.3</td>
+      <td>22.2</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>60455</th>
+      <td>2015-06-30</td>
+      <td>Bendigo</td>
+      <td>0.3</td>
+      <td>11.4</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>W</td>
+      <td>19.0</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>89.0</td>
+      <td>56.0</td>
+      <td>1029.3</td>
+      <td>1027.4</td>
+      <td>8.0</td>
+      <td>7.0</td>
+      <td>6.4</td>
+      <td>10.5</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>66473</th>
+      <td>2015-06-30</td>
+      <td>MelbourneAirport</td>
+      <td>3.2</td>
+      <td>13.2</td>
+      <td>0.0</td>
+      <td>0.8</td>
+      <td>3.9</td>
+      <td>N</td>
+      <td>20.0</td>
+      <td>N</td>
+      <td>...</td>
+      <td>91.0</td>
+      <td>50.0</td>
+      <td>1029.6</td>
+      <td>1027.3</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>5.3</td>
+      <td>11.9</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>144733</th>
+      <td>2015-06-30</td>
+      <td>Uluru</td>
+      <td>6.8</td>
+      <td>21.1</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>ESE</td>
+      <td>35.0</td>
+      <td>ESE</td>
+      <td>...</td>
+      <td>81.0</td>
+      <td>35.0</td>
+      <td>1028.6</td>
+      <td>1025.2</td>
+      <td>3.0</td>
+      <td>NaN</td>
+      <td>10.6</td>
+      <td>20.2</td>
+      <td>No</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+<p>107502 rows × 23 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cross-validation</span>
+<span class="n">lr_pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
+<span class="n">cross_val_score</span><span class="p">(</span><span class="n">lr_pipe</span><span class="p">,</span> <span class="n">train_df_ordered</span><span class="p">,</span> <span class="n">y_train_ordered</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">TimeSeriesSplit</span><span class="p">())</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8478316682480326
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-5">
+<h3><font color='red'>Question 5</font><a class="headerlink" href="#question-5" title="Link to this heading">#</a></h3>
+<p>The feature <code class="docutils literal notranslate"><span class="pre">Date</span></code> is probably very useful to predict the target (e.g. different amounts of rain in different seasons) - let’s include it as feature!</p>
+<p>This is feature engineering!</p>
+<p>Think of at least 3 ways to generate features from the <code class="docutils literal notranslate"><span class="pre">Date</span></code> column. Some examples to start:</p>
+<ul class="simple">
+<li><p>Create a column for “days since starting date”</p></li>
+<li><p>Using the month as numerical feature, or One-hot encoding it</p></li>
+<li><p>One-hot encoding seasons (this requires converting months to seasons - also, remember that seasons are opposite in Australia!)</p></li>
+</ul>
+<p>After adding the new features to the dataset, re-train a <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> model, and see how the performance has changed. Also, observe the coefficients: are the new features important?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reset train_df, test_df</span>
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">rain_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Date &lt;= 20150630&quot;</span><span class="p">)</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">rain_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Date &gt;  20150630&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_season</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+    <span class="c1"># remember this is Australia</span>
+    <span class="n">WINTER_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;June&quot;</span><span class="p">,</span> <span class="s2">&quot;July&quot;</span><span class="p">,</span> <span class="s2">&quot;August&quot;</span><span class="p">]</span> 
+    <span class="n">AUTUMN_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;March&quot;</span><span class="p">,</span> <span class="s2">&quot;April&quot;</span><span class="p">,</span> <span class="s2">&quot;May&quot;</span><span class="p">]</span>
+    <span class="n">SUMMER_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;December&quot;</span><span class="p">,</span> <span class="s2">&quot;January&quot;</span><span class="p">,</span> <span class="s2">&quot;February&quot;</span><span class="p">]</span>
+    <span class="n">SPRING_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;September&quot;</span><span class="p">,</span> <span class="s2">&quot;October&quot;</span><span class="p">,</span> <span class="s2">&quot;November&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">WINTER_MONTHS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Winter&quot;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">AUTUMN_MONTHS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Autumn&quot;</span>
+    <span class="k">elif</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">SUMMER_MONTHS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Summer&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Spring&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">first_day</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">Days_since</span><span class="o">=</span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">first_day</span><span class="p">)</span><span class="o">.</span><span class="n">days</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">Days_since</span><span class="o">=</span><span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">first_day</span><span class="p">)</span><span class="o">.</span><span class="n">days</span><span class="p">)</span>
+<span class="p">)</span>
+
+
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">Month</span><span class="o">=</span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">month_name</span><span class="p">())</span>
+<span class="p">)</span>  <span class="c1"># x.month_name() to get the actual string</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Month</span><span class="o">=</span><span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">month_name</span><span class="p">()))</span>
+
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Season</span><span class="o">=</span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;Month&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_season</span><span class="p">))</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Season</span><span class="o">=</span><span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;Month&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_season</span><span class="p">))</span>
+
+<span class="n">train_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>MinTemp</th>
+      <th>MaxTemp</th>
+      <th>Rainfall</th>
+      <th>Evaporation</th>
+      <th>Sunshine</th>
+      <th>WindGustDir</th>
+      <th>WindGustSpeed</th>
+      <th>WindDir9am</th>
+      <th>...</th>
+      <th>Pressure3pm</th>
+      <th>Cloud9am</th>
+      <th>Cloud3pm</th>
+      <th>Temp9am</th>
+      <th>Temp3pm</th>
+      <th>RainToday</th>
+      <th>RainTomorrow</th>
+      <th>Days_since</th>
+      <th>Month</th>
+      <th>Season</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>45587</th>
+      <td>2007-11-01</td>
+      <td>Canberra</td>
+      <td>8.0</td>
+      <td>24.3</td>
+      <td>0.0</td>
+      <td>3.4</td>
+      <td>6.3</td>
+      <td>NW</td>
+      <td>30.0</td>
+      <td>SW</td>
+      <td>...</td>
+      <td>1015.0</td>
+      <td>7.0</td>
+      <td>7.0</td>
+      <td>14.4</td>
+      <td>23.6</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>0</td>
+      <td>November</td>
+      <td>Spring</td>
+    </tr>
+    <tr>
+      <th>45588</th>
+      <td>2007-11-02</td>
+      <td>Canberra</td>
+      <td>14.0</td>
+      <td>26.9</td>
+      <td>3.6</td>
+      <td>4.4</td>
+      <td>9.7</td>
+      <td>ENE</td>
+      <td>39.0</td>
+      <td>E</td>
+      <td>...</td>
+      <td>1008.4</td>
+      <td>5.0</td>
+      <td>3.0</td>
+      <td>17.5</td>
+      <td>25.7</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>1</td>
+      <td>November</td>
+      <td>Spring</td>
+    </tr>
+    <tr>
+      <th>45589</th>
+      <td>2007-11-03</td>
+      <td>Canberra</td>
+      <td>13.7</td>
+      <td>23.4</td>
+      <td>3.6</td>
+      <td>5.8</td>
+      <td>3.3</td>
+      <td>NW</td>
+      <td>85.0</td>
+      <td>N</td>
+      <td>...</td>
+      <td>1007.2</td>
+      <td>8.0</td>
+      <td>7.0</td>
+      <td>15.4</td>
+      <td>20.2</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>2</td>
+      <td>November</td>
+      <td>Spring</td>
+    </tr>
+    <tr>
+      <th>45590</th>
+      <td>2007-11-04</td>
+      <td>Canberra</td>
+      <td>13.3</td>
+      <td>15.5</td>
+      <td>39.8</td>
+      <td>7.2</td>
+      <td>9.1</td>
+      <td>NW</td>
+      <td>54.0</td>
+      <td>WNW</td>
+      <td>...</td>
+      <td>1007.0</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>13.5</td>
+      <td>14.1</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>3</td>
+      <td>November</td>
+      <td>Spring</td>
+    </tr>
+    <tr>
+      <th>45591</th>
+      <td>2007-11-05</td>
+      <td>Canberra</td>
+      <td>7.6</td>
+      <td>16.1</td>
+      <td>2.8</td>
+      <td>5.6</td>
+      <td>10.6</td>
+      <td>SSE</td>
+      <td>50.0</td>
+      <td>SSE</td>
+      <td>...</td>
+      <td>1018.5</td>
+      <td>7.0</td>
+      <td>7.0</td>
+      <td>11.1</td>
+      <td>15.4</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>4</td>
+      <td>November</td>
+      <td>Spring</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 26 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test_enc</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">preprocess_features</span><span class="p">(</span>
+    <span class="n">train_df</span><span class="p">,</span>
+    <span class="n">test_df</span><span class="p">,</span>
+    <span class="n">numeric_features</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;Days_since&quot;</span><span class="p">],</span>
+    <span class="n">categorical_features</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;Month&quot;</span><span class="p">,</span> <span class="s2">&quot;Season&quot;</span><span class="p">],</span>
+    <span class="n">drop_features</span><span class="p">,</span>
+    <span class="n">target</span>
+<span class="p">)</span>
+
+<span class="n">X_train_enc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MinTemp</th>
+      <th>MaxTemp</th>
+      <th>Rainfall</th>
+      <th>Evaporation</th>
+      <th>Sunshine</th>
+      <th>WindGustSpeed</th>
+      <th>WindSpeed9am</th>
+      <th>WindSpeed3pm</th>
+      <th>Humidity9am</th>
+      <th>Humidity3pm</th>
+      <th>...</th>
+      <th>Month_June</th>
+      <th>Month_March</th>
+      <th>Month_May</th>
+      <th>Month_November</th>
+      <th>Month_October</th>
+      <th>Month_September</th>
+      <th>Season_Autumn</th>
+      <th>Season_Spring</th>
+      <th>Season_Summer</th>
+      <th>Season_Winter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.204302</td>
+      <td>-0.027112</td>
+      <td>-0.205323</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>0.298612</td>
+      <td>0.666166</td>
+      <td>0.599894</td>
+      <td>0.115428</td>
+      <td>-1.433514</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.741037</td>
+      <td>0.287031</td>
+      <td>-0.275008</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>0.298612</td>
+      <td>-1.125617</td>
+      <td>0.373275</td>
+      <td>-1.314929</td>
+      <td>-1.288002</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.125523</td>
+      <td>0.372706</td>
+      <td>-0.275008</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>0.450132</td>
+      <td>0.554180</td>
+      <td>0.826513</td>
+      <td>-1.632786</td>
+      <td>-1.045481</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.457435</td>
+      <td>0.701128</td>
+      <td>-0.275008</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>-1.216596</td>
+      <td>-0.341712</td>
+      <td>-1.099749</td>
+      <td>-1.261953</td>
+      <td>-1.724539</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.850283</td>
+      <td>1.315134</td>
+      <td>-0.158867</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>0.071330</td>
+      <td>-0.789657</td>
+      <td>0.146656</td>
+      <td>0.698167</td>
+      <td>-0.899969</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>144729</th>
+      <td>-1.308240</td>
+      <td>-0.683955</td>
+      <td>-0.275008</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>-0.080190</td>
+      <td>0.554180</td>
+      <td>0.146656</td>
+      <td>0.221381</td>
+      <td>-0.705952</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>144730</th>
+      <td>-1.513063</td>
+      <td>-0.855306</td>
+      <td>-0.275008</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>0.071330</td>
+      <td>0.330207</td>
+      <td>-0.419892</td>
+      <td>0.009476</td>
+      <td>-0.560439</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>144731</th>
+      <td>-1.197951</td>
+      <td>-0.498325</td>
+      <td>-0.275008</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>-0.383232</td>
+      <td>0.106234</td>
+      <td>-1.326368</td>
+      <td>0.009476</td>
+      <td>-0.608943</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>144732</th>
+      <td>-0.709526</td>
+      <td>-0.155625</td>
+      <td>-0.275008</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>-0.534753</td>
+      <td>0.666166</td>
+      <td>-0.419892</td>
+      <td>-0.096476</td>
+      <td>-0.705952</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>144733</th>
+      <td>-0.835571</td>
+      <td>-0.284137</td>
+      <td>-0.275008</td>
+      <td>-0.140641</td>
+      <td>0.160729</td>
+      <td>-0.383232</td>
+      <td>-0.341712</td>
+      <td>-0.419892</td>
+      <td>0.645190</td>
+      <td>-0.802960</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>107502 rows × 136 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coeff_df</span> <span class="o">=</span> <span class="n">score_lr_print_coeff</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_train_enc</span><span class="p">)</span>
+<span class="n">coeff_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train score: 0.85
+Test score: 0.84
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coef</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Humidity3pm</th>
+      <td>1.268339</td>
+    </tr>
+    <tr>
+      <th>Pressure9am</th>
+      <td>0.803373</td>
+    </tr>
+    <tr>
+      <th>Location_Witchcliffe</th>
+      <td>0.730512</td>
+    </tr>
+    <tr>
+      <th>WindGustSpeed</th>
+      <td>0.706533</td>
+    </tr>
+    <tr>
+      <th>RainToday_missing</th>
+      <td>0.704240</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Location_Wollongong</th>
+      <td>-0.762965</td>
+    </tr>
+    <tr>
+      <th>Location_Townsville</th>
+      <td>-0.902122</td>
+    </tr>
+    <tr>
+      <th>Location_Katherine</th>
+      <td>-0.907874</td>
+    </tr>
+    <tr>
+      <th>RainToday_No</th>
+      <td>-0.944733</td>
+    </tr>
+    <tr>
+      <th>Pressure3pm</th>
+      <td>-1.186561</td>
+    </tr>
+  </tbody>
+</table>
+<p>136 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coeff_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;Season_Spring&quot;</span><span class="p">,</span> <span class="s2">&quot;Season_Summer&quot;</span><span class="p">,</span> <span class="s2">&quot;Season_Winter&quot;</span><span class="p">,</span> <span class="s2">&quot;Season_Autumn&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coef</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Season_Spring</th>
+      <td>-0.123826</td>
+    </tr>
+    <tr>
+      <th>Season_Summer</th>
+      <td>-0.369142</td>
+    </tr>
+    <tr>
+      <th>Season_Winter</th>
+      <td>-0.060019</td>
+    </tr>
+    <tr>
+      <th>Season_Autumn</th>
+      <td>-0.140986</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="lag-based-features">
+<h3>Lag-based features<a class="headerlink" href="#lag-based-features" title="Link to this heading">#</a></h3>
+<p>Realistically, it may be helpful to know if it rained yesterday to predict if it will rain today. Let’s add lagged features to our data.</p>
+<p>We can “lag” (or “shift”) a time series in Pandas with the .shift() method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Recreating training and test set, to start from a clean slate</span>
+
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">rain_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Date &lt;= 20150630&quot;</span><span class="p">)</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">rain_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Date &gt;  20150630&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Adding 1 lagged column</span>
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Rainfall_lag1</span><span class="o">=</span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;Rainfall&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[[</span><span class="s2">&quot;Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Location&quot;</span><span class="p">,</span> <span class="s2">&quot;Rainfall&quot;</span><span class="p">,</span> <span class="s2">&quot;Rainfall_lag1&quot;</span><span class="p">]][:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>Rainfall</th>
+      <th>Rainfall_lag1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2008-12-01</td>
+      <td>Albury</td>
+      <td>0.6</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2008-12-02</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2008-12-03</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2008-12-04</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2008-12-05</td>
+      <td>Albury</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2008-12-06</td>
+      <td>Albury</td>
+      <td>0.2</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2008-12-07</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.2</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2008-12-08</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2008-12-09</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2008-12-10</td>
+      <td>Albury</td>
+      <td>1.4</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2008-12-11</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>1.4</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2008-12-12</td>
+      <td>Albury</td>
+      <td>2.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2008-12-13</td>
+      <td>Albury</td>
+      <td>15.6</td>
+      <td>2.2</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2008-12-14</td>
+      <td>Albury</td>
+      <td>3.6</td>
+      <td>15.6</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2008-12-16</td>
+      <td>Albury</td>
+      <td>NaN</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2008-12-17</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2008-12-18</td>
+      <td>Albury</td>
+      <td>16.8</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2008-12-19</td>
+      <td>Albury</td>
+      <td>10.6</td>
+      <td>16.8</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2008-12-20</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>10.6</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2008-12-21</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Problem!</strong> We have multiple time series here and we need to be more careful with this.</p>
+<p>When we switch from one location to another we do not want to take the value from the previous location. The function below will help with this task.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_lag_feature</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">orig_feature</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">lag</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">groupby</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">new_feature_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">clip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a lagged (or ahead) version of a feature, optionally per group.</span>
+
+<span class="sd">    Assumes df is already sorted by time within each group and has unique indices.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pd.DataFrame</span>
+<span class="sd">        The dataset.</span>
+<span class="sd">    orig_feature : str</span>
+<span class="sd">        Name of the column to lag.</span>
+<span class="sd">    lag : int</span>
+<span class="sd">        The lag:</span>
+<span class="sd">          - negative → values from the past (t-1, t-2, ...)</span>
+<span class="sd">          - positive → values from the future (t+1, t+2, ...)</span>
+<span class="sd">    groupby : list of str</span>
+<span class="sd">        Column(s) to group by if df contains multiple time series.</span>
+<span class="sd">    new_feature_name : str, optional</span>
+<span class="sd">        Name of the new column. If None, a name is generated automatically.</span>
+<span class="sd">    clip : bool, default False</span>
+<span class="sd">        If True, drop rows where the new feature is NaN.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        A new dataframe with the additional column added.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">lag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;lag cannot be 0 (no shift). Use the original feature instead.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Default name if not provided</span>
+    <span class="k">if</span> <span class="n">new_feature_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">lag</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">new_feature_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">orig_feature</span><span class="si">}</span><span class="s2">_lag</span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">lag</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_feature_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">orig_feature</span><span class="si">}</span><span class="s2">_ahead</span><span class="si">{</span><span class="n">lag</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># Map your convention (negative=past, positive=future) to pandas shift</span>
+    <span class="c1"># pandas: shift(+k) → past, shift(-k) → future</span>
+    <span class="n">periods</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">lag</span><span class="p">)</span> <span class="k">if</span> <span class="n">lag</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="n">lag</span>
+
+    <span class="n">df</span><span class="p">[</span><span class="n">new_feature_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">groupby</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="n">orig_feature</span><span class="p">]</span>
+          <span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">periods</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">clip</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">new_feature_name</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-6">
+<h3><font color='red'>Question 6</font><a class="headerlink" href="#question-6" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">create_lag_feature</span></code> to add lagged rainfall features (1 day is enough to start).</p></li>
+<li><p>Discuss: would it be ok to add this feature to the test set? If the answer is yes, add it to the test set too.</p></li>
+<li><p>Fit and score a <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> model on this new dataset. Compare the results to what was achieved before.</p></li>
+<li><p>Observe the coefficients for <code class="docutils literal notranslate"><span class="pre">Rainfall</span></code> and <code class="docutils literal notranslate"><span class="pre">Rainfall_lag1</span></code>. What is their relationship with the target?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rain_df_modified</span> <span class="o">=</span> <span class="n">create_lag_feature</span><span class="p">(</span><span class="n">rain_df</span><span class="p">,</span> <span class="s2">&quot;Rainfall&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Location&quot;</span><span class="p">])</span>
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">rain_df_modified</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Date &lt;= 20150630&quot;</span><span class="p">)</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">rain_df_modified</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Date &gt;  20150630&quot;</span><span class="p">)</span>
+<span class="n">rain_df_modified</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>MinTemp</th>
+      <th>MaxTemp</th>
+      <th>Rainfall</th>
+      <th>Evaporation</th>
+      <th>Sunshine</th>
+      <th>WindGustDir</th>
+      <th>WindGustSpeed</th>
+      <th>WindDir9am</th>
+      <th>...</th>
+      <th>Humidity3pm</th>
+      <th>Pressure9am</th>
+      <th>Pressure3pm</th>
+      <th>Cloud9am</th>
+      <th>Cloud3pm</th>
+      <th>Temp9am</th>
+      <th>Temp3pm</th>
+      <th>RainToday</th>
+      <th>RainTomorrow</th>
+      <th>Rainfall_lag1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2008-12-01</td>
+      <td>Albury</td>
+      <td>13.4</td>
+      <td>22.9</td>
+      <td>0.6</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>W</td>
+      <td>44.0</td>
+      <td>W</td>
+      <td>...</td>
+      <td>22.0</td>
+      <td>1007.7</td>
+      <td>1007.1</td>
+      <td>8.0</td>
+      <td>NaN</td>
+      <td>16.9</td>
+      <td>21.8</td>
+      <td>No</td>
+      <td>No</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2008-12-02</td>
+      <td>Albury</td>
+      <td>7.4</td>
+      <td>25.1</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>WNW</td>
+      <td>44.0</td>
+      <td>NNW</td>
+      <td>...</td>
+      <td>25.0</td>
+      <td>1010.6</td>
+      <td>1007.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>17.2</td>
+      <td>24.3</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0.6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2008-12-03</td>
+      <td>Albury</td>
+      <td>12.9</td>
+      <td>25.7</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>WSW</td>
+      <td>46.0</td>
+      <td>W</td>
+      <td>...</td>
+      <td>30.0</td>
+      <td>1007.6</td>
+      <td>1008.7</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>21.0</td>
+      <td>23.2</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2008-12-04</td>
+      <td>Albury</td>
+      <td>9.2</td>
+      <td>28.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NE</td>
+      <td>24.0</td>
+      <td>SE</td>
+      <td>...</td>
+      <td>16.0</td>
+      <td>1017.6</td>
+      <td>1012.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>18.1</td>
+      <td>26.5</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2008-12-05</td>
+      <td>Albury</td>
+      <td>17.5</td>
+      <td>32.3</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>W</td>
+      <td>41.0</td>
+      <td>ENE</td>
+      <td>...</td>
+      <td>33.0</td>
+      <td>1010.8</td>
+      <td>1006.0</td>
+      <td>7.0</td>
+      <td>8.0</td>
+      <td>17.8</td>
+      <td>29.7</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145454</th>
+      <td>2017-06-20</td>
+      <td>Uluru</td>
+      <td>3.5</td>
+      <td>21.8</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>E</td>
+      <td>31.0</td>
+      <td>ESE</td>
+      <td>...</td>
+      <td>27.0</td>
+      <td>1024.7</td>
+      <td>1021.2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9.4</td>
+      <td>20.9</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>145455</th>
+      <td>2017-06-21</td>
+      <td>Uluru</td>
+      <td>2.8</td>
+      <td>23.4</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>E</td>
+      <td>31.0</td>
+      <td>SE</td>
+      <td>...</td>
+      <td>24.0</td>
+      <td>1024.6</td>
+      <td>1020.3</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.1</td>
+      <td>22.4</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>145456</th>
+      <td>2017-06-22</td>
+      <td>Uluru</td>
+      <td>3.6</td>
+      <td>25.3</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NNW</td>
+      <td>22.0</td>
+      <td>SE</td>
+      <td>...</td>
+      <td>21.0</td>
+      <td>1023.5</td>
+      <td>1019.1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10.9</td>
+      <td>24.5</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>145457</th>
+      <td>2017-06-23</td>
+      <td>Uluru</td>
+      <td>5.4</td>
+      <td>26.9</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>N</td>
+      <td>37.0</td>
+      <td>SE</td>
+      <td>...</td>
+      <td>24.0</td>
+      <td>1021.0</td>
+      <td>1016.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>12.5</td>
+      <td>26.1</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>145458</th>
+      <td>2017-06-24</td>
+      <td>Uluru</td>
+      <td>7.8</td>
+      <td>27.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>SE</td>
+      <td>28.0</td>
+      <td>SSE</td>
+      <td>...</td>
+      <td>24.0</td>
+      <td>1019.4</td>
+      <td>1016.5</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>15.1</td>
+      <td>26.0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>142193 rows × 24 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test_enc</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">preprocess_features</span><span class="p">(</span>
+    <span class="n">train_df</span><span class="p">,</span>
+    <span class="n">test_df</span><span class="p">,</span>
+    <span class="n">numeric_features</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;Rainfall_lag1&quot;</span><span class="p">],</span>
+    <span class="n">categorical_features</span><span class="p">,</span>
+    <span class="n">drop_features</span><span class="p">,</span>
+    <span class="n">target</span>
+<span class="p">)</span>
+
+<span class="n">lr_coef</span> <span class="o">=</span> <span class="n">score_lr_print_coeff</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_train_enc</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train score: 0.85
+Test score: 0.84
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_coef</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">&quot;Rainfall&quot;</span><span class="p">,</span> <span class="s2">&quot;Rainfall_lag1&quot;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coef</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Rainfall</th>
+      <td>0.081292</td>
+    </tr>
+    <tr>
+      <th>Rainfall_lag1</th>
+      <td>0.008040</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Last, here are some more options for lagged features to check out:</p>
+<ul class="simple">
+<li><p>We could also create a lagged version of the target. In fact, this dataset already has that built in! <code class="docutils literal notranslate"><span class="pre">RainToday</span></code> is the lagged version of the target <code class="docutils literal notranslate"><span class="pre">RainTomorrow</span></code>.</p></li>
+<li><p>We could also create lagged version of other features, or more lags</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rain_df_modified</span> <span class="o">=</span> <span class="n">create_lag_feature</span><span class="p">(</span><span class="n">rain_df</span><span class="p">,</span> <span class="s2">&quot;Rainfall&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Location&quot;</span><span class="p">])</span>
+<span class="n">rain_df_modified</span> <span class="o">=</span> <span class="n">create_lag_feature</span><span class="p">(</span><span class="n">rain_df_modified</span><span class="p">,</span> <span class="s2">&quot;Rainfall&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Location&quot;</span><span class="p">])</span>
+<span class="n">rain_df_modified</span> <span class="o">=</span> <span class="n">create_lag_feature</span><span class="p">(</span><span class="n">rain_df_modified</span><span class="p">,</span> <span class="s2">&quot;Rainfall&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Location&quot;</span><span class="p">])</span>
+<span class="n">rain_df_modified</span> <span class="o">=</span> <span class="n">create_lag_feature</span><span class="p">(</span><span class="n">rain_df_modified</span><span class="p">,</span> <span class="s2">&quot;Humidity3pm&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Location&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rain_df_modified</span><span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;Date&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Location&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Rainfall&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Rainfall_lag1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Rainfall_lag2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Rainfall_lag3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Humidity3pm&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Humidity3pm_lag1&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>Rainfall</th>
+      <th>Rainfall_lag1</th>
+      <th>Rainfall_lag2</th>
+      <th>Rainfall_lag3</th>
+      <th>Humidity3pm</th>
+      <th>Humidity3pm_lag1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2008-12-01</td>
+      <td>Albury</td>
+      <td>0.6</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>22.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2008-12-02</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.6</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>25.0</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2008-12-03</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.6</td>
+      <td>NaN</td>
+      <td>30.0</td>
+      <td>25.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2008-12-04</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.6</td>
+      <td>16.0</td>
+      <td>30.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2008-12-05</td>
+      <td>Albury</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>33.0</td>
+      <td>16.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2008-12-06</td>
+      <td>Albury</td>
+      <td>0.2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>23.0</td>
+      <td>33.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2008-12-07</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.2</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>19.0</td>
+      <td>23.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2008-12-08</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.2</td>
+      <td>1.0</td>
+      <td>19.0</td>
+      <td>19.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2008-12-09</td>
+      <td>Albury</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.2</td>
+      <td>9.0</td>
+      <td>19.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2008-12-10</td>
+      <td>Albury</td>
+      <td>1.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>27.0</td>
+      <td>9.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note the pattern of <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">rain_df_modified</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Date &lt;= 20150630&quot;</span><span class="p">)</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">rain_df_modified</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Date &gt;  20150630&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test_enc</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">preprocess_features</span><span class="p">(</span>
+    <span class="n">train_df</span><span class="p">,</span>
+    <span class="n">test_df</span><span class="p">,</span>
+    <span class="n">numeric_features</span>
+    <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;Rainfall_lag1&quot;</span><span class="p">,</span> <span class="s2">&quot;Rainfall_lag2&quot;</span><span class="p">,</span> <span class="s2">&quot;Rainfall_lag3&quot;</span><span class="p">,</span> <span class="s2">&quot;Humidity3pm_lag1&quot;</span><span class="p">],</span>
+    <span class="n">categorical_features</span><span class="p">,</span>
+    <span class="n">drop_features</span><span class="p">,</span>
+    <span class="n">target</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_coef</span> <span class="o">=</span> <span class="n">score_lr_print_coeff</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="p">,</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">X_train_enc</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train score: 0.85
+Test score: 0.85
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_coef</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;Rainfall&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Rainfall_lag1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Rainfall_lag2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Rainfall_lag3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Humidity3pm&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Humidity3pm_lag1&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coef</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Rainfall</th>
+      <td>0.107917</td>
+    </tr>
+    <tr>
+      <th>Rainfall_lag1</th>
+      <td>0.023105</td>
+    </tr>
+    <tr>
+      <th>Rainfall_lag2</th>
+      <td>0.018434</td>
+    </tr>
+    <tr>
+      <th>Rainfall_lag3</th>
+      <td>0.017829</td>
+    </tr>
+    <tr>
+      <th>Humidity3pm</th>
+      <td>1.278441</td>
+    </tr>
+    <tr>
+      <th>Humidity3pm_lag1</th>
+      <td>-0.266120</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Note the pattern in the magnitude of the coefficients.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            name: "conda-env-cpsc330-py",
+            path: "./lectures/tutorials/solutions"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outline">Outline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-series-analysis-on-a-more-complicated-dataset">Time series analysis on a more complicated dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-data-analysis">Exploratory data analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parsing-datetimes">Parsing datetimes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1"><font color="red">Question 1</font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2"><font color="red">Question 2</font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3"><font color="red">Question 3</font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-4"><font color="red">Question 4</font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-5"><font color="red">Question 5</font></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lag-based-features">Lag-based features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#question-6"><font color="red">Question 6</font></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Varada Kolhatkar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
