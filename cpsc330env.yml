@@ -35,7 +35,7 @@ dependencies:
     - seaborn
     - xgboost
     - lightgbm
-    - catboost
+    - catboost>1.2.7
     - eli5
     - shap
     # - districtdatalabs # package doesn't exist
