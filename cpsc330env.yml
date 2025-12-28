@@ -7,7 +7,7 @@ channels:
     - plotly
     - defaults    
 dependencies:
-    - python>3.14
+    - python>3.13
     - ipykernel
     - matplotlib
     - pandas
@@ -33,7 +33,6 @@ dependencies:
     - nltk    
     - pip>=24.2
     - seaborn
-    - pandas-profiling
     - xgboost
     - lightgbm
     - catboost
@@ -44,7 +43,6 @@ dependencies:
     - gensim
     - spacy
     - lifelines
-    # - ultralytics # Let students install it on their own
     # - torchvision # Let students install it on their own
     # - pytorch     # Let students install it on their own
     - pip:
@@ -57,3 +55,4 @@ dependencies:
         - datasets
         - ultralytics
         - psutil>=5.7.2
+        - ydata-profiling
