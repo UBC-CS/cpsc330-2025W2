@@ -10,9 +10,9 @@ ipython
 graphviz
 jinja2
 lightgbm
-#torchvision
-#torchaudio
-#torch
+torchvision
+torchaudio
+torch
 autograd
 plotly
 wikipedia
@@ -33,5 +33,5 @@ watchfiles
 holoviews
 bokeh
 ipywidgets
-jupyter-book<2
+jupyter-book
 jupytext
