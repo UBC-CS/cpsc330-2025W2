@@ -1,10 +1,12 @@
 # Syllabus 
 
-- [CPSC 330 101 2025W UBC course URL](https://www.cs.ubc.ca/course-section/cpsc-v-330-101-2025w)
+- [CPSC 330 201 2025W UBC course URL](https://www.cs.ubc.ca/course-section/cpsc-v-330-201-2025w)
 
-- [CPSC 330 102 2025W UBC course URL](https://www.cs.ubc.ca/course-section/cpsc-v-330-102-2025w)
+- [CPSC 330 202 2025W UBC course URL](https://www.cs.ubc.ca/course-section/cpsc-v-330-202-2025w)
 
-- [CPSC 330 103 2025W UBC course URL](https://www.cs.ubc.ca/course-section/cpsc-v-330-103-2025w)
+- [CPSC 330 203 2025W UBC course URL](https://www.cs.ubc.ca/course-section/cpsc-v-330-203-2025w)
+
+- [CPSC 330 204 2025W UBC course URL](https://www.cs.ubc.ca/course-section/cpsc-v-330-204-2025w)
 
 
 ## Course description
@@ -18,16 +20,17 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 | Section      | Day     | Time                | Zoom                  |
 |--------------|---------|---------------------|-----------------------|
-| CPSC 330 101 | Tue/Thu | 15:30 - 16:50       | DMP 310 |
-| CPSC 330 102 | Tue/Thu | 11:00 - 12:20       | DMP 310 |
-| CPSC 330 103 | Tue/Thu | 17:00 - 18:20       | DMP 310 |
+| CPSC 330 201 | Tue/Thu | 9:30 - 10:50        | MCML 360 |
+| CPSC 330 202 | Tue/Thu | 15:30 - 16:50       | DMP 310 |
+| CPSC 330 203 | Tue/Thu | 17:00 - 18:20       | IRC 4   |
+| CPSC 330 203 | Tue/Thu | 11:00 - 12:20       | DMP 310 |
 
 **Tutorials**:
 
 | Section      | Day      | Time                | Location               |
 |--------------|----------|---------------------|------------------------|
 | CPSC 330 T1A | Fri      | 09:00 - 10:00       | MCLD 3008              |
-| CPSC 330 T1B | Fri      | 11:00 - 12:00       | MCML158                |
+| CPSC 330 T1B | Fri      | 11:00 - 12:00       | MCML 158               |
 | CPSC 330 T1C | Fri      | 14:00 - 15:00       | FSC 1003               |
 | CPSC 330 T1D | Fri      | 15:00 - 16:00       | FSC 1003               |
 | CPSC 330 T1E | Thu      | 17:00 - 18:00       | FSC 1611               | 
@@ -38,17 +41,17 @@ Application of machine learning tools, with an emphasis on solving practical pro
 | CPSC 330 T1K | Fri      | 11:00 - 12:00       | MCLD 3008              |
 | CPSC 330 T1L | Thu      | 09:00 - 10:00       | CEME 1215              |
 
-**Office Hours**
+**Tutorials**
 
-Tutorials for this course will be conducted by TAs and follow an office hours format. Attendance at tutorials is optional. However, participating will allow you to engage in more personalized discussions with TAs, providing you with valuable one-on-one time and an opportunity to deepen your understanding of machine learning concepts.
-For office hours schedule, please refer to the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). 
+Tutorials for this course will be conducted by TAs, who will guide you through additional exercises and demos on the content covered each week. A bonus of up to 2% will be added to your final grade for attending tutorials.
 
 ## Teaching Team
 
 **Instructors**: 
 
-- [Giulia Toti](https://www.gtoti.com/), OH: Wednesdays, 4:00 - 5:00 pm @ ICCS 231
-- [Varada Kolhatkar](https://kvarada.github.io/), OH: Wednesdays, 11:30 am @ ICCS 237
+- [Giulia Toti](https://www.gtoti.com/), OH: Thursdays, 11:15 am - 12:30 pm @ ICCS 231
+- Mehrdad Oveisi, OH:
+- Firas Moosvi, OH: 
 
 ### Course co-ordinator
 - Anca Barbu (cpsc330-admin@cs.ubc.ca), please reach out to Anca for: admin questions, extensions, academic concessions etc. 
@@ -56,26 +59,29 @@ For office hours schedule, please refer to the [Calendar](https://htmlpreview.gi
 ### TAs
 
 - Ayanfe Adekanye
-- Gaurav Bhatt
+- Hadi Babalou
+- Tanav Singh Bajaj
+- Aryan Ballani
+- Matthew Buchholz
 - Jun He Cui
-- Felix	Fu
-- Neo	Ghassemi
-- Zoe	Harris
-- Zheng He
-- Mishaal	Kazmi
+- Niki Duan
+- Atabak Eghbal
+- Eshed Gal
+- Neo Ghassemi
+- Zoe Harris
 - Kanwal Mehreen
 - Himanshu Mishra
-- Rubia	Reis Guerra
 - Kimia	Rostin
+- Sneha Sambandam
 - Sohbat Sandhu
 - Joseph Soo
-- Allya	Wellyanto
+- Carlos Vasquez Rios
 
 ## Registration
 
 **Waitlists**:
 
-The general seats available in this class usually fill up very quickly. Once the general seats are taken, the only way to register for the course is to sign up for the waiting list. For questions about the waiting list policies, see [here](https://www.cs.ubc.ca/students/undergrad/courses/waitlists). You should sign up for the waiting list even if it is long; a lot of students tend to drop courses. Signing up for the waiting list also makes it more likely that we will open up extra sessions, expand class sizes, or offer additional courses on these topics. **The instructors have no control over the situation and cannot help you bypass the waiting list**.
+The general seats available in this class usually fill up very quickly. Once the general seats are taken, the only way to register for the course is to sign up for the waiting list. For questions about the waiting list policies, see [here](https://www.cs.ubc.ca/students/undergrad/courses/waitlists). You should sign up for the waiting list even if it is long; a lot of students tend to drop courses. Signing up for the waiting list also makes it more likely that we will open up extra sessions, expand class sizes, or offer additional courses on these topics. **The instructors have no control over the situation and cannot help you bypass the waiting list.**
 
 **Prerequisites**: The official prerequisites can be found [here](https://courses.students.ubc.ca/cs/courseschedule?tname=subj-course&course=330&campuscd=UBC&dept=CPSC&pname=subjarea). If you do not meet the prerequisites, see [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/prerequisites) and [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/rules-about-cpsc-appeals-undergraduate-students). We were told that students should not visit the front desk in the CS main office about prerequisite issues, because the folks at the front desk do not have the authority to resolve prerequisite issues.
 
@@ -133,7 +139,7 @@ We will post solutions 48-hours after the due date.
 
 ### Lecture recordings 
 
-This is an in-person class, and we do not livestream or make recordings available by default. If you miss a class, you can catch up by reviewing the lecture notes and talking to your peers. Section 102 lectures (11 am to 12:20 am) are being recorded, but the recordings are not shared widely. Typically, the backs of students sitting in the first three to four rows may appear in the recording. If you prefer not to be recorded, please avoid sitting in those rows. When lecture recordings are available, access will be granted only to students who were absent for approved reasons (e.g., illness, jury duty). 
+This is an in-person class, and we do not livestream or make recordings available by default. If you miss a class, you can catch up by reviewing the lecture notes and talking to your peers. When lecture recordings are available, access will be granted only to students who were absent for approved reasons (e.g., illness, jury duty). 
 
 **Process to request access:** If you miss a class for a legitimate reason, please contact our course coordinator at cpsc330-admin@cs.ubc.ca and provide appropriate documentation (e.g., a doctor's note if you are seriously ill). Your request will be reviewed, and approval may take time. Please remember that relying on recordings is not an effective way to stay on top of the course material. Regular attendance is essential for success.
 
@@ -155,9 +161,7 @@ Failure to follow these rules will be treated as a violation of [UBC's academic 
 
 Finally, always ask yourself: Is this tool helping me learn, or harming my learning? Use it to support, not substitute, your effort.
 
-### Midterm
-
-Check the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html) for midterm dates.
+### Midterms
 
 There will be two midterms in CPSC 330 and both of them will be conducted in the CBTF via self-reservation over a three-day period.
 The CBTF (computer based testing facility) is designed to enhance the student’s writing experience by providing them with a familiar, secure testing environment with quick access to technical support, as well as support from their instructor for common access issues.
@@ -176,11 +180,9 @@ If you have an accommodation that is not listed above, you will write your asses
 
 For more information, [please see the CBTF page](https://cbtf.ubc.ca/students/accommodations).
 
-<!-- TODO: Write about midterm exam policy.  -->
-
 ### Final exam
 
-The final exam is scheduled for the exam period and is likely to be comprehensive, covering the material taught over the course of the semester. **A score of 40% or more in the final exam is required to pass the course.**
+The final exam is scheduled for the exam period and is comprehensive, covering the material taught over the course of the semester. **A score of 40% or more in the final exam is required to pass the course.**
 
 ## Academic concessions
 
