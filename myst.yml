@@ -139,8 +139,8 @@ project:
           title: Lecture 11
         - url: https://firasm.github.io/cpsc330-slides/slides-12.html
           title: Lecture 12
-        # - url: https://firasm.github.io/cpsc330-slides/slides-13.html
-        #   title: Lecture 13
+        - url: https://firasm.github.io/cpsc330-slides/slides-13.html
+          title: Lecture 13
         # - url: https://firasm.github.io/cpsc330-slides/slides-14.html
         #   title: Lecture 14
         # - url: https://firasm.github.io/cpsc330-slides/slides-15.html
