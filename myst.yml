@@ -66,8 +66,8 @@ project:
         - file: lectures/notes/11_ensembles.ipynb
         - file: lectures/notes/12_feat-importances.ipynb
         - file: lectures/notes/13_feature-engineering-selection.ipynb
-    #     - file: lectures/notes/14_K-Means.ipynb
-    #     - file: lectures/notes/15_DBSCAN-hierarchical.ipynb
+        - file: lectures/notes/14_K-Means.ipynb
+        - file: lectures/notes/15_DBSCAN-hierarchical.ipynb
     #     - file: lectures/notes/16_recommender-systems.ipynb
     #     - file: lectures/notes/17_natural-language-processing.ipynb
     # - title: Part 3 - 
@@ -141,10 +141,10 @@ project:
           title: Lecture 12
         - url: https://firasm.github.io/cpsc330-slides/slides-13.html
           title: Lecture 13
-        - url: https://firasm.github.io/cpsc330-slides/slides-14.html
-          title: Lecture 14
-        - url: https://firasm.github.io/cpsc330-slides/slides-15.html
-          title: Lecture 15
+        # - url: https://firasm.github.io/cpsc330-slides/slides-14.html
+        #   title: Lecture 14
+        # - url: https://firasm.github.io/cpsc330-slides/slides-15.html
+        #   title: Lecture 15
         # - url: https://firasm.github.io/cpsc330-slides/slides-16.html
         #   title: Lecture 16
         # - url: https://firasm.github.io/cpsc330-slides/slides-17.html
