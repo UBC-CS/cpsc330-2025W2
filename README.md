@@ -76,7 +76,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | hw4            | Feb 09, 11:59 pm      | [GitHub repo](https://github.com/new?template_name=hw4&template_owner=ubc-cpsc330) | [Gradescope](https://www.gradescope.ca/courses/34465) |
 | **Midterm 1**  | Feb 9, 10, 11          | PrairieLearn (CBTF, in person)                                                     | PrairieLearn (CBTF, in person)                        |
 | hw5            | Mar 02, 11:59 pm  **excluded from drop lowest grade**    | [GitHub repo](https://github.com/new?template_name=hw5&template_owner=ubc-cpsc330) | [Gradescope](https://www.gradescope.ca/courses/34465) |
-| hw6            | Mar 09, 11:59 pm      | GitHub repo[](https://github.com/new?template_name=hw6&template_owner=ubc-cpsc330) | [Gradescope](https://www.gradescope.ca/courses/34465) |
+| hw6            | Mar 09, 11:59 pm      | [GitHub repo](https://github.com/new?template_name=hw6&template_owner=ubc-cpsc330) | [Gradescope](https://www.gradescope.ca/courses/34465) |
 | **Midterm 2**  | Mar 16-17-18          | PrairieLearn (CBTF, in person)                                                     | PrairieLearn (CBTF, in person)                        |
 | hw7            | Mar 23, 11:59 pm      | GitHub repo[](https://github.com/new?template_name=hw7&template_owner=ubc-cpsc330) | [Gradescope](https://www.gradescope.ca/courses/34465) |
 | hw8            | Mar 30, 11:59 pm      | GitHub repo[](https://github.com/new?template_name=hw8&template_owner=ubc-cpsc330) | [Gradescope](https://www.gradescope.ca/courses/34465) |
