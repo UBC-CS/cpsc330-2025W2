@@ -69,9 +69,9 @@ project:
         - file: lectures/notes/14_K-Means.ipynb
         - file: lectures/notes/15_DBSCAN-hierarchical.ipynb
         - file: lectures/notes/16_recommender-systems.ipynb
-        - file: lectures/notes/17_natural-language-processing.ipynb
     # - title: Part 3 - 
     #   children:
+    #     - file: lectures/notes/17_natural-language-processing.ipynb
     #     - file: lectures/notes/18_intro_to_computer-vision.ipynb
     #     - file: lectures/notes/19_time-series.ipynb
     #     - file: lectures/notes/20_survival-analysis.ipynb
@@ -145,8 +145,8 @@ project:
           title: Lecture 14
         - url: https://firasm.github.io/cpsc330-slides/slides-15.html
           title: Lecture 15
-        # - url: https://firasm.github.io/cpsc330-slides/slides-16.html
-        #   title: Lecture 16
+        - url: https://firasm.github.io/cpsc330-slides/slides-16.html
+          title: Lecture 16
         # - url: https://firasm.github.io/cpsc330-slides/slides-17.html
         #   title: Lecture 17
         # - url: https://firasm.github.io/cpsc330-slides/slides-18.html
