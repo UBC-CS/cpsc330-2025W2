@@ -53,7 +53,7 @@ Tutorials for this course will be conducted by TAs, who will guide you through a
 **Instructors**:
 
 - [Giulia Toti](https://www.gtoti.com/), OH: Thursdays, 11:15 am - 12:30 pm @ ICCS 231
-- Firas Moosvi, OH: 
+- [Firas Moosvi](https://firas.moosvi.com), OH: Thursdays 2 - 3 pm [on Zoom](https://ubc.zoom.us/j/64485659982?pwd=J0AWlEsUZJf7jJjivHgaDyCHsE5vF1.1)
 - Mehrdad Oveisi, OH: 
 
 ### Course coordinator
