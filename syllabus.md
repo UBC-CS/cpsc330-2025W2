@@ -54,7 +54,7 @@ Tutorials for this course will be conducted by TAs, who will guide you through a
 
 - [Giulia Toti](https://www.gtoti.com/), OH: Thursdays, 11:15 am - 12:30 pm @ ICCS 231
 - [Firas Moosvi](https://firas.moosvi.com), OH: Thursdays 2 - 3 pm [on Zoom](https://ubc.zoom.us/j/64485659982?pwd=J0AWlEsUZJf7jJjivHgaDyCHsE5vF1.1)
-- Mehrdad Oveisi, OH: 
+- [Mehrdad Oveisi](https://www.cs.ubc.ca/people/mehrdad-oveisi), OH: Tuesdays and Thursdays after each class at 12:20 (DMP 310) and 18:20 (SWNG 222)
 
 ### Course coordinator
 - Anca Barbu (cpsc330-admin@cs.ubc.ca), please reach out to Anca for: admin questions, extensions, academic concessions etc. 
