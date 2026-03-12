@@ -49,7 +49,7 @@ project:
             - file: docs/python_notes.ipynb
             - file: docs/resources.md
         - file: docs/README.md
-    - title: Part 1 - Fundamentals
+    - title: Part 1
       children:
         - file: lectures/notes/01_intro.ipynb
         - file: lectures/notes/02_terminology-decision-trees.ipynb
@@ -61,7 +61,7 @@ project:
         - file: lectures/notes/08_hyperparameter-optimization.ipynb
         - file: lectures/notes/09_classification-metrics.ipynb
         - file: lectures/notes/10_regression-metrics.ipynb
-    - title: Part 2 - 
+    - title: Part 2
       children:
         - file: lectures/notes/11_ensembles.ipynb
         - file: lectures/notes/12_feat-importances.ipynb
@@ -69,9 +69,9 @@ project:
         - file: lectures/notes/14_K-Means.ipynb
         - file: lectures/notes/15_DBSCAN-hierarchical.ipynb
         - file: lectures/notes/16_recommender-systems.ipynb
-    # - title: Part 3 - 
-    #   children:
-    #     - file: lectures/notes/17_natural-language-processing.ipynb
+    - title: Part 3
+      children:
+        - file: lectures/notes/17_natural-language-processing.ipynb
     #     - file: lectures/notes/18_intro_to_computer-vision.ipynb
     #     - file: lectures/notes/19_time-series.ipynb
     #     - file: lectures/notes/20_survival-analysis.ipynb
