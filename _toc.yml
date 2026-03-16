@@ -35,6 +35,12 @@ chapters:
   - file: lectures/notes/08_hyperparameter-optimization
   - file: lectures/notes/09_classification-metrics
   - file: lectures/notes/10_regression-metrics
+  - file: lectures/notes/11_ensembles.ipynb
+  - file: lectures/notes/12_feat-importances.ipynb
+  - file: lectures/notes/13_feature-engineering-selection.ipynb
+  - file: lectures/notes/14_K-Means.ipynb
+  - file: lectures/notes/15_DBSCAN-hierarchical.ipynb
+  - file: lectures/notes/16_recommender-systems.ipynb
   - file: lectures/Firas/README.md
     title: Section 202 Slides
     sections:
@@ -56,3 +62,17 @@ chapters:
         title: Lecture 8
       - file: lectures/Firas/class09.md
         title: Lecture 9
+      - file: lectures/Firas/class10.md
+        title: Lecture 10
+      - file: lectures/Firas/class11.md
+        title: Lecture 11
+      - file: lectures/Firas/class12.md
+        title: Lecture 12
+      - file: lectures/Firas/class13.md
+        title: Lecture 13
+      - file: lectures/Firas/class14.md
+        title: Lecture 14
+      - file: lectures/Firas/class15.md
+        title: Lecture 15
+      - file: lectures/Firas/class16.md
+        title: Lecture 16
