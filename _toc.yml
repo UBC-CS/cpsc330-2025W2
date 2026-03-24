@@ -42,8 +42,9 @@ chapters:
   - file: lectures/notes/15_DBSCAN-hierarchical.ipynb
   - file: lectures/notes/16_recommender-systems.ipynb
   - file: lectures/notes/17_natural-language-processing.ipynb
-  - file: lectures/notes/18_intro_to_computer-vision.ipynb
-  - file: lectures/notes/19_time-series.ipynb
+  - file: lectures/notes/18_Intro-to-LLMs.ipynb
+  - file: lectures/notes/19_intro_to_computer-vision.ipynb
+  - file: lectures/notes/20_time-series.ipynb
   - file: lectures/Firas/README.md
     title: Section 202 Slides
     sections:
