@@ -72,12 +72,13 @@ project:
     - title: Part 3
       children:
         - file: lectures/notes/17_natural-language-processing.ipynb
-    #     - file: lectures/notes/18_intro_to_computer-vision.ipynb
-    #     - file: lectures/notes/19_time-series.ipynb
-    #     - file: lectures/notes/20_survival-analysis.ipynb
-    #     - file: lectures/notes/21_communication.ipynb
-    #     # - file: lectures/notes/22_AIcsCoreFairness.pdf
-    #     - file: lectures/notes/23_deployment-conclusion.ipynb
+        - file: lectures/notes/18_Intro-to-LLMs.ipynb
+        - file: lectures/notes/19_intro_to_computer-vision.ipynb
+    #     - file: lectures/notes/20_time-series.ipynb
+    #     - file: lectures/notes/21_survival-analysis.ipynb
+    #     - file: lectures/notes/22_communication.ipynb
+    #     # - file: lectures/notes/23_AIcsCoreFairness.pdf
+    #     - file: lectures/notes/24_deployment-conclusion.ipynb
     #     - file: lectures/notes/final-exam-review-guiding-question.ipynb
     # - title: Section slides
     #   children:
