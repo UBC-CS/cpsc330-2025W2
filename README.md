@@ -80,7 +80,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | **Midterm 2**  | Mar 16-17-18          | PrairieLearn (CBTF, in person)                                                     | PrairieLearn (CBTF, in person)                        |
 | hw7            | Mar 23, 11:59 pm      | [GitHub repo](https://github.com/new?template_name=hw7&template_owner=ubc-cpsc330) | [Gradescope](https://www.gradescope.ca/courses/34465) |
 | hw8            | Mar 30, 11:59 pm      | [GitHub repo](https://github.com/new?template_name=hw8&template_owner=ubc-cpsc330) | [Gradescope](https://www.gradescope.ca/courses/34465) |
-| hw9            | Apr 10, 11:59 pm  **No late submissions**    | GitHub repo[](https://github.com/new?template_name=hw9&template_owner=ubc-cpsc330) | [Gradescope](https://www.gradescope.ca/courses/34465) |
+| hw9            | Apr 10, 11:59 pm  **No late submissions**    | [GitHub repo](https://github.com/new?template_name=hw9&template_owner=ubc-cpsc330) | [Gradescope](https://www.gradescope.ca/courses/34465) |
 | **Final exam** | TBA                   | PrairieLearn (CBTF, in person)                                                           | PrairieLearn (CBTF, in person)                              |
 
 ## Lecture schedule (tentative)
