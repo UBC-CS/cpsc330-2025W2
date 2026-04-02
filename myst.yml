@@ -156,16 +156,16 @@ project:
           title: Lecture 19
         - url: https://firasm.github.io/cpsc330-slides/slides-20.html
           title: Lecture 20
-        # - url: https://firasm.github.io/cpsc330-slides/slides-21.html
-        #   title: Lecture 21
-        # - url: https://firasm.github.io/cpsc330-slides/slides-23.html
-        #   title: Lecture 23
-    # - title: Appendix
-    #   children:
-    #     - file: lectures/notes/AppendixA.ipynb
-    #     - file: lectures/notes/AppendixB.ipynb
-    #     - file: lectures/notes/AppendixC.ipynb
-    #     - file: lectures/notes/AppendixD.ipynb
+        - url: https://firasm.github.io/cpsc330-slides/slides-21.html
+          title: Lecture 21
+        - url: https://firasm.github.io/cpsc330-slides/slides-22.html
+          title: Lecture 22
+    - title: Appendix
+      children:
+        - file: lectures/notes/AppendixA.ipynb
+        - file: lectures/notes/AppendixB.ipynb
+        - file: lectures/notes/AppendixC.ipynb
+        - file: lectures/notes/AppendixD.ipynb
     - file: LICENSE.md
       title: Attribution
 site:
