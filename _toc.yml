@@ -45,6 +45,10 @@ chapters:
   - file: lectures/notes/18_Intro-to-LLMs.ipynb
   - file: lectures/notes/19_intro_to_computer-vision.ipynb
   - file: lectures/notes/20_time-series.ipynb
+  - file: lectures/notes/21_survival-analysis.ipynb
+  - file: lectures/notes/22_communication.ipynb
+  - file: lectures/notes/23_ethics.md
+  - file: lectures/notes/24_deployment-conclusion.ipynb
   - file: lectures/Firas/README.md
     title: Section 202 Slides
     sections:
