@@ -113,7 +113,7 @@ The grading scheme for the course is as follows:
 - Pass the Midterms and Final Exam together with a weighted average grade of at least 50%
 - Pass the Final Exam with a grade of at least 40%,
 
-**If a student does not satisfy the appropriate requirements, the student will be assigned the lower of their earned course grade or, a maximum overall grade of 45 in the course. In exceptional cases (with approved concessions), passing requirements may be waived at the discretion of the course instructor; if waived, the student will be earn a maximum grade of 50% in the course.**
+**If a student does not satisfy the appropriate requirements, the student will be assigned the lower of their earned course grade or, a maximum overall grade of 45 in the course. In exceptional cases (with approved concessions), passing requirements may be waived at the discretion of the course instructor; if waived, the student will earn a maximum grade of 50% in the course.**
 
 ### iClicker 
 
